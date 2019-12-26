@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.goodmonitoring.dao.ApplydataDAO">
+
+	<insert id="insertuserjoin"
+		parameterType="com.goodmonitoring.vo.ApplydataVO">
+		
+		)
+	</insert>
+
+	<insert id="insert"
+		parameterType="com.goodmonitoring.vo.ApplydataVO">
+		INSERT INTO applydata (
+		APPLYDATA_NO,
+		USR_NO,
+		BOARD_NO,
+		INTEREST_CATEGORY_CODE,
+		C_NAME
+		)VALUES(
+		0,
+		#{USR_NO},
+		#{BOARD_NO},
+		#{INTEREST_CATEGORY_CODE},
+		#{C_NAME}
+		)
+	</insert>
+
+	<!-- 가장 많이, 가장 최근에 지원한 업종의 코드 리턴 -->
+	<select id="getfitcategory" resultType="int">
+		select
+		INTEREST_CATEGORY_CODE
+		from
+		(select APPLYDATA_NO, INTEREST_CATEGORY_CODE
+		from
+		(select APPLYDATA_NO, INTEREST_CATEGORY_CODE, COUNT(*) AS `APPLY_COUNT`
+		FROM
+		applydata where USR_NO = #{USR_NO} group by INTEREST_CATEGORY_CODE) A
+		where APPLY_COUNT = (select MAX(APPLY_COUNT)
+		from (select COUNT(*) AS `APPLY_COUNT`
+		FROM applydata where USR_NO = #{USR_NO} group by INTEREST_CATEGORY_CODE)
+		B)) C
+		where APPLYDATA_NO = (select MAX(APPLYDATA_NO)
+		from (select APPLYDATA_NO, INTEREST_CATEGORY_CODE
+		from (select APPLYDATA_NO, INTEREST_CATEGORY_CODE, COUNT(*) AS `APPLY_COUNT`
+		FROM applydata where USR_NO = #{USR_NO} group by INTEREST_CATEGORY_CODE) A
+		where APPLY_COUNT = (select MAX(APPLY_COUNT)
+		from (select COUNT(*) AS `APPLY_COUNT` 
+		FROM applydata where USR_NO = #{USR_NO}
+		group by
+		INTEREST_CATEGORY_CODE) B)) C);
+	</select>
+
+<!-- 가장 최근에 지원한 회사명 -->
+	<select id="getlatelycname" resultType="string">
+		select C_NAME from applydata 
+		where USR_NO = #{USR_NO} 
+		AND 
+		APPLYDATA_NO = 
+		(select MAX(APPLYDATA_NO) from applydata where USR_NO = #{USR_NO})
+	</select>
+
+<!-- 상세보기하고있는 모집정보를 지원한적있나  0=없음 -->
+	<select id="getBoardApply" resultType="int">
+		SELECT COUNT(APPLYDATA_NO)
+		FROM applydata WHERE USR_NO = #{USR_NO} AND
+		BOARD_NO = #{BOARD_NO}
+	</select>
+	
+<!-- 아무 모집정보에 지원한적 있나 0=없음 -->
+	<select id="applyisext" resultType="int">
+		SELECT COUNT(APPLYDATA_NO)
+		FROM applydata WHERE USR_NO = #{USR_NO}
+	</select>
+
+</mapper>

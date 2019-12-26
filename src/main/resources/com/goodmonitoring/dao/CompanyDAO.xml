@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.goodmonitoring.dao.CompanyDAO">
+
+
+	<insert id="insert" parameterType="com.goodmonitoring.vo.CompanyVO">
+		INSERT INTO company(
+		C_NO,
+		C_ID,
+		C_PASS,
+		C_NAME,
+		C_CODE,
+		C_URL,
+		C_TEL,
+		C_PART,
+		C_PART_NAME,
+		C_PART_TEL,
+		C_EMAIL,
+		C_ZIPCODE,
+		C_ADDR,
+		INTEREST_CATEGORY,
+		GRADE
+		)VALUES(
+		0,
+		#{C_ID},
+		#{C_PASS},
+		#{C_NAME},
+		#{C_CODE},
+		#{C_URL},
+		#{C_TEL},
+		#{C_PART},
+		#{C_PART_NAME},
+		#{C_PART_TEL},
+		#{C_EMAIL},
+		#{C_ZIPCODE},
+		#{C_ADDR},
+		#{INTEREST_CATEGORY},
+		2
+		)
+	</insert>
+			<!-- 간단 암호화(복호화가능) -->
+		<!--PASSWORD(#{USR_PASS}),-->
+		
+		
+	<!-- 로그인 -->
+	<select id="loginCompany"  parameterType="java.util.HashMap" resultType="com.goodmonitoring.vo.CompanyVO">
+		select * from company
+		where C_ID = #{C_ID} and C_PASS = #{C_PASS} and GRADE = 2
+	</select>
+
+
+</mapper>
