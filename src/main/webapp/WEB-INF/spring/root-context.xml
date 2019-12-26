@@ -20,22 +20,17 @@
 		destroy-method="close"> <constructor-arg ref="hikariConfig"></constructor-arg> 
 		</bean> -->
 
-
-
-
-
-
-
+	<context:property-placeholder location="classpath:db.properties" />
 
 	<!-- dataSource버전 -->
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
 		destroy-method="close">
 		<property name="driverClassName"
-			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
+			value="${db.driver}"></property>
 		<property name="jdbcUrl"
-			value="jdbc:log4jdbc:mysql://localhost:3307/test?serverTimezone=UTC"></property>
-		<property name="username" value="an"></property>
-		<property name="password" value="1234"></property>
+			value="${db.url}"></property>
+		<property name="username" value="${db.user}"></property>
+		<property name="password" value="${db.password}"></property>
 	</bean>
 	<!-- "jdbc:mariadb://localhost:3307/test_db" -->
 	<bean id="transactionManager"
