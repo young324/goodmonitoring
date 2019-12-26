@@ -26,15 +26,16 @@
 
 
 
+
 	<!-- dataSource버전 -->
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
 		destroy-method="close">
 		<property name="driverClassName"
 			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="jdbcUrl"
-			value="jdbc:log4jdbc:mysql://localhost:3307/test_db?serverTimezone=UTC"></property>
-		<property name="username" value="root"></property>
-		<property name="password" value="young"></property>
+			value="jdbc:log4jdbc:mysql://localhost:3307/test?serverTimezone=UTC"></property>
+		<property name="username" value="an"></property>
+		<property name="password" value="1234"></property>
 	</bean>
 	<!-- "jdbc:mariadb://localhost:3307/test_db" -->
 	<bean id="transactionManager"
