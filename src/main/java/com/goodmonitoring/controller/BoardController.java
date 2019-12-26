@@ -57,7 +57,7 @@ public class BoardController {
 	public void Joinselect() {
 	}
 
-	//로그인 선택폼
+	//로그인 선택폼  
 	@GetMapping("/Loginselect")
 	public void Loginselect() {
 
