@@ -117,4 +117,9 @@ public class BoardDAOImple implements BoardDAO{
 		return ss.selectList("countICbyTG", targetVO);
 	}
 
+	@Override
+	public List<BoardVO> getmonthlyList() {
+		return ss.selectList("getmonthlyList");
+	}
+
 }

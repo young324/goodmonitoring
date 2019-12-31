@@ -23,6 +23,9 @@ public interface BoardService {
 	//추천수 - 1
 	public void recommendcountM(int BOARD_NO);
 
+	//이번달 전체 모집정보 리스트 
+	public List<BoardVO> getmonthlyList();
+	
 	// 이번달 특정대상의 업종별 모집정보 수 리스트
 	public List<BoardVO> countICbyTG(TargetVO targetVO);
 	

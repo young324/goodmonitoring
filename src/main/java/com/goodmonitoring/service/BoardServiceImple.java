@@ -150,6 +150,12 @@ public class BoardServiceImple implements BoardService{
 	}
 
 
+	@Override
+	public List<BoardVO> getmonthlyList() {
+		return board.getmonthlyList();
+	}
+
+
 
 
 	

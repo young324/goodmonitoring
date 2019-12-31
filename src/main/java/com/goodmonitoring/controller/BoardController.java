@@ -91,7 +91,7 @@ public class BoardController {
 		model.addAttribute("MostCategory", service.getmostcate());
 		model.addAttribute("MostTarget", service.getmosttarget());
 		
-		/* List<String> targetList = new ArrayList<TargetVO>(); */
+		model.addAttribute("list", service.getmonthlyList());
 
 		 ArrayList<TargetVO> targetList =  (ArrayList<TargetVO>) targetservice.getList();
 		//대상별 모집정보 개수
@@ -129,6 +129,7 @@ public class BoardController {
 		public List<BoardVO> monthly(Model model,HttpServletRequest httpRequest) throws Exception {
 
 			//int btn = Integer.parseInt(httpRequest.getParameter("btn"));
+
 			
 			int list_size = industrycategoryservice.ICcount();//업종개수 + 1 >> 뿌려줄 데이터 개수
 			int[] arr = new int[list_size + 1];//ajax로 보내줄 arrylist
@@ -139,7 +140,7 @@ public class BoardController {
 			TargetVO targetvo = new TargetVO();
 			targetvo.setTARGET(btnname);
 			 
-			List<BoardVO> list =  new ArrayList();
+			List<BoardVO> list =  new ArrayList<BoardVO>();
 			
 			if(btnname != null) {
 				System.out.println(btnname);
