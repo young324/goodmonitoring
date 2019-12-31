@@ -176,7 +176,6 @@ function likebtn(){
 	
 	var sendData = {BOARD_NO : '${board.BOARD_NO}' , like: likeval, USR_NO : USR_NO};
 	
-	
 	$.ajax({
 		url : '/board/like',
 		type : "post",

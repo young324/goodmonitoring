@@ -15,8 +15,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
+     <!-- MetisMenu CSS -->
     <link href="/resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- DataTables CSS -->
@@ -294,7 +293,7 @@
                                     <a href="/board/fitlistJoin">맞춤 모집정보 보기</a>
                                 </li>
                                 <li>
-                                    <a href="/board/ㅁ">이달의 모집정보 보기</a>
+                                    <a href="/board//graphmoniter">이달의 모집정보 보기</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

@@ -53,4 +53,7 @@ public class BoardVO {
 	//체크박스검색
 	private String[] targetList;
 	private String[] icList;
+	
+	//특정 대상의 업종별 개수
+	private int tcount;
 }

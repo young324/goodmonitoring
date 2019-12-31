@@ -21,6 +21,13 @@
 	<select id="getC_NAMElist" resultType="com.goodmonitoring.vo.BoardVO">
 		SELECT * FROM board WHERE C_NAME = #{C_NAME} order by BOARD_NO DESC
 	</select>
+	
+	<!-- 이번달 특정대상의 업종별 모집정보 수 -->
+	<select id="countICbyTG" resultType="com.goodmonitoring.vo.BoardVO" >
+	<![CDATA[
+		select INTEREST_CATEGORY,COUNT(INTEREST_CATEGORY) AS TCOUNT from (SELECT * FROM board WHERE ( REPORTING_DATE > LAST_DAY(NOW() - interval 1 month) AND REPORTING_DATE <= LAST_DAY(NOW()) ))a  where TARGET = #{TARGET} group by INTEREST_CATEGORY
+	]]>
+	</select>
 
 	<!-- 이번달 대상별 모집정보 수 -->
 	<select id="countTarget" resultType="int">
@@ -71,7 +78,7 @@
 	</select>
 	
 	<!-- 이번달 모집정보중에 가장많은 업종 -->
-	<select id="getmostcate" resultType="string">
+	<select id="getmostcate" resultType="string" > 
 	<![CDATA[
 		SELECT INTEREST_CATEGORY FROM (SELECT * FROM board WHERE ( REPORTING_DATE > LAST_DAY(NOW() - interval 1 month) AND REPORTING_DATE <= LAST_DAY(NOW()) ))a GROUP BY INTEREST_CATEGORY order by COUNT(*) DESC limit 1
 	]]>		

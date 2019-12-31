@@ -23,14 +23,18 @@ public class IndustyCategoryServiceImple implements IndustryCategoryService{
 	}
 
 	@Override
-	public int getcatecode(String INTEREST_CATEGORY) {
-		
+	public int getcatecode(String INTEREST_CATEGORY) {	
 		return industrycategory.getcatecode(INTEREST_CATEGORY);
 	}
 
 	@Override
 	public String getcate(int INTEREST_CATEGORY_CODE) {
 		return industrycategory.getcate(INTEREST_CATEGORY_CODE);
+	}
+
+	@Override
+	public int ICcount() {
+		return industrycategory.ICcount();
 	}
 	
 }

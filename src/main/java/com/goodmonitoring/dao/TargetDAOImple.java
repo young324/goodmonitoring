@@ -1,5 +1,6 @@
 package com.goodmonitoring.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -16,5 +17,15 @@ public class TargetDAOImple implements TargetDAO{
 	@Override
 	public List<TargetVO> getList() {
 		return ss.selectList("getList");
+	}
+
+	@Override
+	public List<String> getListString() {
+		return ss.selectList("getListString");
+	}
+
+	@Override
+	public int TGcount() {
+		return ss.selectOne("TGcount");
 	}
 }

@@ -13,5 +13,8 @@ public interface IndustryCategoryDAO {
 	public int getcatecode(String INTEREST_CATEGORY);
 	
 	//코드로 업종명 얻기
-			public String getcate(int INTEREST_CATEGORY_CODE);
+	public String getcate(int INTEREST_CATEGORY_CODE);
+	
+	//전체 업종 개수
+	public int ICcount();
 }

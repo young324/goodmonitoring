@@ -11,6 +11,7 @@ import com.goodmonitoring.dao.BoardDAO;
 import com.goodmonitoring.vo.BoardVO;
 import com.goodmonitoring.vo.FindCriteria;
 import com.goodmonitoring.vo.PageCriteria;
+import com.goodmonitoring.vo.TargetVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -126,8 +127,8 @@ public class BoardServiceImple implements BoardService{
 
 
 	@Override
-	public int countTarget(String TARGET) {
-		return board.countTarget(TARGET);
+	public int countTarget(TargetVO targetVO) {
+		return board.countTarget(targetVO);
 	}
 
 
@@ -140,6 +141,12 @@ public class BoardServiceImple implements BoardService{
 	@Override
 	public int countboard() {
 		return board.countboard();
+	}
+
+
+	@Override
+	public List<BoardVO> countICbyTG(TargetVO targetvo) {
+		return board.countICbyTG(targetvo);
 	}
 
 

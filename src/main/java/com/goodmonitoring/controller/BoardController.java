@@ -1,5 +1,6 @@
 package com.goodmonitoring.controller;
  
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -24,6 +25,7 @@ import com.goodmonitoring.vo.ApplydataVO;
 import com.goodmonitoring.vo.BoardVO;
 import com.goodmonitoring.vo.CompanyVO;
 import com.goodmonitoring.vo.LikeVO;
+import com.goodmonitoring.vo.TargetVO;
 import com.goodmonitoring.vo.UserVO;
 
 import lombok.AllArgsConstructor;
@@ -79,19 +81,25 @@ public class BoardController {
 		model.addAttribute("list", service.getList());
 	}
 	
+	@GetMapping("/monthlylist")
+	public void monthlylist() {}
+	
 	//이달의 모집정보 페이지 폼
-	@GetMapping("/graphmoniter3")
+	@GetMapping("/graphmoniter")
 	public void graphmoniter(Model model, HttpServletRequest httpRequest) {
 		//가장많은 업종과 그 업종에서 가장많은 대상
 		model.addAttribute("MostCategory", service.getmostcate());
 		model.addAttribute("MostTarget", service.getmosttarget());
 		
+		/* List<String> targetList = new ArrayList<TargetVO>(); */
+
+		 ArrayList<TargetVO> targetList =  (ArrayList<TargetVO>) targetservice.getList();
 		//대상별 모집정보 개수
-		model.addAttribute("ilban", service.countTarget("일반모니터"));
-		model.addAttribute("deahak", service.countTarget("대학생모니터"));
-		model.addAttribute("jubu", service.countTarget("주부모니터"));
-		model.addAttribute("global", service.countTarget("글로벌모니터"));
-		model.addAttribute("senior", service.countTarget("시니어모니터"));
+		model.addAttribute("ilban", service.countTarget(targetList.get(0)));
+		model.addAttribute("deahak", service.countTarget(targetList.get(1)));
+		model.addAttribute("jubu", service.countTarget(targetList.get(2)));
+		model.addAttribute("global", service.countTarget(targetList.get(3)));
+		model.addAttribute("senior", service.countTarget(targetList.get(4)));
 		
 		//이달의 모집정보 개수
 		model.addAttribute("countboard",service.countboard());
@@ -99,8 +107,58 @@ public class BoardController {
 		//모든 업종,대상 리스트
 		model.addAttribute("listTarget", targetservice.getList());
 		model.addAttribute("listIndustryCategory", industrycategoryservice.getList());
-		//model.addAttribute("MostTarget", service.countIC());
+		model.addAttribute("ICcount", industrycategoryservice.ICcount());
+		model.addAttribute("listIndustryCategory", industrycategoryservice.getList());
+		
+		model.addAttribute("btn",0);
+		
+		//일반모니터의 업종별 개수, 모집정보 수 / 기본으로 보여줄 데이터
+		model.addAttribute("all_IC_count", service.countTarget(targetList.get(0)));
+		for(int i=0; i < targetservice.TGcount(); i++)
+		{	
+			String T = "target" + i;
+			model.addAttribute(T, service.countTarget(targetList.get(i)));
+		}
+		// 이번달 특정대상의 업종별 모집정보 수 리스트
+		model.addAttribute("countICbyTG", service.countICbyTG(targetList.get(0)));
 	}
+
+	//대상별 이달의 모집정보 데이터
+		@ResponseBody
+		@RequestMapping(value = "/monthly", method = RequestMethod.POST, produces = "application/json")
+		public List<BoardVO> monthly(Model model,HttpServletRequest httpRequest) throws Exception {
+
+			//int btn = Integer.parseInt(httpRequest.getParameter("btn"));
+			
+			int list_size = industrycategoryservice.ICcount();//업종개수 + 1 >> 뿌려줄 데이터 개수
+			int[] arr = new int[list_size + 1];//ajax로 보내줄 arrylist
+			
+			//int all_IC_count = 0;
+			String btnname = httpRequest.getParameter("btnname");
+			
+			TargetVO targetvo = new TargetVO();
+			targetvo.setTARGET(btnname);
+			 
+			List<BoardVO> list =  new ArrayList();
+			
+			if(btnname != null) {
+				System.out.println(btnname);
+			//	all_IC_count = service.countTarget(targetvo);
+
+			//	arr[0] = all_IC_count;
+				
+				list = service.countICbyTG(targetvo);
+				for(int i=0; i<industrycategoryservice.ICcount() + 1; i++) {
+					
+				}
+				//btn = 1
+			}
+			else {
+				//btn = 0;
+			}
+			
+			return list;
+		}
 	
 	@GetMapping("/fitlistJoin")
 	public String fitlistJoin(Model model, HttpServletRequest httpRequest) {
@@ -159,10 +217,7 @@ public class BoardController {
 		String targetList = (httpRequest.getParameter("lists"));
 		BoardVO boardvo = new BoardVO();
 		boardvo.setTARGET(targetList);
-		model.addAttribute("list", service.boardSearchList(boardvo));
-		
-		
-		
+		model.addAttribute("list", service.boardSearchList(boardvo));		
 	}
 	
 	//게시물 등록처리

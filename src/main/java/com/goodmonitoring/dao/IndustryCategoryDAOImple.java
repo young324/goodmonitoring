@@ -28,4 +28,9 @@ public class IndustryCategoryDAOImple implements IndustryCategoryDAO{
 
 		return ss.selectOne("getcate",INTEREST_CATEGORY_CODE);
 	}
+
+	@Override
+	public int ICcount() {
+		return ss.selectOne("ICcount");
+	}
 }

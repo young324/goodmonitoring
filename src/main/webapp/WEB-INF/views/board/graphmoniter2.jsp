@@ -52,6 +52,8 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/muuri/0.5.4/muuri.min.js"></script>
+		
+		<script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
 <%
 	Date date = new Date();
 	Calendar cal = Calendar.getInstance();
@@ -79,17 +81,31 @@
 <canvas id="myChart2"></canvas>
 </th>
 <th>
+<%! 
+       String[] btnColor = { "btn btn-outline-danger", "btn btn-outline-primary", "btn btn-outline-success", "btn btn-outline-info","btn btn-outline-warning" };
+%>
+<%
+	request.setAttribute("btnColor", btnColor);
+%>
+
+<c:set var="btnColor" value="${pageScope.btnColor}"/>
+
+<c:forEach items="${listTarget}" var="target" varStatus="status" >
+	<button type="button" id="btn_${status.index}" class="btn btn-outline-primary" 
+	style="width: 100%;" name="tgbtn" value="${target.TARGET}" onClick="monthlybtn();">${target.TARGET}   00건</button><br>
+</c:forEach>
+
+<!-- 
 <button type="button" class="btn btn-outline-danger" style="width: 100%;">일반     000건</button><br>
 <button type="button" class="btn btn-outline-primary" style="width: 100%;">주부     000건</button><br>
 <button type="button" class="btn btn-outline-success" style="width: 100%;">대학생   000건</button><br>
 <button type="button" class="btn btn-outline-info" style="width: 100%;">시니어   000건</button><br>
 <button type="button" class="btn btn-outline-warning" style="width: 100%;">글로벌   000건</button>
+ -->
 </th>
 </table>
 				<h4><strong>
-					<%=
-						"일반"	
-					%></strong>
+					<label id="tgtext"></label></strong>
 					 대상의 모니터링 모집 정보
 					 <strong>
 					<%=
@@ -104,6 +120,9 @@
 	</div>
 
 	<script>
+
+	
+
 		var data = [
 				{
 					target : '일반',
@@ -160,42 +179,46 @@
 				return [ grid ]
 			}
 		});
+		
 	</script>
 	
+		
 	<script>
+
+//버튼 색깔	
+		$("#btn_0").attr('class','btn btn-outline-danger');
+		$("#btn_1").attr('class','btn btn-outline-primary');
+		$("#btn_2").attr('class','btn btn-outline-success');
+		$("#btn_3").attr('class','btn btn-outline-info');
+		$("#btn_4").attr('class','btn btn-outline-warning');
+		$("#btn_5").attr('class','btn btn-outline-danger');
+		$("#btn_6").attr('class','btn btn-outline-primary');
+		$("#btn_7").attr('class','btn btn-outline-success');
+		$("#btn_6").attr('class','btn btn-outline-info');
+
+		//버튼 누를때 변경
+		
+		
+		
+		//업종 리스트
+		var list = new Array();
+		<c:forEach var="itemList" items="${listIndustryCategory}" varStatus="industrycategory">
+			list.push("${itemList.INTEREST_CATEGORY}");
+		</c:forEach>	
+		
+		var data3 = [];
+		
+		for(var i=0;i<list.length;i++){
+			data3.push({
+				category : list[i],
+				value : 10,
+				percent : '<div class="progress"><div title="tooltip" class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 17%" aria-valuenow="17" aria-valuemin="0" aria-valuemax="100">17%</div></div>'
+			});
+		}
+		
+	
+	/*
 		var data = [
-				/*
-					<c:forEach items="${list}" var="board">
-						<tr>
-							<td><c:out value="${board.BOARD_NO}" /></td>
-							<td class="txt_line"><c:out value="${board.TARGET}" /></td>
-
-
-							<td>
-								<!-- script로 기동 <a  href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'>-->
-								<a class='move' href='<c:out value="${board.BOARD_NO}"/>'> <c:out
-										value="${board.AD_TITLE}" /></a>
-							</td>
-
-
-
-							<td><c:out value="${board.REPORTING_DATE}" /></td>
-							<td><c:out value="${board.VIEW_COUNT}" /></td>
-
-						</tr>
-					</c:forEach>
-					
-					
-					<c:forEach items="${listTarget}" var="target">
-					<option value="${target.TARGET}">${target.TARGET}</option>
-				</c:forEach>
-				*/
-			<c:forEach items="${listIndustryCategory}" var="listIndustryCategory">
-				category : "${industrycategory.INTEREST_CATEGORY}",
-				value : 221
-				
-			</c:forEach>
-			
 				{
 					category : '식품관련 기업',
 					value : 221,
@@ -216,9 +239,11 @@
 					value : 125,
 					percent : '<div class="progress"><div title="tooltip" class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 8.8%" aria-valuenow="8.8" aria-valuemin="0" aria-valuemax="100">8.8%</div></div>'
 				} ];
+		*/
+				
 		var hot = new Handsontable(document
 				.getElementById('model'), {
-			data : data,
+			data : data3,
 			rowHeaders : true,
 			colWidths : [ 100, 100, 600 ],
 			colHeaders : false,
@@ -259,7 +284,7 @@
 		crossorigin="anonymous"></script>
 
 	<!-- 차트 -->
-	<script>
+	<script type="text/javascript">
 		data = {
 			datasets : [ {
 				backgroundColor : [ '#F5A9A9', '#A9F5F2', '#BCF5A9', '#9F81F7', '#F3F781' ], 
@@ -277,7 +302,61 @@
 			data : data,
 			options : {}
 		});
+		
 	</script>
+	
+	<script>
+	
+	var btnname = $("#btn_0").attr('value'); 
+	$("#tgtext").text(btnname);
+	$(document).ready(function() {
+		$("button[name='tgbtn']").on('click', (e) => {
+			console.log(e.target.value);//
+			btnname = e.target.value;
+			$("#tgtext").text(btnname);//text변경
+			
+			
+			//mothlybtn안에 있던거@@@@
+			
+		var that = $("#btn");
+		//var btnname = $(":button").val(); //button인게 눌렸을때 그것의 value
+		
+		var sendData = {btn : btnval, btnname : btnname}; //버튼의 밸류값을 전송
+		
+		$.ajax({
+			url : '/board/monthly',
+			type : "post",
+			data : sendData,
+			success : function(data){
+				that.prop('name',data);
+				if(data==1) { //성공실패
+					btnval = data; 
+					console.log("대상이름 전송 성공");	
+	            }
+	            else{ 
+	            	btnval = data; 
+	                console.log("대상이름 전송 실패"); 
+	            }				
+		  	}
+		});
+			
+		//@@@@@
+			
+			
+		});
+	});
+	
+	//누른 버튼에 따라 다른 값을 받아서 전달
+	var btnval = ${btn};
+	
+	//대상별 이달의 모집정보 데이터
+	function monthlybtn(){
+		
+	}
+	</script>
+	
+	
+
 	
 </body>
 
