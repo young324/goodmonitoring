@@ -17,11 +17,14 @@ public class BoardVO {
 	private Date AD_START_DATE;
 	private Date AD_END_DATE;
 	private Date AD_ANNOUNCEMENT_DATE;
+	
+	private String AD_START_DATE_STRING;
+	private String AD_END_DATE_STRING;
+	private String AD_ANNOUNCEMENT_DATE_STRING;
+	
+	
 	private String AD_APPLY_TEXT;
 	private String C_EMAIL;
-	private String FILESIZE;
-	private String FILE_LOCATION;
-	private String FILE_NAME;
 	
 	//모집조건
 	private String AD_AGE;
@@ -34,6 +37,11 @@ public class BoardVO {
 	private String WORK_KEYWORD;
 	private Date WORK_START_DATE;
 	private Date WORK_END_DATE;
+	
+	private String WORK_START_DATE_STRING;
+	private String WORK_END_DATE_STRING;
+	
+	
 	private String WORK_TIME;
 	private String WORK_TEXT;
 	private String WORK_BENEFIT_KEY;
@@ -47,10 +55,23 @@ public class BoardVO {
 	private String WORK_TAG;
 	private Date REPORTING_DATE;
 	
+	
 	//지원하기 링크
 	private String URL;
 	
 	//체크박스검색
 	private String[] targetList;
 	private String[] icList;
+	
+	
+	public void dateStringConverte() {
+
+		if(this.AD_START_DATE!=null && !this.AD_START_DATE.equals(""))this.AD_START_DATE_STRING=this.AD_START_DATE.toString();
+		if(this.AD_END_DATE!=null && !this.AD_END_DATE.equals(""))this.AD_END_DATE_STRING=this.AD_END_DATE.toString();
+		if(this.AD_ANNOUNCEMENT_DATE!=null && !this.AD_ANNOUNCEMENT_DATE.equals(""))this.AD_ANNOUNCEMENT_DATE_STRING=this.AD_ANNOUNCEMENT_DATE.toString();
+				
+		if(this.WORK_START_DATE!=null && !this.WORK_START_DATE.equals(""))this.WORK_START_DATE_STRING=this.WORK_START_DATE.toString();
+		if(this.WORK_END_DATE!=null && !this.WORK_END_DATE.equals("")) this.WORK_END_DATE_STRING=this.WORK_END_DATE.toString();				
+	}
+	
 }

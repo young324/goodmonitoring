@@ -1,13 +1,18 @@
 package com.goodmonitoring.controller;
  
+import java.io.File;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,14 +22,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.goodmonitoring.service.ApplydataService;
 import com.goodmonitoring.service.BoardService;
+import com.goodmonitoring.service.FileUploadService;
 import com.goodmonitoring.service.IndustryCategoryService;
 import com.goodmonitoring.service.LikeService;
 import com.goodmonitoring.service.TargetService;
 import com.goodmonitoring.vo.ApplydataVO;
+import com.goodmonitoring.vo.BoardFileVO;
 import com.goodmonitoring.vo.BoardVO;
 import com.goodmonitoring.vo.CompanyVO;
 import com.goodmonitoring.vo.LikeVO;
 import com.goodmonitoring.vo.UserVO;
+import com.mysql.cj.core.util.StringUtils;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -49,7 +57,9 @@ public class BoardController {
 
 	@Resource(name="applydataService")
 	private ApplydataService applydataService;
-
+	
+	@Autowired
+	private FileUploadService fileUploadService;
 
 
 	//회원가입 선택폼
@@ -73,11 +83,11 @@ public class BoardController {
 	
 
 	//전체 목록을 가져온다
-	@GetMapping("/list")
-	public void list(Model model) {
-		log.info("list");
-		model.addAttribute("list", service.getList());
-	}
+		@GetMapping("/list")
+		public void list(Model model) {
+		//	log.info("list");
+			model.addAttribute("list", service.getList());
+		}
 	
 	//이달의 모집정보 페이지 폼
 	@GetMapping("/graphmoniter3")
@@ -160,26 +170,32 @@ public class BoardController {
 		BoardVO boardvo = new BoardVO();
 		boardvo.setTARGET(targetList);
 		model.addAttribute("list", service.boardSearchList(boardvo));
-		
-		
-		
 	}
 	
 	//게시물 등록처리
-	@PostMapping("/write")
-	public String write(BoardVO boardvo, RedirectAttributes rttr, 
-			@RequestParam(value = "onlinearry[]", required=false) List<String> valueArr
-			) throws Exception {
-		log.info("write: " + boardvo);
-
-		service.write(boardvo);
-		//addAttribute는 리다이렉트시 파라미터도 넘겨진다.
-		//addFlashAttribute는 리다이렉트시 세션을 통해 전달하므로 ? 뒤에 파라미터가 안 보인다.
-
-
-		rttr.addFlashAttribute("result", boardvo.getBOARD_NO());
-		return "redirect:/board/list";		
-	}
+		@Transactional
+		@PostMapping("/write")
+		public String write(BoardVO boardvo, RedirectAttributes rttr,  
+				BoardFileVO boardFileVO,HttpServletRequest request) throws Exception{
+			log.info("write: " + boardvo);
+			
+			//날짜 string 으로 입력 처리되기 String 변수에 데이터 입력
+			boardvo.dateStringConverte();
+			service.write(boardvo);
+		
+			/**
+			 * 첨부파일 등록처리
+			 */
+			String uploadPath = request.getSession().getServletContext().getRealPath("/")+"uploads"+ File.separator+"board" + File.separator;		
+			String fileUrlPath = "uploads/board";
+			
+			boardFileVO.setBOARD_NO(boardvo.getBOARD_NO());
+			log.info(" 등록된 번호 : " + boardvo.getBOARD_NO());		
+			fileUploadService.fileUploadAction(boardFileVO, uploadPath, fileUrlPath);		
+			
+			rttr.addFlashAttribute("result", boardvo.getBOARD_NO());
+			return "redirect:/board/list";
+		}
 
 
 	//게시물 읽기	
@@ -304,7 +320,27 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 
+	
+	//파일 삭제
+		@PostMapping("/fileDelete")
+		@ResponseBody
+		public String fileDelete(@RequestParam Map<String, Object> map, HttpServletRequest request ) throws Exception{
+			BoardFileVO boardFileVO =fileUploadService.boardGetByFileInfo(map);	
+			if(boardFileVO!=null && !StringUtils.isNullOrEmpty(boardFileVO.getFILE_PATH())) {
+				String path = request.getSession().getServletContext().getRealPath("/")+boardFileVO.getFILE_PATH().replace('/', File.separatorChar);
+				
+				File file=new File(path);
+				if(file.exists()) {
+					file.delete();		
+					//DB 에서 삭제
+					fileUploadService.fileDelete(map);			
+					return "success";
+				}
+			}
+			return "error";
+		}
 
+	
 
 
 }

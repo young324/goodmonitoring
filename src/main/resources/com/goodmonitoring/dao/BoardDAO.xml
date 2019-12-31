@@ -5,10 +5,10 @@
 
 <mapper namespace="com.goodmonitoring.dao.BoardDAO">
 
-	<!-- 게시글 전체 목록 조회 -->
+		<!-- 게시글 전체 목록 조회 -->
 	<select id="getList" resultType="com.goodmonitoring.vo.BoardVO">
 		<![CDATA[
-		SELECT * FROM board WHERE BOARD_NO > 0 order by BOARD_NO DESC
+		SELECT * FROM board WHERE BOARD_NO > 0
 		]]>
 	</select>
 
@@ -16,6 +16,7 @@
 	<select id="read" resultType="com.goodmonitoring.vo.BoardVO">
 		SELECT * FROM board WHERE BOARD_NO = #{BOARD_NO}
 	</select>
+
 
 	<!-- 회사명으로 조회 -->
 	<select id="getC_NAMElist" resultType="com.goodmonitoring.vo.BoardVO">
@@ -100,16 +101,13 @@
 					TARGET in <foreach item="targetList" collection="targetList" open="(" close=")" separator="," >
 						#{targetList}
 					</foreach>
-			</if>
-			
-
+			</if>	
 		</where>
 	</select>
 
 	<!-- 게시글 작성 -->
 	<!-- board_no은 자동증가니까 0 -->
-	<insert id="insert"
-		parameterType="com.goodmonitoring.vo.BoardVO">
+	<insert id="insert" parameterType="com.goodmonitoring.vo.BoardVO" useGeneratedKeys="true"   keyProperty="BOARD_NO">
 		INSERT INTO board (
 		BOARD_NO,
 		AD_TITLE,
@@ -145,9 +143,9 @@
 		#{INTEREST_CATEGORY},
 		#{TARGET},
 		#{AD_PERSONNEL},
-		#{AD_START_DATE},
-		#{AD_END_DATE},
-		#{AD_ANNOUNCEMENT_DATE},
+		#{AD_START_DATE_STRING},
+		#{AD_END_DATE_STRING},
+		#{AD_ANNOUNCEMENT_DATE_STRING},
 		#{AD_APPLY_TEXT},
 		#{C_EMAIL},
 		#{AD_AGE},
@@ -155,8 +153,8 @@
 		#{ONLINE},
 		#{AD_TEXT},
 		#{WORK_KEYWORD},
-		#{WORK_START_DATE},
-		#{WORK_END_DATE},
+		#{WORK_START_DATE_STRING},
+		#{WORK_END_DATE_STRING},
 		#{WORK_TIME},
 		#{WORK_TEXT},
 		#{WORK_BENEFIT_KEY},
@@ -164,10 +162,11 @@
 		#{WORK_TAG},
 		0,
 		0,
+		
+		
 		DATE_FORMAT(NOW(),'%Y-%m-%d')
 		)
 	</insert>
-	
 	
 	<!-- 조회수 + 1 -->
 	<update id="viewcount" parameterType="com.goodmonitoring.vo.BoardVO">
@@ -208,10 +207,7 @@
 		AD_ANNOUNCEMENT_DATE = #{AD_ANNOUNCEMENT_DATE},
 		AD_APPLY_TEXT = #{AD_APPLY_TEXT},
 		C_EMAIL = #{C_EMAIL},
-		FILESIZE =
-		#{FILESIZE},
-		FILE_LOCATION = #{FILE_LOCATION},
-		FILE_NAME = #{FILE_NAME},
+
 		AD_AGE = #{AD_AGE},
 		AD_CHILD = #{AD_CHILD},
 		AD_AREA_NAME =
