@@ -5,6 +5,7 @@ import java.util.List;
 import com.goodmonitoring.vo.BoardVO;
 import com.goodmonitoring.vo.FindCriteria;
 import com.goodmonitoring.vo.PageCriteria;
+import com.goodmonitoring.vo.TargetVO;
 
 public interface BoardService {
 	//글쓰기
@@ -22,8 +23,14 @@ public interface BoardService {
 	//추천수 - 1
 	public void recommendcountM(int BOARD_NO);
 
+	//이번달 전체 모집정보 리스트 
+	public List<BoardVO> getmonthlyList();
+	
+	// 이번달 특정대상의 업종별 모집정보 수 리스트
+	public List<BoardVO> countICbyTG(TargetVO targetVO);
+	
 	//게시물 대상별로 카운트
-	public int countTarget(String TARGET);
+	public int countTarget(TargetVO targetVO);
 
 	//게시물 업종별로 카운트
 	public int countIC(String INTEREST_CATEGORY);

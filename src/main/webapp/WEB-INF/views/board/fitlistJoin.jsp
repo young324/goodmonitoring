@@ -54,7 +54,7 @@
 	<c:when test="${!empty sessionScope.user}">  
 			
 		<ul>
-			<label><%=cal.get(Calendar.MONTH)+1%>월에는 <a>${MostTarget}</a>대상의 <a>${MostCategory}</a>모집이 활발합니다.</label><a>    >바로가기</a>
+			<label><%=cal.get(Calendar.MONTH)+1%>월에는 <a>${MostTarget}</a>대상의 <a>${MostCategory}</a>모집이 활발합니다.</label><a href="/board/graphmoniter">    >바로가기</a>
 		</ul>
 	</c:when>
 	</c:choose>

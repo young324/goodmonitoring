@@ -1,5 +1,6 @@
 package com.goodmonitoring.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -20,6 +21,16 @@ public class TargetServiceImple implements TargetService{
 	@Override
 	public List<TargetVO> getList() {
 		return target.getList();
+	}
+
+	@Override
+	public List<String> getListString() {
+		return target.getListString();
+	}
+
+	@Override
+	public int TGcount() {
+		return target.TGcount();
 	}
 	
 	

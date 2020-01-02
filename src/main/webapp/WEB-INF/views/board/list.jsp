@@ -42,6 +42,7 @@
 	white-space: nowrap;
 }
 </style>
+<<<<<<< HEAD
 <!-- 네비게이션  -->
 
  <nav class="navbar navbar-default">
@@ -61,6 +62,8 @@
      <span class="icon-bar"></span>
 
      <span class="icon-bar"></span>
+=======
+>>>>>>> refs/heads/young_backup
 
      <span class="icon-bar"></span>
 

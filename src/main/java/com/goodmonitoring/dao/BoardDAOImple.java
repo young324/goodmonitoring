@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.goodmonitoring.vo.BoardVO;
+import com.goodmonitoring.vo.TargetVO;
 
 @Qualifier("boardDAO")
 public class BoardDAOImple implements BoardDAO{
@@ -97,8 +98,8 @@ public class BoardDAOImple implements BoardDAO{
 	}
 
 	@Override
-	public int countTarget(String TARGET) {
-		return ss.selectOne("countTarget",TARGET);
+	public int countTarget(TargetVO targetVO) {
+		return ss.selectOne("countTarget",targetVO);
 	}
 
 	@Override
@@ -109,6 +110,16 @@ public class BoardDAOImple implements BoardDAO{
 	@Override
 	public int countboard() {
 		return ss.selectOne("countboard");
+	}
+
+	@Override
+	public List<BoardVO> countICbyTG(TargetVO targetVO) {
+		return ss.selectList("countICbyTG", targetVO);
+	}
+
+	@Override
+	public List<BoardVO> getmonthlyList() {
+		return ss.selectList("getmonthlyList");
 	}
 
 }
