@@ -15,21 +15,22 @@
 <!-- btn-outline-* / v4버전이라 기존 디자인과 충돌  -->
 <!--  <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css" /> -->
-
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  
+<!-- <script  
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> -->
 <!-- 차트 링크 -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/handsontable/5.0.0/handsontable.full.min.css" />
 </head>
-
-
+   
+<!-- 
+<script  
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script> -->
+<!-- 이거 적용하면 상단 헤더가 물컹거림
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/js/bootstrap.min.js"></script>
+	src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/js/bootstrap.min.js"></script> -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handsontable/5.0.0/handsontable.full.min.js"></script>
 <script
@@ -38,15 +39,15 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/muuri/0.5.4/muuri.min.js"></script>
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<!-- 		<script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>  
- -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+<!-- <script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+<script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>  
+   
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js"
 	integrity="sga384-UO2eT0CpHqdSJQ6hJty5KVphzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-	crossorigin="annoymous"></script>
+	crossorigin="annoymous"></script> -->  
 
 
 <!-- 이달의 -->
