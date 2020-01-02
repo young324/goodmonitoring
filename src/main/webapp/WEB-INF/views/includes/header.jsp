@@ -86,12 +86,53 @@
 
 			<c:choose>
 				<c:when test="${!empty sessionScope.user}">
-					<li class="nav-item dropdown"><a class="nav-link">${sessionScope.user.USR_ID }
-							님 환영합니다.</a></li>
+				<li><a href="/board/list">메인</a></li>
+					<li><a href="/board/list">게시판</a></li>
+					<li><a href="/board/Joinselect">회원가입</a></li>
+					<li><a href="/user/logout">로그아웃</a></li>
+					
+					
+			<li class="dropdown"><a href="#" class="dropdown-toggle"
+				data-toggle="dropdown" role="button" aria-haspopup="true"
+				aria-expanded="false">모집정보 찾기<span class="caret"></span></a>
+
+				<ul class="dropdown-menu">
+					<c:choose>
+
+						<c:when test="${!empty sessionScope}">
+							<li><a href="/board/list">전체 모집정보</a></li>
+							<li><a href="/board/fitlistJoin">맞춤 모집정보</a></li>
+							<li><a href="/board/graphmoniter">이달의 모집정보</a></li>
+						</c:when>
+						<c:otherwise>
+						</c:otherwise>
+
+					</c:choose>
+				</ul></li>
 				</c:when>
 				<c:when test="${!empty sessionScope.company}">
-					<li class="nav-item dropdown"><a class="nav-link">${sessionScope.C_ID}
-							님 환영합니다.</a></li>
+					<li><a href="/board/list">메인</a></li>
+					<li><a href="/board/list">게시판</a></li>
+					<li><a href="/board/Joinselect">회원가입</a></li>
+					<li><a href="/user/logout">로그아웃</a></li>
+					
+					
+			<li class="dropdown"><a href="#" class="dropdown-toggle"
+				data-toggle="dropdown" role="button" aria-haspopup="true"
+				aria-expanded="false">모집정보 찾기<span class="caret"></span></a>
+
+				<ul class="dropdown-menu">
+					<c:choose>
+
+						<c:when test="${!empty sessionScope}">
+							<li><a href="/board/list">전체 모집정보</a></li>
+							<li><a href="/board/graphmoniter">이달의 모집정보</a></li>
+						</c:when>
+						<c:otherwise>
+						</c:otherwise>
+
+					</c:choose>
+				</ul></li>
 				</c:when>
 
 				<c:otherwise>
@@ -99,25 +140,19 @@
 					<li><a href="/board/list">게시판</a></li>
 					<li><a href="/board/Joinselect">회원가입</a></li>
 					<li><a href="/board/Loginselect">로그인</a></li>
-
-				</c:otherwise>
-			</c:choose>
-		</ul>
-
-
-
-		<ul class="nav navbar-nav navbar-right">
+					<ul class="nav navbar-nav navbar-right">
 
 			<li class="dropdown"><a href="#" class="dropdown-toggle"
 				data-toggle="dropdown" role="button" aria-haspopup="true"
-				aria-expanded="false">메뉴<span class="caret"></span></a>
+				aria-expanded="false">모집정보 찾기<span class="caret"></span></a>
 
 				<ul class="dropdown-menu">
 					<c:choose>
 
 						<c:when test="${!empty sessionScope}">
-							<li><a href="/user/logout">로그아웃</a></li>
-							<li><a href="/user/mypage">마이페이지</a></li>
+							<li><a href="/board/list">전체 모집정보</a></li>
+							<li><a href="/board/fitlistJoin">맞춤 모집정보</a></li>
+							<li><a href="/board/graphmoniter">이달의 모집정보</a></li>
 						</c:when>
 						<c:otherwise>
 						</c:otherwise>
@@ -125,6 +160,13 @@
 					</c:choose>
 				</ul></li>
 		</ul>
+
+				</c:otherwise>
+			</c:choose>
+		</ul>
+
+
+
 	</div>
 	</nav> 
  

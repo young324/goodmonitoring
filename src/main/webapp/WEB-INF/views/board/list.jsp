@@ -84,7 +84,7 @@
 <c:choose>
 	<c:when test="${!empty sessionScope.user}">       		
         		<li class="nav-item dropdown" >
-        			<a class="nav-link">${sessionScope.user.USR_ID } 님의 이용내역을 분석하여 적합한 모집정보를 추천 드립니다.</a>
+        			<a href="/board/fitlistJoin">${sessionScope.user.USR_ID } 님의 이용내역을 분석하여 적합한 모집정보를 추천 드립니다.</a>
         		</li>        		        	
     </c:when>
     <c:when test="${!empty sessionScope.company}">       		
@@ -94,12 +94,9 @@
     </c:when>
   	
 <c:otherwise>
-    <li><a href="/board/list">메인</a></li>
+    <li><a href="/board/Loginselect">로그인하면 맞춤 모집정보를 제공받을 수 있습니다.</a></li>
 
-    <li><a href="/board/list">게시판</a></li>
 
-	<li><a href="/board/Joinselect">회원가입</a></li>
-		<li><a href="/board/Loginselect">로그인</a></li>
 	
 </c:otherwise>
 	
