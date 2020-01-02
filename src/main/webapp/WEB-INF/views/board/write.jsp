@@ -144,10 +144,10 @@
 								<div class="control-group">
 									<div class="controls">
 		
-										<select name="INTEREST_CATEGORY" id="IndustryCategory" class="form-control">
-											<option>it</option>
-											<option>먹거리</option>
-											<option>화장</option>
+										<select name="INTEREST_CATEGORY" id="interest_category" class="form-control">
+											<c:forEach items="${listIndustryCategory}" var="listIndustryCategory">
+												<option value="${listIndustryCategory.INTEREST_CATEGORY}">${listIndustryCategory.INTEREST_CATEGORY}</option>
+											</c:forEach>
 										</select>
 									</div>
 								</div>
