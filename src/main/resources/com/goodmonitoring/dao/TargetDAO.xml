@@ -11,5 +11,17 @@
 		SELECT * FROM target WHERE TARGET_CODE > 0
 		]]>
 	</select>
+	<!-- 게시글 전체 목록 조회 -->
+	<select id="getListString" resultType="string">
+		<![CDATA[
+		SELECT * FROM target WHERE TARGET_CODE > 0
+		]]>
+	</select>
+	
+	<!-- 전체 대상 개수 -->
+	<select id="TGcount" resultType="int">
+	 	select COUNT(TARGET) from target
+	</select>
+	
 
 </mapper>

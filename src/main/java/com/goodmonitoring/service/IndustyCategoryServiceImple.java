@@ -32,5 +32,11 @@ public class IndustyCategoryServiceImple implements IndustryCategoryService{
 	public String getcate(int INTEREST_CATEGORY_CODE) {
 		return industrycategory.getcate(INTEREST_CATEGORY_CODE);
 	}
+
+	@Override
+	public int ICcount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }
