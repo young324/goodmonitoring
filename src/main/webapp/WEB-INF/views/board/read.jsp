@@ -90,7 +90,8 @@
 						value='<c:out value="${board.WORK_TEXT}"/>'> <c:out
 							value="${board.WORK_TEXT}" /></label>
 				</div>
-
+				<!-- 이미지 --> 
+				<img src="<spring:url value='/uploads/board/캡쳐.png'/>"/>      
 				<!-- 추천버튼 -->
 
 				<div style="text-align: right;">
