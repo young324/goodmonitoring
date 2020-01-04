@@ -186,7 +186,14 @@ public class BoardController {
 			/**
 			 * 첨부파일 등록처리
 			 */
-			String uploadPath = request.getSession().getServletContext().getRealPath("/")+"uploads"+ File.separator+"board" + File.separator;		
+		/*
+		 * String uploadPath =
+		 * request.getSession().getServletContext().getRealPath("/")+"uploads"+
+		 * File.separator+"board" + File.separator;
+		 */			
+			//교재보고 수정
+			String uploadPath = "C:\\upload";
+			//교재보고 수정
 			String fileUrlPath = "uploads/board";
 			
 			boardFileVO.setBOARD_NO(boardvo.getBOARD_NO());

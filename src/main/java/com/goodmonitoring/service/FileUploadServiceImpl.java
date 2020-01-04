@@ -44,7 +44,12 @@ public class FileUploadServiceImpl implements FileUploadService {
 					Util.deleteFolder(new File(uploadPath));
 					throw new Exception();
 				}
-							
+				
+				//교재보고 추가
+				File saveFile = new File(uploadPath, attachFile.getOriginalFilename());
+				attachFile.transferTo(saveFile);
+				//교재보고 추가
+				
 				boardFileVO.setFILE_NAME(attachFile.getOriginalFilename());
 				boardFileVO.setFILE_PATH(fileUrlPath + "/" + realName);
 				
