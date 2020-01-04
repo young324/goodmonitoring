@@ -61,13 +61,13 @@
 		
 	
 		
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 	  <property name="maxUploadSize"   value="10485760" />
 	</bean>
 	 
-	<!-- 서버의 파일 저장 경로 설정 -->
+	서버의 파일 저장 경로 설정
 	<bean id="uploadPath" class="java.lang.String">
 	 <constructor-arg  value="D:\uploads"  />
-	</bean>		
+	</bean>	 -->	
 			
 </beans>
