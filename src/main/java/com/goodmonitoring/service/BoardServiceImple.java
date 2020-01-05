@@ -23,7 +23,7 @@ public class BoardServiceImple implements BoardService{
 	@Inject
 	private BoardDAO board;
 	
-	
+
 	@Override
 	public void write(BoardVO boardvo) {
 		board.insert(boardvo);
@@ -155,6 +155,8 @@ public class BoardServiceImple implements BoardService{
 		return board.getmonthlyList();
 	}
 
+
+	
 
 
 

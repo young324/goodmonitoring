@@ -199,7 +199,7 @@
 
 						</tr>
 						<tr>
-							<td>기간</td>
+							<td>모집기간</td>
 							<td>
 
 
@@ -262,7 +262,7 @@
 
 						<tr>
 							<td>지원방법</td>
-							<td><textarea class="form-control" placeholder="글 내용"
+							<td><textarea class="form-control" placeholder="지원방법을 입력해주세요"
 									name="AD_APPLY_TEXT" maxlength="200" style="height: 100px;"></textarea></td>
 
 						</tr>
@@ -272,7 +272,13 @@
 								placeholder="문의처를 입력해주세요" name="C_EMAIL" /></td>
 
 						</tr>
-						
+						<tr>
+							<td>지원 URL</td>
+							<td><input type="text" class="form-control"
+								placeholder="지원 URL을 입력해주세요" name="URL" /></td>
+
+						</tr>
+						 
 						<tr>
 							<td>첨부파일</td>
 							<td>
@@ -308,6 +314,29 @@
 					</thead>
 
 					<tbody>
+						<tr>
+							<td>성별</td>
+							
+
+							<td colspan="6">
+
+								<div class="radio radio-info radio-inline">
+
+									<input type="radio" id="male" value="남" name="SEX"
+										checked=""> <label for="male">남자</label>
+								</div>
+								<div class="radio radio-info radio-inline">
+									<input type="radio" id="female" value="여"
+										name="SEX" checked=""> <label for="female">여자</label>
+								</div>
+								<div class="radio radio-info radio-inline">
+									<input type="radio" id="irrelevant" value="무관"
+										name="SEX" checked=""> <label for="irrelevant">무관</label>
+								</div>
+ 
+							</td>
+
+						</tr>
 						<tr>
 							<td>나이</td>
 							<td>
@@ -442,48 +471,48 @@
 
 					<tbody>
 						<tr>
-							<td width="9%">키워드</td>
+							<td width="9%">활동 내용</td>
 							<td colspan="10">
-								<div class="checkbox checkbox-inline checkbox-primary">
-									<input name="WORK_KEYWORD" type="checkbox" id="writingreview"
-										value="리뷰작성"> <label for="writingreview">리뷰작성</label>
-								</div>
+								
 								<div class="checkbox checkbox-inline checkbox-primary">
 									<input name="WORK_KEYWORD" type="checkbox" id="writingarti"
 										value="기사작성"> <label for="writingarti">기사작성</label>
+								</div>
+								<div class="checkbox checkbox-inline checkbox-primary">
+									<input name="WORK_KEYWORD" type="checkbox" id="writingreview"
+										value="리뷰작성"> <label for="writingreview">리뷰작성</label>
 								</div>
 								<div class="checkbox checkbox-inline checkbox-primary">
 									<input name="WORK_KEYWORD" type="checkbox" id="blogposting"
 										value="블로그포스팅"> <label for="blogposting">블로그포스팅</label>
 								</div>
 								<div class="checkbox checkbox-inline checkbox-primary">
-									<input name="WORK_KEYWORD" type="checkbox" id="promotion"
-										value="홍보"> <label for="promotion">홍보</label>
-								</div>
-								<div class="checkbox checkbox-inline checkbox-primary">
-									<input name="WORK_KEYWORD" type="checkbox" id="experience"
-										value="체험"> <label for="experience">체험</label>
-								</div>
-								<div class="checkbox checkbox-inline checkbox-primary">
-									<input name="WORK_KEYWORD" type="checkbox" id="mission"
-										value="미션"> <label for="mission">미션</label>
-								</div>
-								<div class="checkbox checkbox-inline checkbox-primary">
-									<input name="WORK_KEYWORD" type="checkbox" id="plan" value="기획">
-									<label for="plan">기획</label>
+									<input name="WORK_KEYWORD" type="checkbox" id="idea"
+										value="아이디어제안"> <label for="idea">아이디어제안</label>
 								</div>
 								<div class="checkbox checkbox-inline checkbox-primary">
 									<input name="WORK_KEYWORD" type="checkbox" id="offline"
 										value="오프라인활동"> <label for="offline">오프라인활동</label>
 								</div>
 								<div class="checkbox checkbox-inline checkbox-primary">
-									<input name="WORK_KEYWORD" type="checkbox" id="contents"
-										value="컨텐츠제작"> <label for="contents">컨텐츠제작</label>
+									<input name="WORK_KEYWORD" type="checkbox" id="experience"
+										value="체험단 활동"> <label for="experience">체험단 활동</label>
 								</div>
 								<div class="checkbox checkbox-inline checkbox-primary">
-									<input name="WORK_KEYWORD" type="checkbox" id="idea"
-										value="아이디어제안"> <label for="idea">아이디어제안</label>
+									<input name="WORK_KEYWORD" type="checkbox" id="contents"
+										value="콘텐츠제작"> <label for="contents">콘텐츠제작</label>
 								</div>
+								<div class="checkbox checkbox-inline checkbox-primary">
+									<input name="WORK_KEYWORD" type="checkbox" id="promotion"
+										value="홍보"> <label for="promotion">홍보</label>
+								</div>
+								<div class="checkbox checkbox-inline checkbox-primary">
+									<input name="WORK_KEYWORD" type="checkbox" id="conference"
+										value="회의참석"> <label for="conference">회의참석</label>
+								</div>
+								
+								
+								
 								<div class="checkbox checkbox-inline checkbox-primary">
 									<input name="WORK_KEYWORD" type="checkbox" id="worketc"
 										value="기타"> <label for="worketc">기타</label>
@@ -515,30 +544,38 @@
 							
 						</tr>
 						<tr>
-							<td>횟수</td>
-
-
+							<td>모임 횟수</td>
 
 							<td colspan="1" width="15%">
 								<div class="control-group">
 									<div class="controls">
-										<select name="WORK_TIME" id="week" class="form-control">
-											<option>--</option>
-											<option>무관</option>
+										<select name="WORK_TIME" id="week" class="form-control"> 
 											<option>주</option>
 											<option>월</option>
+											<option>무관</option>
 										</select>
 									</div>
 									</div>
-					
 							</td>
 							<td colspan="1" width="15%">
 							<div class="control-group">
 									<div class="controls">
 										<select name="WORK_TIME" id="month" class="form-control">
-											<option>--</option>
+
 											<option>1회</option>
 											<option>2회</option>
+										</select>
+									</div>
+								</div>
+							</td>
+							</td>
+							<td colspan="1" width="15%">
+							<div class="control-group">
+									<div class="controls">
+										<select name="WORK_TIME" id="NC" class="form-control">
+
+											<option>필수</option>
+											<option>선택</option>
 										</select>
 									</div>
 								</div>
@@ -573,8 +610,28 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td >키워드</td>
+							<td >활동 보상</td>
 							<td colspan="10"> 
+								<div class="checkbox checkbox-inline checkbox-primary">
+									<input name="WORK_BENEFIT_KEY" type="checkbox" id="gift card"
+									 value="상품권"> <label for="gift card">상품권</label>
+								</div>
+								<div class="checkbox checkbox-inline checkbox-primary">
+									<input name="WORK_BENEFIT_KEY" type="checkbox" id="certificates" 
+									value="수료증"> <label for="certificates">수료증</label>
+								</div>
+								<div class="checkbox checkbox-inline checkbox-primary">
+									<input name="WORK_BENEFIT_KEY" type="checkbox" id="EntryPoint" 
+									value="입사 가산점"> <label for="EntryPoint">입사 가산점</label>
+								</div>
+								<div class="checkbox checkbox-inline checkbox-primary">
+									<input name="WORK_BENEFIT_KEY" type="checkbox" id="scholarship" 
+									value="장학금"> <label for="scholarship">장학금</label>
+								</div>
+								<div class="checkbox checkbox-inline checkbox-primary">
+									<input name="WORK_BENEFIT_KEY" type="checkbox" id="Point" 
+									value="포인트"> <label for="Point">포인트</label>
+								</div> 
 								<div class="checkbox checkbox-inline checkbox-primary">
 									<input name="WORK_BENEFIT_KEY" type="checkbox" id="cash"
 										value="현금"> <label for="cash">현금</label>
@@ -584,14 +641,10 @@
 										value="현물"> <label for="stuff">현물</label>
 								</div>
 								<div class="checkbox checkbox-inline checkbox-primary">
-									<input name="WORK_BENEFIT_KEY" type="checkbox"
-										id="certificates" value="수료증"> <label
-										for="certificates">수료증</label>
+									<input name="WORK_BENEFIT_KEY" type="checkbox" id="overseas"
+										value="해외연수"> <label for="overseas">해외연수</label>
 								</div>
-								<div class="checkbox checkbox-inline checkbox-primary">
-									<input name="WORK_BENEFIT_KEY" type="checkbox" id="empbenefits"
-										value="취업혜택"> <label for="empbenefits">취업혜택</label>
-								</div>
+								
 								<div class="checkbox checkbox-inline checkbox-primary">
 									<input name="WORK_BENEFIT_KEY" type="checkbox" id="etc"
 										value="기타"> <label for="etc">기타</label>
@@ -696,9 +749,12 @@ $(document).ready(function(){
 		
 		if($("#week option:selected").val() == "무관"){
 			$("#month").val("--").attr("selected", "selected")
-            $("#month").attr("disabled",true);
+            $("#month").attr("disabled",true); 
+			$("#NC").val("--").attr("selected", "selected")
+			$("#NC").attr("disabled",true); 
 		}else {
-			$("#month").attr("disabled",false);
+			$("#month").attr("disabled",false); 
+			$("#NC").attr("disabled",false);
 		}
 	});
 });

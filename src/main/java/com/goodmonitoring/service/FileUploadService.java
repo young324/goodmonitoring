@@ -15,5 +15,7 @@ public interface FileUploadService {
 
 	public int fileDelete(Map<String, Object> map) throws Exception;
 	
+	public String img_path(int BOARD_NO) throws Exception;
+
 }
 

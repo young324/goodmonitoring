@@ -224,11 +224,11 @@ public class BoardController {
 	//BOARD_NO을 좀 더 명시적으로 처리하는 @RequestParam을 이용해서 지정
 	//화면으로 해당 번호의 게시물을 전달해야 하므로 Model파라미터
 	@GetMapping("/read")
-	public void readShow(@RequestParam("BOARD_NO") int BOARD_NO, Model model, HttpServletRequest httpRequest) {
+	public void readShow(@RequestParam("BOARD_NO") int BOARD_NO, Model model, HttpServletRequest httpRequest) throws Exception {
 		log.info("/read");
 
 		model.addAttribute("board", service.readShow(BOARD_NO));
-
+		
 		if( httpRequest.getSession().getAttribute("user") !=null) {//개인회원으로 로그인했을때
 			int USR_NO = ((UserVO) httpRequest.getSession().getAttribute("user")).getUSR_NO();//유저 번호 가져오기
 
@@ -240,7 +240,6 @@ public class BoardController {
 			//like라는 이름으로 추천여부를 날림
 			model.addAttribute("like",likeService.getBoardLike(likevo));
 			model.addAttribute("USR_NO",USR_NO);
-
 
 			//지원여부
 			ApplydataVO applydatavo = new ApplydataVO();
@@ -257,7 +256,11 @@ public class BoardController {
 
 
 			model.addAttribute("C_NO",C_NO);
-		}	
+		}
+		
+		//이미지 불러오기 FILE_PATH
+
+		model.addAttribute("FILE_PATH",fileUploadService.img_path(BOARD_NO));
 	}
 
 	//게시물 추천

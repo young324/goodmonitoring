@@ -39,10 +39,10 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/muuri/0.5.4/muuri.min.js"></script>
-<!-- <script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>  
-   
+     
 <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js"
@@ -668,11 +668,11 @@ $(document).ready(
 	$("#tgtext").text(btnname);
 	$("#tgcounttext").text(${all_IC_count});
 	//$("#count").text(${target0});
-	$("#btn_0").children('div').text(${target0});    
-	$("#btn_1").children('div').text(${target1});
+	/* $("#btn_0").children('div').text(${target0});    
+	$("#btn_1").children('div').text(${target1});  
 	$("#btn_2").children('div').text(${target2});
 	$("#btn_3").children('div').text(${target3});
-	$("#btn_4").children('div').text(${target4});
+	$("#btn_4").children('div').text(${target4}); */
 	 
 	$(document).ready(function() {
 		$("button[name='tgbtn']").on('click', (e) => {
@@ -744,15 +744,16 @@ $(document).ready(
 				for (var i=0;i<list.length;i++){
 				//퍼센트 계산
 				percent[i] = Math.floor(parseInt(showCount[i])/SUM*100);//소수점 버림 
-/* 				console.log(percent[i]);  
- */				 
+ 				console.log(percent[i]);   
+				 
 				data3.push({
 					category : list[i],       
 					value : showCount[i],
 					percent : '<div class="progress"><div id="progress" title="tooltip" class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: ' + percent[i] + '%" aria-valuenow="' + percent[i] + '" aria-valuemin="0" aria-valuemax="100">' + percent[i] + '%' + '</div></div>'
 				}); 
 				
-			} 
+		
+				} 
 				  
 				
 				//update

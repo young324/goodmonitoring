@@ -20,10 +20,16 @@
 		SELECT * FROM board_file  WHERE FILE_NO=#{FILE_NO}	
 	</select>
 
+	<!-- 경로 가져오기 -->
+	<select id="img_path" resultType="string">
+		select FILE_PATH from board_file WHERE BOARD_NO=#{BOARD_NO}
+	</select>
+
 
 	<delete id="fileDelete">
 		DELETE FROM board_file  WHERE FILE_NO=#{FILE_NO}	
 	</delete>
+	
 	
      
 

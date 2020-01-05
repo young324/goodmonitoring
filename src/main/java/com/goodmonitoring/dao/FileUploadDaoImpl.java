@@ -37,6 +37,11 @@ public class FileUploadDaoImpl implements FileUploadDao{
 	public int fileDelete(Map<String, Object> map) throws Exception {
 		return sqlSession.delete("fileDelete", map);
 	}
+
+	@Override
+	public String img_path(int BOARD_NO) throws Exception {
+		return sqlSession.selectOne("img_path", BOARD_NO);
+	}
 	
 
 

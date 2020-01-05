@@ -74,6 +74,12 @@ public class FileUploadServiceImpl implements FileUploadService {
 	}
 
 
+	@Override
+	public String img_path(int BOARD_NO) throws Exception {
+		return fileUploadDao.img_path(BOARD_NO);
+	}
+
+
 
 
 

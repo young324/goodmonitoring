@@ -120,10 +120,12 @@
 		</where>
 	</select>
 
+
+
 	<!-- 게시글 작성 -->
 	<!-- board_no은 자동증가니까 0 -->
 	<insert id="insert"
-		parameterType="com.goodmonitoring.vo.BoardVO">
+		parameterType="com.goodmonitoring.vo.BoardVO" keyProperty="BOARD_NO" useGeneratedKeys="true">
 		INSERT INTO board (
 		BOARD_NO,
 		AD_TITLE,
@@ -150,7 +152,8 @@
 		WORK_TAG,
 		RECOMMEND_COUNT,
 		VIEW_COUNT,
-		REPORTING_DATE
+		REPORTING_DATE,
+		URL
 		)
 		VALUES (
 		0,
@@ -178,7 +181,8 @@
 		#{WORK_TAG},
 		0,
 		0,
-		DATE_FORMAT(NOW(),'%Y-%m-%d')
+		DATE_FORMAT(NOW(),'%Y-%m-%d'),
+		#{URL}
 		)
 	</insert>
 	

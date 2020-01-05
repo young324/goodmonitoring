@@ -8,6 +8,7 @@ import com.goodmonitoring.vo.PageCriteria;
 import com.goodmonitoring.vo.TargetVO;
 
 public interface BoardService {
+	
 	//글쓰기
 	public void write(BoardVO boardvo);
 

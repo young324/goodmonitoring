@@ -21,6 +21,7 @@ public class BoardDAOImple implements BoardDAO{
 		return ss.selectList("getList");
 	}
 
+	
 	@Override
 	public void insert(BoardVO boardvo) {
 		ss.insert("insert", boardvo);
@@ -121,5 +122,7 @@ public class BoardDAOImple implements BoardDAO{
 	public List<BoardVO> getmonthlyList() {
 		return ss.selectList("getmonthlyList");
 	}
+
+	
 
 }
