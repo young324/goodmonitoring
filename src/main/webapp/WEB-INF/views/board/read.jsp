@@ -16,9 +16,10 @@
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
+	 
 			<div class="panel-heading">
 				<label id='BOARD_NO'> <c:out
-						value="${board.BOARD_NO}" /></label> <label> <c:out
+						value="${board.BOARD_NO}" /> : </label> <label> <c:out
 						value="${board.AD_TITLE}" /></label>
 
 				<div class="pull-right">

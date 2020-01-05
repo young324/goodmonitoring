@@ -2,6 +2,7 @@ package com.goodmonitoring.controller;
  
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -92,48 +93,81 @@ public class BoardController {
 	public void monthlylist() {}
 	
 	//이달의 모집정보 페이지 폼
-		@GetMapping("/graphmoniter")
-		public void graphmoniter(Model model, HttpServletRequest httpRequest) {
-			//가장많은 업종과 그 업종에서 가장많은 대상
-			model.addAttribute("MostCategory", service.getmostcate());
-			model.addAttribute("MostTarget", service.getmosttarget());
-			
-			model.addAttribute("list", service.getmonthlyList());
+	@GetMapping("/graphmoniter")
+	public void graphmoniter(Model model, HttpServletRequest httpRequest) {
+		//가장많은 업종과 그 업종에서 가장많은 대상
+		model.addAttribute("MostCategory", service.getmostcate());
+		model.addAttribute("MostTarget", service.getmosttarget());
+		
+		model.addAttribute("list", service.getmonthlyList());
 
-			//최근 지원한 회사
-			if( httpRequest.getSession().getAttribute("user") !=null) {
-			int USR_NO = ((UserVO) httpRequest.getSession().getAttribute("user")).getUSR_NO();
-			model.addAttribute("C_NAME", applydataService.getlatelycname(USR_NO));
-			}
-			 ArrayList<TargetVO> targetList =  (ArrayList<TargetVO>) targetservice.getList();
-			//대상별 모집정보 개수
-			model.addAttribute("ilban", service.countTarget(targetList.get(0)));
-			model.addAttribute("deahak", service.countTarget(targetList.get(1)));
-			model.addAttribute("jubu", service.countTarget(targetList.get(2)));
-			model.addAttribute("global", service.countTarget(targetList.get(3)));
-			model.addAttribute("senior", service.countTarget(targetList.get(4)));
-			
-			//이달의 모집정보 개수
-			model.addAttribute("countboard",service.countboard());
-			
-			//모든 업종,대상 리스트
-			model.addAttribute("listTarget", targetservice.getList());
-			model.addAttribute("listIndustryCategory", industrycategoryservice.getList());
-			model.addAttribute("ICcount", industrycategoryservice.ICcount());
-			model.addAttribute("listIndustryCategory", industrycategoryservice.getList());
-			
-			model.addAttribute("btn",0);
-			
-			//일반모니터의 업종별 개수, 모집정보 수 / 기본으로 보여줄 데이터
-			model.addAttribute("all_IC_count", service.countTarget(targetList.get(0)));
-			for(int i=0; i < targetservice.TGcount(); i++)
-			{	
-				String T = "target" + i;
-				model.addAttribute(T, service.countTarget(targetList.get(i)));
-			}
-			// 이번달 특정대상의 업종별 모집정보 수 리스트
-			model.addAttribute("countICbyTG", service.countICbyTG(targetList.get(0)));
+		 ArrayList<TargetVO> targetList =  (ArrayList<TargetVO>) targetservice.getList();
+		//대상별 모집정보 개수
+		model.addAttribute("ilban", service.countTarget(targetList.get(0)));
+		model.addAttribute("deahak", service.countTarget(targetList.get(1)));
+		model.addAttribute("jubu", service.countTarget(targetList.get(2)));
+		model.addAttribute("global", service.countTarget(targetList.get(3)));
+		model.addAttribute("senior", service.countTarget(targetList.get(4)));
+		
+		//이달의 모집정보 개수
+		model.addAttribute("countboard",service.countboard());
+		
+		//모든 업종,대상 리스트
+		model.addAttribute("listTarget", targetservice.getList());
+		model.addAttribute("listIndustryCategory", industrycategoryservice.getList());
+		model.addAttribute("ICcount", industrycategoryservice.ICcount());
+		model.addAttribute("listIndustryCategory", industrycategoryservice.getList());
+		
+		model.addAttribute("btn",0);
+		
+		//일반모니터의 업종별 개수, 모집정보 수 / 기본으로 보여줄 데이터
+		model.addAttribute("all_IC_count", service.countTarget(targetList.get(0)));
+		for(int i=0; i < targetservice.TGcount(); i++)
+		{	
+			String T = "target" + i;
+			model.addAttribute(T, service.countTarget(targetList.get(i)));
 		}
+		// 이번달 특정대상의 업종별 모집정보 수 리스트
+		model.addAttribute("countICbyTG", service.countICbyTG(targetList.get(0)));
+	}
+
+	//대상별 이달의 모집정보 데이터
+		@ResponseBody
+		@RequestMapping(value = "/monthly", method = RequestMethod.POST, produces = "application/json")
+		public List<BoardVO> monthly(Model model,HttpServletRequest httpRequest) throws Exception {
+
+			//int btn = Integer.parseInt(httpRequest.getParameter("btn"));
+
+			
+			int list_size = industrycategoryservice.ICcount();//업종개수 + 1 >> 뿌려줄 데이터 개수
+			int[] arr = new int[list_size + 1];//ajax로 보내줄 arrylist
+			
+			//int all_IC_count = 0;
+			String btnname = httpRequest.getParameter("btnname");
+			
+			TargetVO targetvo = new TargetVO();
+			targetvo.setTARGET(btnname);
+			 
+			List<BoardVO> list =  new ArrayList<BoardVO>();
+			
+			if(btnname != null) {
+				System.out.println(btnname);
+			//	all_IC_count = service.countTarget(targetvo);
+
+			//	arr[0] = all_IC_count;
+				
+				list = service.countICbyTG(targetvo);
+				for(int i=0; i<industrycategoryservice.ICcount() + 1; i++) {
+					
+				}
+				//btn = 1
+			}
+			else {
+				//btn = 0;
+			}
+			
+			return list;
+		} 
 		@GetMapping("/fitlistJoin")
 		public String fitlistJoin(Model model, HttpServletRequest httpRequest) {
 			log.info("fitlistJoin");

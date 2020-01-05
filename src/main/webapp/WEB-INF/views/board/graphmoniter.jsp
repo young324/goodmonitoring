@@ -15,7 +15,7 @@
 <!-- btn-outline-* / v4버전이라 기존 디자인과 충돌  -->
 <!--  <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css" /> -->
-  
+
 <!-- <script  
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> -->
 <!-- 차트 링크 -->
@@ -24,7 +24,7 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/handsontable/5.0.0/handsontable.full.min.css" />
 </head>
-   
+
 <!-- 
 <script  
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script> -->
@@ -40,14 +40,15 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/muuri/0.5.4/muuri.min.js"></script>
 <script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
-<script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>  
-     
+	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"
+	type="text/javascript"></script>
+
 <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js"
 	integrity="sga384-UO2eT0CpHqdSJQ6hJty5KVphzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-	crossorigin="annoymous"></script> -->  
+	crossorigin="annoymous"></script> -->
 
 
 <!-- 이달의 -->
@@ -135,19 +136,17 @@
 
 			<c:choose>
 				<c:when test="${!empty sessionScope.user}">
-					<li class="nav-item dropdown"><a class="nav-link"><%=cal.get(Calendar.MONTH) + 1%>월에 작성된 모집정보입니다.</a></li>
+					<li class="nav-item dropdown"><a class="nav-link"><%=cal.get(Calendar.MONTH) + 1%>월에
+							작성된 모집정보입니다.</a></li>
 				</c:when>
 				<c:when test="${!empty sessionScope.company}">
-					<li class="nav-item dropdown"><a class="nav-link"><%=cal.get(Calendar.MONTH) + 1%>월에 작성된 모집정보입니다.</a></li>
+					<li class="nav-item dropdown"><a class="nav-link"><%=cal.get(Calendar.MONTH) + 1%>월에
+							작성된 모집정보입니다.</a></li>
 				</c:when>
-   
+
 				<c:otherwise>
-					<li><a href="/board/list">메인</a></li>
-
-					<li><a href="/board/list">게시판</a></li>
-
-					<li><a href="/board/Joinselect">회원가입</a></li>
-					<li><a href="/board/Loginselect">로그인</a></li>
+					<li class="nav-item dropdown"><a class="nav-link"><%=cal.get(Calendar.MONTH) + 1%>월에
+							작성된 모집정보입니다.</a></li> 
 
 				</c:otherwise>
 
@@ -157,29 +156,7 @@
 		</ul>
 
 
-
-		<ul class="nav navbar-nav navbar-right">
-
-			<li class="dropdown"><a href="#" class="dropdown-toggle"
-				data-toggle="dropdown" role="button" aria-haspopup="true"
-				aria-expanded="false">메뉴<span class="caret"></span></a>
-
-				<ul class="dropdown-menu">
-					<c:choose>
-
-						<c:when test="${!empty sessionScope}">
-							<li><a href="/user/logout">로그아웃</a></li>
-							<li><a href="/user/mypage">마이페이지</a></li>
-
-						</c:when>
-						<c:otherwise>
-						</c:otherwise>
-
-					</c:choose>
-
-				</ul></li>
-
-		</ul>
+ 
 
 	</div>
 	<!-- 이달의 모집정보 -->
@@ -573,10 +550,10 @@ $(document).ready(
 		
 		for (var i=0;i<list.length;i++){
 			//퍼센트 계산
-			percent[i] = Math.floor(parseInt(showCount[i])/SUM*100);//소수점 버림 
-		/* 	console.log(percent[i]);  
-			  */ 
-			data3.push({
+			percent[i] = Math.floor((parseInt(showCount[i]))/SUM*100);//소수점버림 
+/* 		console.log(percent[i]);   */ 
+			  
+			data3.push({ 
 				category : list[i],       
 				value : showCount[i],
 				percent : '<div class="progress"><div id="progress" title="tooltip" class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: ' + percent[i] + '%" aria-valuenow="' + percent[i] + '" aria-valuemin="0" aria-valuemax="100">' + percent[i] + '%' + '</div></div>'
@@ -667,14 +644,15 @@ $(document).ready(
 	var btnname = $("#btn_0").attr('value'); 
 	$("#tgtext").text(btnname);
 	$("#tgcounttext").text(${all_IC_count});
-	//$("#count").text(${target0});
-	/* $("#btn_0").children('div').text(${target0});    
+/* 	$("#count").text(${target0});  */  
+	$("#btn_0").children('div').text(${target0});    
 	$("#btn_1").children('div').text(${target1});  
 	$("#btn_2").children('div').text(${target2});
 	$("#btn_3").children('div').text(${target3});
-	$("#btn_4").children('div').text(${target4}); */
+	$("#btn_4").children('div').text(${target4}); 
 	 
 	$(document).ready(function() {
+
 		$("button[name='tgbtn']").on('click', (e) => {
 			console.log(e.target.value);//
 			btnname = e.target.value;     
@@ -744,7 +722,7 @@ $(document).ready(
 				for (var i=0;i<list.length;i++){
 				//퍼센트 계산
 				percent[i] = Math.floor(parseInt(showCount[i])/SUM*100);//소수점 버림 
- 				console.log(percent[i]);   
+ 				  
 				 
 				data3.push({
 					category : list[i],       
