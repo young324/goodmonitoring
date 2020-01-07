@@ -4,11 +4,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.goodmonitoring.dao.BoardDAO;
 import com.goodmonitoring.vo.BoardVO;
+import com.goodmonitoring.vo.Criteria;
 import com.goodmonitoring.vo.FindCriteria;
 import com.goodmonitoring.vo.PageCriteria;
 import com.goodmonitoring.vo.TargetVO;
@@ -52,10 +52,13 @@ public class BoardServiceImple implements BoardService{
 	public boolean remove(int BOARD_NO) {
 		return board.delete(BOARD_NO) == 1;
 	}
-
+	/*
+	 * @Override public List<BoardVO> getList() { return board.getList(); }
+	 */
+	
 	@Override
-	public List<BoardVO> getList() {
-		return board.getList();
+	public List<BoardVO> getList(Criteria cri) {
+		return board.getListWithPaging(cri);
 	}
 
 	@Override
@@ -156,22 +159,16 @@ public class BoardServiceImple implements BoardService{
 	}
 
 
-	
+	@Override
+	public List<BoardVO> RecommendList() {
+		return board.RecommendList();
+	}
 
 
-
-	
-
-
-	
-
-
-	
-
-	
+	@Override
+	public List<BoardVO> DeadlineList() {
+		return board.DeadlineList();
+	}
 
 
-
-
-	
 }

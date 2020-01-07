@@ -66,6 +66,8 @@ public class BoardVO {
 		//특정 대상의 업종별 개수
 	private int tcount;
 	
+	//마감일로부터 d-day
+	private int DATE;
 	
 	public void dateStringConverte() {
 

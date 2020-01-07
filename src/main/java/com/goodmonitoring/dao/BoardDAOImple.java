@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.goodmonitoring.vo.BoardVO;
+import com.goodmonitoring.vo.Criteria;
 import com.goodmonitoring.vo.TargetVO;
 
 @Qualifier("boardDAO")
@@ -121,6 +122,24 @@ public class BoardDAOImple implements BoardDAO{
 	@Override
 	public List<BoardVO> getmonthlyList() {
 		return ss.selectList("getmonthlyList");
+	}
+
+
+	@Override
+	public List<BoardVO> getListWithPaging(Criteria cri) {
+		return ss.selectList("getListWithPaging");
+	}
+
+
+	@Override
+	public List<BoardVO> RecommendList() {
+		return ss.selectList("RecommendList");
+	}
+
+
+	@Override
+	public List<BoardVO> DeadlineList() {
+		return ss.selectList("DeadlineList");
 	}
 
 	

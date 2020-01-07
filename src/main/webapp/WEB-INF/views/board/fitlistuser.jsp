@@ -5,12 +5,7 @@
 
 <%@include file="../includes/header.jsp" %>
 <%@ page import="java.util.*, java.text.*" %>
-<div class="row">
-	<div class="col-lg-12">
-    	<h1 class="page-header">모니터링 모집정보</h1>
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
+
 <style>
 /* PC용 CSS */
 @media all and (min-width:960px){
@@ -42,6 +37,12 @@
       text-overflow:ellipsis;
       white-space:nowrap;
 </style>
+<div class="row">
+<div class="col-lg-12"> 
+		<div class="panel panel-default">
+	<div class="col-lg-12">
+    	<h1 class="page-header">모니터링 모집정보</h1>
+    </div> 
 <!-- 맞춤모집정보 -->
 <div>
 <%
@@ -60,6 +61,8 @@
 	</c:choose>
 </div>
 <!-- 네비게이션  -->
+
+    <!-- /.col-lg-12 -->
 
  <nav class="navbar navbar-default">
 
@@ -292,6 +295,9 @@
     <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
+</div>
+</div>
+</div> 
 
 <script type="text/javascript">
 $(document).ready(

@@ -12,6 +12,18 @@
 		]]>
 	</select>
 
+	<!-- 페이징 -->
+	<select id="getListWithPaging" resultType="com.goodmonitoring.vo.BoardVO">
+		<![CDATA[
+		SELECT
+ 		 @rownum:=@rownum+1 as no, 
+ 		 B.*
+		FROM board B, (SELECT @rownum:=0) R
+		order by BOARD_NO DESC
+		limit #{amount, jdbcType=INTEGER} OFFSET #{pageNum, jdbcType=INTEGER}
+		]]>
+	</select>
+
 	<!-- BOARD_NO으로 하나만 조회 -->
 	<select id="read" resultType="com.goodmonitoring.vo.BoardVO">
 		SELECT * FROM board WHERE BOARD_NO = #{BOARD_NO}
@@ -22,6 +34,16 @@
 		SELECT * FROM board WHERE C_NAME = #{C_NAME} order by BOARD_NO DESC
 	</select>
 	
+	<!-- 추천 많은거 5개 / 마감날짜 안지난거-->
+	<select id="RecommendList" resultType="com.goodmonitoring.vo.BoardVO">
+		select * from board where AD_END_DATE > DATE_FORMAT(NOW(),'%Y-%m-%d') order by RECOMMEND_COUNT DESC limit 5
+	</select>
+		
+	<!-- 모집마감 얼마안남은거 순으로 5개 -->
+	<select id="DeadlineList" resultType="com.goodmonitoring.vo.BoardVO">
+		select *, DATEDIFF(AD_END_DATE, DATE_FORMAT(NOW(),'%Y-%m-%d')) AS DATE from board where AD_END_DATE > DATE_FORMAT(NOW(),'%Y-%m-%d') order by AD_END_DATE - DATE_FORMAT(NOW(),'%Y-%m-%d') limit 5
+	</select>
+		
 	<!-- 이번달 전체 모집정보 리스트 -->
 	<select id="getmonthlyList" resultType="com.goodmonitoring.vo.BoardVO">
 		<![CDATA[

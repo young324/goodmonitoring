@@ -30,7 +30,9 @@ import com.goodmonitoring.vo.ApplydataVO;
 import com.goodmonitoring.vo.BoardFileVO;
 import com.goodmonitoring.vo.BoardVO;
 import com.goodmonitoring.vo.CompanyVO;
+import com.goodmonitoring.vo.Criteria;
 import com.goodmonitoring.vo.LikeVO;
+import com.goodmonitoring.vo.PageDTO;
 import com.goodmonitoring.vo.TargetVO;
 import com.goodmonitoring.vo.UserVO;
 import com.mysql.cj.core.util.StringUtils;
@@ -80,13 +82,24 @@ public class BoardController {
 		model.addAttribute("listIndustryCategory", industrycategoryservice.getList());
 	}
 
-	
-
-	//전체 목록을 가져온다
+	/*
+	 * //전체 목록을 가져온다
+	 * 
+	 * @GetMapping("/list") public void list(Model model) { log.info("list");
+	 * model.addAttribute("list", service.getList()); }
+	 */
 	@GetMapping("/list")
-	public void list(Model model) {
+	public void list(Criteria cri,Model model) {
 		log.info("list");
-		model.addAttribute("list", service.getList());
+		model.addAttribute("list", service.getList(new Criteria((cri.getPageNum()-1)*cri.getAmount(),cri.getAmount())));
+		model.addAttribute("pageMaker", new PageDTO(cri, 123));
+	}
+	@GetMapping("/main")
+	public void mainlist(Criteria cri,Model model) {
+		log.info("DeadlineList");
+		model.addAttribute("RecommendList", service.RecommendList());
+		model.addAttribute("DeadlineList", service.DeadlineList());
+		model.addAttribute("pageMaker", new PageDTO(cri, 123));
 	}
 
 	@GetMapping("/monthlylist")

@@ -5,12 +5,7 @@
 
 <%@include file="../includes/header.jsp"%>
 <%@ page import="java.util.*, java.text.*"%>
-<div class="row">
-	<div class="col-lg-12">
-		<h1 class="page-header">이달의 모집정보</h1>
-	</div>
-	<!-- /.col-lg-12 -->
-</div>
+
 <!-- 이달의 모집정보 css, js -->
 <!-- btn-outline-* / v4버전이라 기존 디자인과 충돌  -->
 <!--  <link rel="stylesheet"
@@ -80,6 +75,14 @@
 	white-space: nowrap;
 }
 </style>
+<div class="row">
+<div class="col-lg-12"> 
+		<div class="panel panel-default">
+	<div class="col-lg-12">
+		<h1 class="page-header">이달의 모집정보</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+
 <!-- 맞춤모집정보 -->
 <div>
 	<%
@@ -365,6 +368,9 @@
 	<!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
+</div>
+</div>
+</div>  
 
 <script type="text/javascript">
 $(document).ready(
@@ -589,7 +595,7 @@ $(document).ready(
 				.getElementById('model'), {
 			data : data3,  
 			rowHeaders : true, 
-			colWidths : [ 210, 50, 400 ],     
+			colWidths : [ 215, 50, 400 ],
 			colHeaders : false,
 			columns : [ {
 				data : "category",

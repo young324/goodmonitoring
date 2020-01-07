@@ -78,7 +78,7 @@ public class CompanyController {
 				        session.setAttribute("C_ID", companyVO.getC_ID()); // vo값이 단일로 안불러와져서 단일로 전송
 
 				    	reAttr.addFlashAttribute("result","LoginSeccess");
-				        return "redirect:/board/list"; // 로그인 성공시 게시글 목록페이지로 바로 이동
+				        return "redirect:/board/list?pageNum=1&amount=10"; // 로그인 성공시 게시글 목록페이지로 바로 이동
 			//맞춤모집정보 리스트로 이동하도록 수정필요@@@
 				    }else { // 로그인에 실패한 경우
 				    	reAttr.addFlashAttribute("result","LoginFail");

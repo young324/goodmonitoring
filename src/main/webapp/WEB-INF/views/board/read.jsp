@@ -11,8 +11,8 @@
 	<!-- /.col-lg-12 -->
 </div>
 
-
-<!-- /.row -->
+<!-- style="margin-right:100px"
+ --><!-- /.row -->
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
@@ -54,7 +54,7 @@
 						<label> <c:out
 								value="${board.AD_APPLY_TEXT}" /></label>
 					
-					<label>활동혜택 : </label> 
+						<label>활동혜택 : </label> 
 						<label><c:out
 								value="${board.WORK_BENEFIT_TEXT}" /></label>
 						
@@ -103,10 +103,11 @@
 							
 							</c:when>
 						</c:choose>
-						<button id="listbtn" data-oper='list' class="btn btn-info"
-							onclick="location='/board/list'">리스트</button>
-						<!-- end 수정-->
-						<!-- 추가 -->
+						<!-- <button id="listbtn" data-oper='list' class="btn btn-info"
+							onclick="location='/board/list'">리스트</button> -->
+							<button id="back" data-oper='list' class="btn btn-info" onclick='history.back(); return false;'>리스트</button>
+						<!-- end 수정--> 
+						<!-- 추가 -->  
 						<form id='operForm' action="/boad/modify" method="get">
 							<input type='hidden' id='BOARD_NO' name='BOARD_NO'
 								value='<c:out value="${board.BOARD_NO}"/>'> <input
@@ -139,7 +140,7 @@
 			$("button[data-oper='modify']").on("click", function(e) {
 				operForm.attr("action", "/board/modify").submit();
 			});
-
+			
 			if (likeval > 0) {
 				console.log(likeval);
 				$("#like").prop("src", "/resources/img/heart_liked.png");

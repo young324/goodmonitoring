@@ -3,6 +3,7 @@ package com.goodmonitoring.service;
 import java.util.List;
 
 import com.goodmonitoring.vo.BoardVO;
+import com.goodmonitoring.vo.Criteria;
 import com.goodmonitoring.vo.FindCriteria;
 import com.goodmonitoring.vo.PageCriteria;
 import com.goodmonitoring.vo.TargetVO;
@@ -26,6 +27,12 @@ public interface BoardService {
 
 	//이번달 전체 모집정보 리스트 
 	public List<BoardVO> getmonthlyList();
+	
+	//마감일 안지나고 추천수 많은거 5개
+	public List<BoardVO> RecommendList();
+	
+	//마감일 얼마안남은 5개
+	public List<BoardVO> DeadlineList();
 	
 	// 이번달 특정대상의 업종별 모집정보 수 리스트
 	public List<BoardVO> countICbyTG(TargetVO targetVO);
@@ -64,7 +71,10 @@ public interface BoardService {
 	public boolean remove(int BOARD_NO);
 
 	//게시판 목록
-	public List<BoardVO> getList();
+	//public List<BoardVO> getList();
+	
+	//페이징
+	public List<BoardVO> getList(Criteria cri);
 
 
 	//공부 더하고 ㄱ

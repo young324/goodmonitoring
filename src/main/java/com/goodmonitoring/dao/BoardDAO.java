@@ -3,12 +3,16 @@ package com.goodmonitoring.dao;
 import java.util.List;
 
 import com.goodmonitoring.vo.BoardVO;
+import com.goodmonitoring.vo.Criteria;
 import com.goodmonitoring.vo.TargetVO;
 
 public interface BoardDAO {
 
 	//리스트 불러오기
 	public List<BoardVO> getList();
+	
+	//페이징
+	public List<BoardVO> getListWithPaging(Criteria cri);
 
 	//게시글 작성
 	public void insert(BoardVO boardvo);
@@ -21,6 +25,12 @@ public interface BoardDAO {
 	
 	//이번달 전체 모집정보 리스트 
 	public List<BoardVO> getmonthlyList();
+	
+	//마감일 안지나고 추천수 많은거 5개
+	public List<BoardVO> RecommendList();
+	
+	//마감일 얼마안남은 5개
+	public List<BoardVO> DeadlineList();
 	
 	// 이번달 특정대상의 업종별 모집정보 수 리스트
 	public List<BoardVO> countICbyTG(TargetVO targetVO);

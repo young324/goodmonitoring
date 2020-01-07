@@ -17,7 +17,7 @@
 		position: relative;
 		width: 90%;
 	}
-	.txt_line {   
+	.txt_line {
 		width: 70px;
 		padding: 0 5px;
 		overflow: hidden;
@@ -36,17 +36,25 @@
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
-</style>
+ .carousel-inner > .item > img {
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 400px;
+    } 
+ 
 
-<!-- 네비게이션  -->
+</style>
 <div class="row">
-	<div class="col-lg-12"> 
+<div class="col-lg-12"> 
 		<div class="panel panel-default">
-		
 	<div class="col-lg-12">
 		<h1 class="page-header">모니터링 모집정보</h1>
-	</div> 
+	</div>
 	<!-- /.col-lg-12 -->
+
+
+<!-- 네비게이션  -->
 
  <nav class="navbar navbar-default">
 
@@ -74,8 +82,6 @@
     
 
   </div>
- 
-
 
   <div class="collapse navbar-collapse" id="#bs-example-navbar-collapse-1">
   
@@ -143,70 +149,126 @@
   </div> 
 
  </nav>
-<!-- 상세검색 -->
-<%@include file="../includes/CheckboxSearch.jsp"%>
+<!-- 상세검색 보이는 칸 -->
  
+
+
+
 
 <!-- /.row -->
- 
- 
-<!-- 여기 -->
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
 
-			<div class="panel-heading">
-				모집정보
-				<c:choose>
-					<c:when test="${!empty sessionScope.user}">
-						<button id='FitBtn' type="button" class="btn btn-xs pull-right">맞춤모집정보</button>
-						<button id='listBtn' type="button" class="btn btn-xs pull-right">전체
-							모집정보</button>
+			 
 
-					</c:when>
-					<c:when test="${!empty sessionScope.company}">
-						<button id='regBtn' type="button" class="btn btn-xs pull-right">모집정보작성</button>
-
-					</c:when>
-
-					<c:otherwise>
-
-					</c:otherwise>
-				</c:choose>
-
-			</div>
-			<!-- /.panel-heading -->
-
-                         
 			<div class="panel-body">
-				<table 
+			<table>
+				<tr>
+					<td><div>
+				<table width="100%"
 					class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
-							<th>#번호</th>
-							<th>분류</th>
-							<th>제목</th>
-							<th>작성일</th>
-							<th>조회수</th>
+							<th>인기 모집정보</th>
 						</tr>
 					</thead>
-					<c:forEach items="${list}" var="board">
+					<c:forEach items="${RecommendList}" var="board">
 						<tr>
-							<td><c:out value="${board.BOARD_NO}" /></td>
-							<td class="txt_line"><c:out value="${board.TARGET}" /></td>
-
-
 							<td>
 								<!-- script로 기동 <a  href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'>-->
 								<a class='move' href='<c:out value="${board.BOARD_NO}"/>'> 
 								<c:out value="${board.AD_TITLE}" /></a>
 							</td>
-
-
-
-							<td><c:out value="${board.REPORTING_DATE}" /></td>
-							<td><c:out value="${board.VIEW_COUNT}" /></td>
+ 
 
 						</tr>
 					</c:forEach>
 				</table>
+				</div> 
+				</td>
+					<td rowspan="2">
+						<div style="float:right;"> 
+        <div id="carousel-example-generic" class="carousel slide">
+        <!--
+            id="carousel-example-generic" 없으면 다음 페이지로 안넘어간다.
+            class="carousel":이미지 양쪽의 화살표 보이게 하는것
+                (화살표 없어도 그 부근 클릭하면 넘어간다.이 줄 없으면 아래 동그란 인티케이터도 안나타난다.) 
+                 slide 없으면 슬라이드 효과 없이 그냥 이미지가 나타난다. 
+                -->
+        
+            <!-- Indicators(이미지 하단의 동그란것->class="carousel-indicators") -->
+            <ol class="carousel-indicators">
+              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol>
+            <!-- 
+                위의 data-slide-to가 0 2 2이면 두번째 동그라미 클릭해도 3번째 이미지가 나온다. 
+                0 2 5이면 세번째 동그라미 클릭해도 아무 반응이 없다. 
+                Indicators는 이미지 갯수와 같게 만들어야 한다. 
+            -->
+             <!-- Carousel items -->  
+<!--              style="max-width: 25%; height: auto;" 
+ -->             <div class="carousel-inner"  style="width: 250px; height: auto;">  
+             <!-- class="carousel-inner" : 없으면 이미지 3장이 모두 세로로 배치된다. 
+             --> 
+                <div class="item active"> 
+                   <img src="/resources/img/heart_liked.png" alt="First slide">
+                   <!-- 캡션 넣고 싶을 때 아래 4줄 추가하면 된다. 캡션은 자동 중앙 정렬된다. -->
+                  <!--  <div class="carousel-caption">
+                        <h3>슬라이드 효과 </h3>
+                        <p>캡션 내부에는 HTML 태그 사용 가능합니다.</p>
+                     </div>  -->
+                </div>
+                <div class="item" >  
+                   <img src="/resources/img/test.jpg" alt="Second slide">               
+                </div>  
+                <div class="item">  
+                   <img src="/resources/img/test2.jpg" alt="Third slide">                 
+                </div>
+             </div> 
+            <!-- Controls -->
+              <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                <span class="icon-prev"></span>
+              </a>
+              <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                <span class="icon-next"></span>
+              </a>
+          </div>
+  </div>   
+					</td>  
+				</tr>
+				<tr>
+					<td>
+						<div>
+				<table width="100%"
+					class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+							<th colspan="2">마감임박 모집정보</th>
+						</tr> 
+					</thead> 
+					<c:forEach items="${DeadlineList}" var="board">
+						<tr>
+							<td>
+								<span style="color:red">D-${board.DATE}</span> 
+							</td> 
+							<td>
+								<!-- script로 기동 <a href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'>-->
+								<a class='move' href='<c:out value="${board.BOARD_NO}"/>'> 
+								<c:out value="${board.AD_TITLE}" /></a>
+							</td>
+ 
+
+						</tr>
+					</c:forEach>
+				</table>
+				</div>
+					</td>
+				</tr>
+			</table>
+			
 				<!--  검색처리 추가 -->
 				<div class="row">
 					<div class="col-lg-12">
@@ -236,6 +298,9 @@
 							<button class="btn btn-default">Search</button>
 						</form>
 					</div>
+					
+		
+					
 				</div>
 
 				<!--  end 검색처리 추가 -->
@@ -250,7 +315,7 @@
 						<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
 							<li class="paginate_button ${pageMaker.cri.pageNum == num ? "active":""} " >
 							<a href="${num}">${num}</a>
-							</li> 
+							</li>
 						</c:forEach>
 						<c:if test="${pageMaker.next}">
 							<li class="paginate_button next">
@@ -296,19 +361,28 @@
 
 			</div>
 			<!-- /.panel-body -->
-	
 		</div>
 		<!-- /.panel -->
 	</div>
 	<!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
-   
+</div>
+</div>
+</div> 
 
 <script type="text/javascript">
 	$(document)
 			.ready(
-					function() {
+					function() { 		
+						/* $('.carousel').carousel() */
+						   /* 자동으로 5초의 지연시간이 설정되어 있는데 아래와 같이 바꿀수 있다. 
+      아래 코드 쓰려면 위 코드 지워야 한다.  */      
+       
+      $('.carousel').carousel({
+          interval: 3000
+      }); 
+         
 						var result = '<c:out value="${result}"/>';
 						checkModal(result);
 						history.replaceState({}, null, null);

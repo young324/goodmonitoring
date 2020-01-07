@@ -3,7 +3,7 @@
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>  
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr"> 
 
 <head>
 
@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SB Admin 2 - Bootstrap Admin Theme</title>
+<title>모니터링 모집정보 서비스</title>  
 
 <!-- Bootstrap Core CSS -->
 <link href="/resources/vendor/bootstrap/css/bootstrap.min.css"
@@ -55,15 +55,15 @@
 }
 </style>
 
-
+ 
 </head>
 
 <body>
+  
 
-	<div id="wrapper">
 	<!-- Navigation 위에거-->
 	<nav class="navbar navbar-default">
-	
+		<div id="navbar-header">
 	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -86,12 +86,12 @@
 
 			<c:choose>
 				<c:when test="${!empty sessionScope.user}">
-				<li><a href="/board/list">메인</a></li>
-					<li><a href="/board/list">게시판</a></li>
+				<li><a href="/board/main">메인</a></li>
+					<li><a href="/board/list?pageNum=1&amount=10">게시판</a></li>
 					<li><a href="/board/Joinselect">회원가입</a></li>
 					<li><a href="/user/logout">로그아웃</a></li>
 					
-					
+					  
 			<li class="dropdown"><a href="#" class="dropdown-toggle"
 				data-toggle="dropdown" role="button" aria-haspopup="true"
 				aria-expanded="false">모집정보 찾기<span class="caret"></span></a>
@@ -100,7 +100,7 @@
 					<c:choose>
 
 						<c:when test="${!empty sessionScope}">
-							<li><a href="/board/list">전체 모집정보</a></li>
+							<li><a href="/board/list?pageNum=1&amount=10">전체 모집정보</a></li>
 							<li><a href="/board/fitlistJoin">맞춤 모집정보</a></li>
 							<li><a href="/board/graphmoniter">이달의 모집정보</a></li>
 						</c:when>
@@ -111,8 +111,8 @@
 				</ul></li>
 				</c:when>
 				<c:when test="${!empty sessionScope.company}">
-					<li><a href="/board/list">메인</a></li>
-					<li><a href="/board/list">게시판</a></li>
+					<li><a href="/board/main">메인</a></li>
+					<li><a href="/board/list?pageNum=1&amount=10">게시판</a></li>
 					<li><a href="/board/Joinselect">회원가입</a></li>
 					<li><a href="/user/logout">로그아웃</a></li>
 					
@@ -125,7 +125,7 @@
 					<c:choose>
 
 						<c:when test="${!empty sessionScope}">
-							<li><a href="/board/list">전체 모집정보</a></li>
+							<li><a href="/board/list?pageNum=1&amount=10">전체 모집정보</a></li>
 							<li><a href="/board/graphmoniter">이달의 모집정보</a></li>
 						</c:when>
 						<c:otherwise>
@@ -136,8 +136,8 @@
 				</c:when>
 
 				<c:otherwise>
-					<li><a href="/board/list">메인</a></li>
-					<li><a href="/board/list">게시판</a></li>
+					<li><a href="/board/main">메인</a></li>
+					<li><a href="/board/list?pageNum=1&amount=10">게시판</a></li>
 					<li><a href="/board/Joinselect">회원가입</a></li>
 					<li><a href="/board/Loginselect">로그인</a></li>
 					<ul class="nav navbar-nav navbar-right">
@@ -150,7 +150,7 @@
 					<c:choose>
 
 						<c:when test="${!empty sessionScope}">
-							<li><a href="/board/list">전체 모집정보</a></li>
+							<li><a href="/board/list?pageNum=1&amount=10">전체 모집정보</a></li>
 							<li><a href="/board/fitlistJoin">맞춤 모집정보</a></li>
 							<li><a href="/board/graphmoniter">이달의 모집정보</a></li>
 						</c:when>
@@ -168,12 +168,11 @@
 
 
 	</div>
-	</nav> 
- 
+	 </div> 
+	</nav>  
 
 
- 
-	<div id="page-wrapper">
+  
 
 		<!-- 추가 -->
 		<script
