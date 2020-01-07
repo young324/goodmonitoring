@@ -22,6 +22,11 @@
 		select FILE_PATH from board_file WHERE BOARD_NO=#{BOARD_NO}
 	</select>
 
+	<!-- 최근 5개 -->
+	<select id="Lately5" resultType="com.goodmonitoring.vo.BoardFileVO">
+		select A.*, B.URL from board_file A, board B where A.BOARD_NO = B.BOARD_NO order by A.FILE_NO DESC limit 5	
+	</select>
+
 	<delete id="fileDelete">
 		DELETE FROM board_file  WHERE FILE_NO=#{FILE_NO}	
 	</delete>

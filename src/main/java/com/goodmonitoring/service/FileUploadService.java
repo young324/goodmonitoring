@@ -17,5 +17,6 @@ public interface FileUploadService {
 	
 	public String img_path(int BOARD_NO) throws Exception;
 
+	public List<BoardFileVO> Lately5() throws Exception;
 }
 

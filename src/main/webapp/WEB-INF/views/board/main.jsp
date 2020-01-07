@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
+ 
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@include file="../includes/header.jsp"%>
 
 
@@ -35,13 +36,13 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-}
- .carousel-inner > .item > img {
-      top: 0;
+} 
+ .carousel-inner > .item > img {  
+      top: 0; 
       left: 0;
       min-width: 100%;
-      min-height: 400px;
-    } 
+      min-height: 300px;
+    }  
  
 
 </style>
@@ -202,6 +203,8 @@
               <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
               <li data-target="#carousel-example-generic" data-slide-to="1"></li>
               <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="4"></li>
             </ol>
             <!-- 
                 위의 data-slide-to가 0 2 2이면 두번째 동그라미 클릭해도 3번째 이미지가 나온다. 
@@ -210,24 +213,34 @@
             -->
              <!-- Carousel items -->  
 <!--              style="max-width: 25%; height: auto;" 
- -->             <div class="carousel-inner"  style="width: 250px; height: auto;">  
+ -->             <div class="carousel-inner"  style="width: 300px; height: 300px;">  
              <!-- class="carousel-inner" : 없으면 이미지 3장이 모두 세로로 배치된다. 
-             --> 
-                <div class="item active"> 
-                   <img src="/resources/img/heart_liked.png" alt="First slide">
-                   <!-- 캡션 넣고 싶을 때 아래 4줄 추가하면 된다. 캡션은 자동 중앙 정렬된다. -->
-                  <!--  <div class="carousel-caption">
-                        <h3>슬라이드 효과 </h3>
-                        <p>캡션 내부에는 HTML 태그 사용 가능합니다.</p>
-                     </div>  -->
-                </div>
-                <div class="item" >  
-                   <img src="/resources/img/test.jpg" alt="Second slide">               
+             -->   
+                 
+               
+             	<%-- <c:forEach items="${lately5}" var="lately5">
+					<div class="item" >   
+                  		<img onclick="javascript:location.href='http://naver.com';" src="<spring:url value="/img/${lately5.FILE_PATH}"/>" alt="Second slide">        
+                	</div> 
+				</c:forEach> --%>
+				 
+				
+                <div class="item active">   
+					<img id="slide0" onclick="javascript:location.href='http://naver.com';" src="/resources/img/test.jpg" alt="First slide">
+                </div> 
+                <div class="item" >             
+                   <img id="slide1" onclick="javascript:location.href='http://naver.com';" src="/resources/img/test.jpg" alt="Second slide">        
                 </div>  
                 <div class="item">  
-                   <img src="/resources/img/test2.jpg" alt="Third slide">                 
+                   <img id="slide2" onclick="javascript:location.href='http://naver.com';" src="/resources/img/test2.jpg" alt="Third slide">                 
                 </div>
-             </div> 
+                <div class="item">  
+                   <img id="slide3" onclick="javascript:location.href='http://naver.com';" src="/resources/img/test2.jpg" alt="fourth slide">                 
+                </div>
+                <div class="item">  
+                   <img id="slide4" onclick="javascript:location.href='http://naver.com';" src="/resources/img/test2.jpg" alt="fifth slide">                 
+                </div>
+             </div>  
             <!-- Controls -->
               <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
                 <span class="icon-prev"></span>
@@ -242,7 +255,7 @@
 				<tr>
 					<td>
 						<div>
-				<table width="100%"
+				<table 
 					class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
@@ -259,8 +272,6 @@
 								<a class='move' href='<c:out value="${board.BOARD_NO}"/>'> 
 								<c:out value="${board.AD_TITLE}" /></a>
 							</td>
- 
-
 						</tr>
 					</c:forEach>
 				</table>
@@ -269,7 +280,7 @@
 				</tr>
 			</table>
 			
-				<!--  검색처리 추가 -->
+				<%-- <!--  검색처리 추가 -->
 				<div class="row">
 					<div class="col-lg-12">
 						<form id="searchForm" action="/board/list" method="get">
@@ -302,10 +313,10 @@
 		
 					
 				</div>
-
-				<!--  end 검색처리 추가 -->
+ --%>
+				<!--  end 검색처리 추가 --> 
 				<!-- Page처리 추가 -->
-				<div class="pull-right">
+				<%-- <div class="pull-right">
 					<ul class="pagination">
 						<c:if test="${pageMaker.prev }">
 							<li class="paginate_button previous"> 
@@ -330,7 +341,7 @@
 					<input type="hidden" name="amount" value="${pageMaker.cri.amount}"> 
 					<input type="hidden" name="type" value='<c:out value="${pageMaker.cri.type}"/>'> 
 					<input type="hidden" name="keyword" value='<c:out value="${pageMaker.cri.keyword}"/>'>
-				</form> 
+				</form>  --%>
 				<!-- end form 추가 -->
 				<!-- end Page처리 추가 -->
 				<!-- Madal창 추가 Start-->
@@ -374,7 +385,26 @@
 <script type="text/javascript">
 	$(document)
 			.ready(
-					function() { 		
+					function() { 
+						
+						//이미지
+						var imgPath = new Array();
+						var imgURL = new Array();
+						
+						<c:forEach var="lately5" items="${Lately5}" varStatus="Lately5">
+							imgPath.push("${lately5.FILE_PATH}");
+							console.log('${lately5.FILE_PATH}');
+							$("#slide${Lately5.index}").attr('src',"<spring:url value="/img/${lately5.FILE_PATH}"/>");
+							$("#slide${Lately5.index}").attr('onclick',"javascript:location.href='${lately5.URL}';");
+						</c:forEach> 
+			      
+						
+						
+			 			
+		/* 				for (var i=0; i<imglist.length; i++){
+							console.log(imglist[i]);
+						}     */
+ 
 						/* $('.carousel').carousel() */
 						   /* 자동으로 5초의 지연시간이 설정되어 있는데 아래와 같이 바꿀수 있다. 
       아래 코드 쓰려면 위 코드 지워야 한다.  */      
@@ -492,6 +522,7 @@
 			}
 		});
 	}
+
 </script>
 <%@include file="../includes/footer.jsp"%>
 

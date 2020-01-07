@@ -80,6 +80,12 @@ public class FileUploadServiceImpl implements FileUploadService {
 	}
 
 
+	@Override
+	public List<BoardFileVO> Lately5() throws Exception {
+		return fileUploadDao.Lately5();
+	}
+
+
 
 
 

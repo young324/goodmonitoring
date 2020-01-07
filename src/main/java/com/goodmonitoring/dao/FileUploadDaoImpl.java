@@ -42,6 +42,11 @@ public class FileUploadDaoImpl implements FileUploadDao{
 	public String img_path(int BOARD_NO) throws Exception {
 		return sqlSession.selectOne("img_path", BOARD_NO);
 	}
+
+	@Override
+	public List<BoardFileVO> Lately5() throws Exception {
+		return sqlSession.selectList("Lately5");
+	}
 	
 
 

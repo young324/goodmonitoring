@@ -88,18 +88,23 @@ public class BoardController {
 	 * @GetMapping("/list") public void list(Model model) { log.info("list");
 	 * model.addAttribute("list", service.getList()); }
 	 */
+	
 	@GetMapping("/list")
 	public void list(Criteria cri,Model model) {
 		log.info("list");
 		model.addAttribute("list", service.getList(new Criteria((cri.getPageNum()-1)*cri.getAmount(),cri.getAmount())));
 		model.addAttribute("pageMaker", new PageDTO(cri, 123));
 	}
+	
+	//메인 화면
 	@GetMapping("/main")
-	public void mainlist(Criteria cri,Model model) {
+	public void mainlist(Criteria cri,Model model) throws Exception {
 		log.info("DeadlineList");
 		model.addAttribute("RecommendList", service.RecommendList());
 		model.addAttribute("DeadlineList", service.DeadlineList());
 		model.addAttribute("pageMaker", new PageDTO(cri, 123));
+		model.addAttribute("Lately5", fileUploadService.Lately5());
+
 	}
 
 	@GetMapping("/monthlylist")

@@ -17,4 +17,5 @@ public class BoardFileVO {
 	private Date FILE_DATE; 
 	private MultipartFile[] files;
 	
+	private String URL;
 }
