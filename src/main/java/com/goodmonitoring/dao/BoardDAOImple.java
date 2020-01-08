@@ -1,9 +1,11 @@
 package com.goodmonitoring.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -94,8 +96,27 @@ public class BoardDAOImple implements BoardDAO{
 		return ss.selectList("getC_NAMElist",C_NAME);
 	}
 
-	@Override
-	public List<BoardVO> boardSearchList(BoardVO boardvo) {
+	/*
+	 * @Override public List<BoardVO> boardSearchList(@Param("TARGETList") String[]
+	 * TARGETList,
+	 * 
+	 * @Param("INTEREST_CATEGORYList") String[] INTEREST_CATEGORYList,
+	 * 
+	 * @Param("ONLINEList") String[] ONLINEList,
+	 * 
+	 * @Param("WORK_KEYWORDList") String[] WORK_KEYWORDList,
+	 * 
+	 * @Param("WORK_BENEFIT_KEYList") String[] WORK_BENEFIT_KEYList) {
+	 * 
+	 * HashMap<String, Object> map = new HashMap<String, Object>();
+	 * map.put("TARGETList", TARGETList); map.put("INTEREST_CATEGORYList",
+	 * INTEREST_CATEGORYList); map.put("ONLINEList", ONLINEList);
+	 * map.put("WORK_KEYWORDList", WORK_KEYWORDList);
+	 * map.put("WORK_BENEFIT_KEYList", WORK_BENEFIT_KEYList);
+	 * 
+	 * return ss.selectList("boardSearchList", map); }
+	 */
+	@Override public List<BoardVO> boardSearchList(BoardVO boardvo){
 		return ss.selectList("boardSearchList", boardvo);
 	}
 

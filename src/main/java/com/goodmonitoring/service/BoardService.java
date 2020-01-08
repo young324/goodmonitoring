@@ -2,6 +2,8 @@ package com.goodmonitoring.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.goodmonitoring.vo.BoardVO;
 import com.goodmonitoring.vo.Criteria;
 import com.goodmonitoring.vo.FindCriteria;
@@ -63,7 +65,6 @@ public interface BoardService {
 
 	//체크박스 검색
 	public List<BoardVO>boardSearchList(BoardVO boardvo);
-
 	//글 수정
 	public boolean modify(BoardVO boardvo);
 

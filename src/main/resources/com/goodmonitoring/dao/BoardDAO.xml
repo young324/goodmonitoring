@@ -127,21 +127,47 @@
 	</select>
 
 	<!-- 체크박스 검색 일단 대상,업종만 -->
-	<select id="boardSearchList" resultType="com.goodmonitoring.vo.BoardVO" parameterType="com.goodmonitoring.vo.BoardVO">
+	<!-- where 다음 AND 혹은 OR 가 바로 올 경우 AND, OR 키워드를 삭제  -->
+	<select id="boardSearchList" parameterType="java.util.HashMap" resultType="com.goodmonitoring.vo.BoardVO">
 		select *
 		from board
-		<where>
-		
-			<if test="targetList != null">
-					TARGET in <foreach item="targetList" collection="targetList" open="(" close=")" separator="," >
-						#{targetList}
+
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="TARGETList != null">
+				AND	TARGET IN <foreach item="TARGETList" collection="TARGETList" open="(" close=")" separator="," >
+						#{TARGETList}
 					</foreach>
 			</if>
-			
-
-		</where>
+			<if test="INTEREST_CATEGORYList != null">
+				AND <foreach item="INTEREST_CATEGORYList" collection="INTEREST_CATEGORYList" open="(" close=")" separator="OR" >				
+							INTEREST_CATEGORY LIKE CONCAT('%',#{INTEREST_CATEGORYList}, '%')
+					</foreach>
+			</if>
+			<if test="ONLINEList != null">
+				AND <foreach item="ONLINEList" collection="ONLINEList" open="(" close=")" separator="OR" >				
+							ONLINE LIKE CONCAT('%',#{ONLINEList}, '%')
+					</foreach>
+			</if>
+			<if test="WORK_KEYWORDList != null">
+				AND <foreach item="WORK_KEYWORDList" collection="WORK_KEYWORDList" open="(" close=")" separator="OR" >				
+							WORK_KEYWORD LIKE CONCAT('%',#{WORK_KEYWORDList}, '%')
+					</foreach>
+			</if>
+			<if test="WORK_BENEFIT_KEYList != null">
+				AND <foreach item="WORK_BENEFIT_KEYList" collection="WORK_BENEFIT_KEYList" open="(" close=")" separator="OR" >				
+							WORK_BENEFIT_KEY LIKE CONCAT('%',#{WORK_BENEFIT_KEYList}, '%')
+					</foreach>
+			</if>
+		</trim>	
+		
 	</select>
-
+<!-- 
+AND
+(ONLINE LIKE "%유튜브%" 
+OR ONLINE LIKE "%인스타%"
+OR ONLINE LIKE "%블로그%"
+OR ONLINE LIKE "%기타%")
+-->
 
 
 	<!-- 게시글 작성 -->

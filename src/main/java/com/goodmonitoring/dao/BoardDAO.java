@@ -2,6 +2,8 @@ package com.goodmonitoring.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.goodmonitoring.vo.BoardVO;
 import com.goodmonitoring.vo.Criteria;
 import com.goodmonitoring.vo.TargetVO;
@@ -69,6 +71,17 @@ public interface BoardDAO {
 	public List<BoardVO>getC_NAMElist(String C_NAME);
 	
 	//체크박스 검색
+	/*
+	 * public List<BoardVO>boardSearchList(@Param("TARGETList") String[] TARGETList,
+	 * 
+	 * @Param("INTEREST_CATEGORYList") String[] INTEREST_CATEGORYList,
+	 * 
+	 * @Param("ONLINEList") String[] ONLINEList,
+	 * 
+	 * @Param("WORK_KEYWORDList") String[] WORK_KEYWORDList,
+	 * 
+	 * @Param("WORK_BENEFIT_KEYList") String[] WORK_BENEFIT_KEYList);
+	 */
 	public List<BoardVO>boardSearchList(BoardVO boardvo);
 	
 	//게시글 삭제

@@ -91,7 +91,7 @@ public class BoardController {
 	
 	@GetMapping("/list")
 	public void list(Criteria cri,Model model) {
-		log.info("list");
+		//log.info("list");
 		model.addAttribute("list", service.getList(new Criteria((cri.getPageNum()-1)*cri.getAmount(),cri.getAmount())));
 		model.addAttribute("pageMaker", new PageDTO(cri, 123));
 	}
@@ -99,7 +99,7 @@ public class BoardController {
 	//메인 화면
 	@GetMapping("/main")
 	public void mainlist(Criteria cri,Model model) throws Exception {
-		log.info("DeadlineList");
+		//log.info("DeadlineList");
 		model.addAttribute("RecommendList", service.RecommendList());
 		model.addAttribute("DeadlineList", service.DeadlineList());
 		model.addAttribute("pageMaker", new PageDTO(cri, 123));
@@ -234,18 +234,50 @@ public class BoardController {
 				model.addAttribute("list", service.getC_NAMElist(C_NAME));
 			}
 		}
-	//체크박스 검색
-	@ResponseBody
-	@RequestMapping(value = "/boardSearchList", method = RequestMethod.POST, produces = "application/json")
-
-	public void boardSearchList(Model model, HttpServletRequest httpRequest) {
+	
+	//체크박스 검색화면
+	@RequestMapping(value="/CheckBoxSearchlist", method=RequestMethod.GET)
+	public void CheckBoxSearchlist(HttpServletRequest request,Criteria cri,Model model) {
+		//log.info("list");
+		/*
+		 * model.addAttribute("list", service.getList(new
+		 * Criteria((cri.getPageNum()-1)*cri.getAmount(),cri.getAmount())));
+		 * model.addAttribute("pageMaker", new PageDTO(cri, 123));
+		 */
 		
-		String targetList = (httpRequest.getParameter("lists"));
+		String[] TARGETList = request.getParameterValues("TARGET");
+		String[] INTEREST_CATEGORYList = request.getParameterValues("INTEREST_CATEGORY");
+		String[] ONLINEList = request.getParameterValues("ONLINE");
+		String[] WORK_KEYWORDList = request.getParameterValues("WORK_KEYWORD");
+		String[] WORK_BENEFIT_KEYList = request.getParameterValues("WORK_BENEFIT_KEY");
+		/*//체크박스로 선택된 대상 배열로 나오는거 확인
+		 * log.info(TARGETList[0]); 
+		 * log.info(TARGETList[1]);
+		 */
 		BoardVO boardvo = new BoardVO();
-		boardvo.setTARGET(targetList);
-		model.addAttribute("list", service.boardSearchList(boardvo));
+		
+		boardvo.setTARGETList(TARGETList);
+		boardvo.setINTEREST_CATEGORYList(INTEREST_CATEGORYList);
+		boardvo.setONLINEList(ONLINEList);
+		boardvo.setWORK_KEYWORDList(WORK_KEYWORDList);
+		boardvo.setWORK_BENEFIT_KEYList(WORK_BENEFIT_KEYList);
+		
+		model.addAttribute("list" , service.boardSearchList(boardvo));
 	}
 	
+	//체크박스 검색 > ajax말고 post방식으로
+	/*
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value = "/boardSearchList", method = RequestMethod.POST,
+	 * produces = "application/json")
+	 * 
+	 * public void boardSearchList(Model model, HttpServletRequest httpRequest) {
+	 * 
+	 * String targetList = (httpRequest.getParameter("lists")); BoardVO boardvo =
+	 * new BoardVO(); boardvo.setTARGET(targetList); //model.addAttribute("list",
+	 * service.boardSearchList(boardvo)); }
+	 */
 	//게시물 등록처리
 		@Transactional
 		@PostMapping("/write")

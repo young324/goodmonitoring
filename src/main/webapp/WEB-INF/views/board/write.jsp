@@ -695,9 +695,9 @@
 
 					</tbody>
 				</table>
-
+ 
 				<!-- 글쓰기 -->
-				<input type="submit" class="btn btn-primary pull-right" value="글쓰기" />
+				<input type="submit" class="btn btn-primary pull-right" value="작성" />
 
 			</form>
 

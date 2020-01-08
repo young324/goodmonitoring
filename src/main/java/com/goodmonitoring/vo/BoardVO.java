@@ -60,10 +60,13 @@ public class BoardVO {
 	private String URL;
 	
 	//체크박스검색
-	private String[] targetList;
-	private String[] icList;
-	
-		//특정 대상의 업종별 개수
+	private String[] TARGETList;
+	private String[] INTEREST_CATEGORYList;
+	private String[] ONLINEList;
+	private String[] WORK_KEYWORDList;
+	private String[] WORK_BENEFIT_KEYList;
+
+    //특정 대상의 업종별 개수
 	private int tcount;
 	
 	//마감일로부터 d-day

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%> 
 <!-- 상세검색 보이는 칸 -->
-
+<form role="form" action="/board/CheckBoxSearchlist" method="get" >
 <div id="#bs-example-navbar-collapse-1" class="search">
 	<a class="detail">상세검색</a>
 	<div id="detailtable" style="display: none">
@@ -164,6 +164,10 @@
 							<input name="ONLINE" type="checkbox" id="kakaostory"
 								value="카카오스토리"> <label for="kakaostory">카카오스토리</label>
 						</div>
+						<div class="checkbox checkbox-inline checkbox-primary">
+							<input name="ONLINE" type="checkbox" id="onlineetc" value="기타">
+								<label for="onlineetc">기타</label>
+						</div>
 					</td>
 
 				</tr>
@@ -172,94 +176,102 @@
 
 				</tr>
 				<tr>
-					<td colspan="10">
+					<td colspan="10" style="padding-top: 6%; padding-bottom: 6%; padding-left: 10%"> 
 						<div class="checkbox checkbox-inline checkbox-primary">
-							<input name="WORK_KEYWORD" type="checkbox" id="writingreview"
-								value="리뷰작성"> <label for="writingreview">리뷰작성</label>
-						</div>
-
-
-						<div class="checkbox checkbox-inline checkbox-primary">
-							<input name="WORK_KEYWORD" type="checkbox" id="writingarti"
-								value="기사작성"> <label for="writingarti">기사작성</label>
-						</div>
-
-
-						<div class="checkbox checkbox-inline checkbox-primary">
-							<input name="WORK_KEYWORD" type="checkbox" id="blogposting"
-								value="블로그포스팅"> <label for="blogposting">블로그포스팅</label>
-						</div>
-
-
-						<div class="checkbox checkbox-inline checkbox-primary">
-							<input name="WORK_KEYWORD" type="checkbox" id="promotion"
-								value="홍보"> <label for="promotion">홍보</label>
-						</div>
-
-						<div class="checkbox checkbox-inline checkbox-primary">
-							<input name="WORK_KEYWORD" type="checkbox" id="experience"
-								value="체험"> <label for="experience">체험</label>
-						</div>
-
-
-						<div class="checkbox checkbox-inline checkbox-primary">
-							<input name="WORK_KEYWORD" type="checkbox" id="mission"
-								value="미션"> <label for="mission">미션</label>
-						</div>
-
-
-						<div class="checkbox checkbox-inline checkbox-primary">
-							<input name="WORK_KEYWORD" type="checkbox" id="plan" value="기획">
-							<label for="plan">기획</label>
-						</div>
-
-						<div class="checkbox checkbox-inline checkbox-primary">
-							<input name="WORK_KEYWORD" type="checkbox" id="offline"
-								value="오프라인활동"> <label for="offline">오프라인활동</label>
-						</div>
-
-						<div class="checkbox checkbox-inline checkbox-primary">
-							<input name="WORK_KEYWORD" type="checkbox" id="contents"
-								value="컨텐츠제작"> <label for="contents">컨텐츠제작</label>
-						</div>
-
-						<div class="checkbox checkbox-inline checkbox-primary">
-							<input name="WORK_KEYWORD" type="checkbox" id="idea"
-								value="아이디어제안"> <label for="idea">아이디어제안</label>
-						</div>
+									<input name="WORK_KEYWORD" type="checkbox" id="writingarti"
+										value="기사작성"> <label for="writingarti">기사작성</label>
+								</div>
+								<div class="checkbox checkbox-inline checkbox-primary" style="float: left">
+									<input name="WORK_KEYWORD" type="checkbox" id="writingreview"
+										value="리뷰작성"> <label for="writingreview">리뷰작성</label>
+								</div>
+								<div class="checkbox checkbox-inline checkbox-primary" style="float: left">
+									<input name="WORK_KEYWORD" type="checkbox" id="blogposting"
+										value="블로그포스팅"> <label for="blogposting">블로그포스팅</label>
+								</div>
+								<div class="checkbox checkbox-inline checkbox-primary" style="float: left">
+									<input name="WORK_KEYWORD" type="checkbox" id="idea"
+										value="아이디어제안"> <label for="idea">아이디어제안</label>
+								</div>
+								<div class="checkbox checkbox-inline checkbox-primary" style="float: left">
+									<input name="WORK_KEYWORD" type="checkbox" id="offline"
+										value="오프라인활동"> <label for="offline">오프라인활동</label>
+								</div>
+								<div class="checkbox checkbox-inline checkbox-primary" style="float: left">
+									<input name="WORK_KEYWORD" type="checkbox" id="experience"
+										value="체험단 활동"> <label for="experience">체험단 활동</label>
+								</div>
+								<div class="checkbox checkbox-inline checkbox-primary" style="float: left">
+									<input name="WORK_KEYWORD" type="checkbox" id="contents"
+										value="콘텐츠제작"> <label for="contents">콘텐츠제작</label>
+								</div>
+								<div class="checkbox checkbox-inline checkbox-primary" style="float: left">
+									<input name="WORK_KEYWORD" type="checkbox" id="promotion"
+										value="홍보"> <label for="promotion">홍보</label>
+								</div>
+								<div class="checkbox checkbox-inline checkbox-primary" style="float: left">
+									<input name="WORK_KEYWORD" type="checkbox" id="conference"
+										value="회의참석"> <label for="conference">회의참석</label>
+								</div> 
+								
+								
+								
+								<div class="checkbox checkbox-inline checkbox-primary">
+									<input name="WORK_KEYWORD" type="checkbox" id="worketc"
+										value="기타"> <label for="worketc">기타</label>
+								</div> 
 					</td>
 				</tr>
 				<tr>
 					<td colspan="10"><b>활동 보상</b></td>
 				</tr>
 				<tr>
-					<td colspan="10">
-						<div class="checkbox checkbox-inline checkbox-primary">
-							<input name="WORK_BENEFIT_KEY" type="checkbox" id="cash"
-								value="현금"> <label for="cash">현금</label>
-						</div>
-						<div class="checkbox checkbox-inline checkbox-primary">
-							<input name="WORK_BENEFIT_KEY" type="checkbox" id="stuff"
-								value="현물"> <label for="stuff">현물</label>
-						</div>
-						<div class="checkbox checkbox-inline checkbox-primary">
-							<input name="WORK_BENEFIT_KEY" type="checkbox" id="certificates"
-								value="수료증"> <label for="certificates">수료증</label>
-						</div>
-						<div class="checkbox checkbox-inline checkbox-primary">
-							<input name="WORK_BENEFIT_KEY" type="checkbox" id="empbenefits"
-								value="취업혜택"> <label for="empbenefits">취업혜택</label>
-						</div> <!--  <div class="checkbox checkbox-inline checkbox-primary">
-									<input name="WORK_BENEFIT_KEY" type="checkbox" id="etc" value="기타">
-									<label for="etc">기타</label>
-								</div>-->
+					<td colspan="10" style="padding-top: 6%; padding-bottom: 6%; padding-left: 10%"> 
+							<div class="checkbox checkbox-inline checkbox-primary">
+									<input name="WORK_BENEFIT_KEY" type="checkbox" id="gift card"
+									 value="상품권"> <label for="gift card">상품권</label>
+								</div>
+								<div class="checkbox checkbox-inline checkbox-primary" style="float: left">
+									<input name="WORK_BENEFIT_KEY" type="checkbox" id="certificates" 
+									value="수료증"> <label for="certificates">수료증</label>
+								</div>
+								<div class="checkbox checkbox-inline checkbox-primary" style="float: left">
+									<input name="WORK_BENEFIT_KEY" type="checkbox" id="EntryPoint" 
+									value="입사 가산점"> <label for="EntryPoint">입사 가산점</label>
+								</div>
+								<div class="checkbox checkbox-inline checkbox-primary" style="float: left">
+									<input name="WORK_BENEFIT_KEY" type="checkbox" id="scholarship" 
+									value="장학금"> <label for="scholarship">장학금</label>
+								</div>
+								<div class="checkbox checkbox-inline checkbox-primary" style="float: left">
+									<input name="WORK_BENEFIT_KEY" type="checkbox" id="Point" 
+									value="포인트"> <label for="Point">포인트</label>
+								</div> 
+								<div class="checkbox checkbox-inline checkbox-primary" style="float: left">
+									<input name="WORK_BENEFIT_KEY" type="checkbox" id="cash"
+										value="현금"> <label for="cash">현금</label>
+								</div>
+								<div class="checkbox checkbox-inline checkbox-primary" style="float: left">
+									<input name="WORK_BENEFIT_KEY" type="checkbox" id="stuff"
+										value="현물"> <label for="stuff">현물</label>
+								</div>
+								<div class="checkbox checkbox-inline checkbox-primary" style="float: left">
+									<input name="WORK_BENEFIT_KEY" type="checkbox" id="overseas"
+										value="해외연수"> <label for="overseas">해외연수</label>
+								</div>  
+								
+								<div class="checkbox checkbox-inline checkbox-primary" style="float: left">
+									<input name="WORK_BENEFIT_KEY" type="checkbox" id="etc"
+										value="기타"> <label for="etc">기타</label>
+								</div> 
 					</td>
-				</tr>
-				<tr>
-					<td colspan="10"><button onclick="searchbtn();">검색</button></td>
+				</tr> 
+				<tr> 
+					<td colspan="10"><input type="submit" class="btn btn-primary pull-right" value="검색" /></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 </div>
+</form>
 
