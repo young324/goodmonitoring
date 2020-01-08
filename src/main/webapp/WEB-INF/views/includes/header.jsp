@@ -54,13 +54,9 @@
 	}
 }
 </style>
-
- 
 </head>
 
 <body>
-  
-
 	<!-- Navigation 위에거-->
 	<nav class="navbar navbar-default">
 		<div id="navbar-header">
@@ -170,7 +166,14 @@
 	</div>
 	 </div> 
 	</nav>  
-
+<div class="row">
+<div class="col-lg-12"> 
+		<div class="panel panel-default">
+	<div class="col-lg-12">
+		<!-- <h1 class="page-header">모니터링 모집정보</h1> -->
+		<img src="/resources/img/goodmonitoring_logo.PNG"> 
+	</div>
+ 
 
   
 

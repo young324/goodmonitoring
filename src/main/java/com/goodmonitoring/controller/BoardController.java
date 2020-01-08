@@ -104,7 +104,7 @@ public class BoardController {
 		model.addAttribute("DeadlineList", service.DeadlineList());
 		model.addAttribute("pageMaker", new PageDTO(cri, 123));
 		model.addAttribute("Lately5", fileUploadService.Lately5());
-
+		model.addAttribute("list", service.getList(new Criteria((cri.getPageNum()-1)*cri.getAmount(),cri.getAmount())));
 	}
 
 	@GetMapping("/monthlylist")
