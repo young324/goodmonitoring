@@ -41,7 +41,7 @@
 
  <!-- 네비게이션  -->
 
- <nav class="navbar navbar-default">
+<!--  <nav class="navbar navbar-default">
 
   <div class="navbar-header">
 
@@ -59,7 +59,7 @@
 
     </button>
 
-     <a class="navbar-brand" href="main.jsp">JSP 게시판</a>
+      <a class="navbar-brand" href="index.html">모니터링 모집정보</a>
 
   </div>
 
@@ -104,7 +104,8 @@
 
   </div> 
 
- </nav>
+ </nav> -->
+ <%@include file="../includes/header.jsp"%> 
 
  <!-- 로긴폼 -->
 

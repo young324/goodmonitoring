@@ -46,7 +46,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-<style type="text/css">
+<!-- <style type="text/css">
 /* 모바일용 CSS */
 @media all and (min-width:320px) {
 	#wrap {
@@ -54,9 +54,9 @@
 	}
 }
 </style>
-</head>
+</head> 
 
-<body>
+<body> -->
 	<!-- Navigation 위에거-->
 	<nav class="navbar navbar-default">
 		<div id="navbar-header">

@@ -82,6 +82,15 @@ html, body {
       -webkit-align-items: center;
       align-items: center;
     }
+      
+    .swiper-container > .swiper-wrapper > .swiper-slide > img {  
+      top: 0; 
+      left: 0;  
+      min-width: 20%;
+      min-height: auto;
+      height : 500px;
+    }   
+      
 </style>
 
 
@@ -89,10 +98,6 @@ html, body {
 <!-- 네비게이션  -->
 
  <nav class="navbar navbar-default">
-
-
-
-
 
   <div class="navbar-header">
 
@@ -166,6 +171,18 @@ html, body {
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-body">
+			 <div class="swiper-container">
+    <div class="swiper-wrapper">  
+      <div class="swiper-slide"><img id="slide0" onclick="" src="" alt="First slide"></div>
+      <div class="swiper-slide"><img id="slide1" onclick="" src="" alt="Second slide"></div>
+      <div class="swiper-slide"><img id="slide2" onclick="" src="" alt="Third slide"></div>
+      <div class="swiper-slide"><img id="slide3" onclick="" src="" alt="fourth slide"></div>
+      <div class="swiper-slide"><img id="slide4" onclick="" src="" alt="fifth slide"></div>
+ 
+    </div> 
+ <!--    Add Pagination -->
+    <div class="swiper-pagination"></div>
+  </div>    
 				<table
 					class="table table-striped table-bordered table-hover">
 					<thead>
@@ -239,18 +256,7 @@ html, body {
 						<div>
 			<!-- 인기모집정보 자리 -->
 			<!-- Swiper -->    
- <!--  <div class="swiper-container">
-    <div class="swiper-wrapper">  
-      <div class="swiper-slide"><img id="slide0" onclick="" src="" alt="First slide"></div>
-      <div class="swiper-slide"><img id="slide1" onclick="" src="" alt="Second slide"></div>
-      <div class="swiper-slide"><img id="slide2" onclick="" src="" alt="Third slide"></div>
-      <div class="swiper-slide"><img id="slide3" onclick="" src="" alt="fourth slide"></div>
-      <div class="swiper-slide"><img id="slide4" onclick="" src="" alt="fifth slide"></div>
  
-    </div> 
-    Add Pagination
-    <div class="swiper-pagination"></div>
-  </div>  --> 
 						</div> 
 					</td>
 				  
@@ -416,7 +422,7 @@ html, body {
 </div>
 </div> 
 
-<!-- Swiper -->
+<!-- Swiper -->  
 <script>
     var swiper = new Swiper('.swiper-container', {
       slidesPerView: 3,
