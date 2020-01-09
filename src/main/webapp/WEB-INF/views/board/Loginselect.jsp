@@ -121,27 +121,11 @@
   
 <!-- 버튼 아래 메뉴 -->
     <div class="text-center" style="float:none; margin-top:10%">
-    	<thead>
-    	<tr>
-
-    		<th><a href="/user/LoginForm">개인 회원 로그인</a></th>
-    		<th>|</th>
-    		<th><a href="/company/companyLoginForm">기업 회원 로그인</a></th>
-    	</tr>
-    	</thead>
-    </div>
-
-    
-
-
-
-  </div>
-
- </div>
-</div>
-</div>
-
-
+    	<table>
+    	<th><a href="/user/LoginForm"><img src="../resources/img/user_select.jpg"></a></th>
+    	<th><a href="/company/companyLoginForm"><img src="../resources/img/company_select.jpg"></a></th>
+    	</table>
+    <div>
 
  <!-- 애니매이션 담당 JQUERY -->
 
