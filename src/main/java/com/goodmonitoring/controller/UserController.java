@@ -81,7 +81,6 @@ public class UserController {
 		@RequestMapping(value="/LoginForm", method=RequestMethod.POST)
 		public String uloginPOST(@RequestParam("USR_ID") String USR_ID, 
 				@RequestParam("USR_PASS") String USR_PASS, 
-				
 				HttpSession session, RedirectAttributes reAttr) throws Exception {
 			
 			log.info("login start...");
@@ -98,7 +97,7 @@ public class UserController {
 				// String encryPw = PwSha256.encrypt(u_pw);
 			         	         
 		    // 로그인이 성공하면 OwnerVO(ovo) 객체를 반환함.
-			UserVO userVO = userService.loginuser(USR_ID, USR_ID, GRADE);
+			UserVO userVO = userService.loginuser(USR_ID, USR_PASS, GRADE);
 		         
 		    if ( userVO != null ){ // 로그인 성공
 		    	System.out.println(userVO.getUSR_EMAIL());

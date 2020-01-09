@@ -58,6 +58,9 @@
 
 <body> -->
 	<!-- Navigation 위에거-->
+	<div class="row"> 
+<div class="col-lg-12">   
+		<div class="panel panel-default"> 
 	<nav class="navbar navbar-default">
 		<div id="navbar-header">
 	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -65,8 +68,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>  
                     <span class="icon-bar"></span>
-                </button> 
-                 <a class="navbar-brand" href="index.html">모니터링 모집정보</a>  
+                </button>    
+                 <a class="navbar-brand" href="/board/main"><img src="/resources/img/Goodmonitoring.png"></a>  
 	<div class="navbar-header">
 
 	 
@@ -166,14 +169,14 @@
 	</div>
 	 </div> 
 	</nav>  
-<div class="row">
+<!-- <div class="row">
 <div class="col-lg-12"> 
-		<div class="panel panel-default">
-	<div class="col-lg-12">
-		<!-- <h1 class="page-header">모니터링 모집정보</h1> -->
-		<img src="/resources/img/goodmonitoring_logo.PNG"> 
+		<div class="panel panel-default"> -->
+<!-- 	<div class="col-lg-12">
+		<h1 class="page-header">모니터링 모집정보</h1>
+		<img src="/resources/img/Goodmonitoring.png"> 
 	</div>
- 
+  -->
 
   
 

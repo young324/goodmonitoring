@@ -3,16 +3,19 @@
 <!-- 상세검색 보이는 칸 -->
 <form role="form" action="/board/CheckBoxSearchlist" method="get" >
 <div id="#bs-example-navbar-collapse-1" class="search">
-	<a class="detail">상세검색</a>
+
+<!-- 상세검색 버튼 디자인 -->
+<button type="button" class="btn btn-primary"><div class="detail">상세검색</div> </button>   
+	
 	<div id="detailtable" style="display: none">
 		<table class="table table-borderless" id="detailtable"
 			style="text-align: center; border: 1px solid #dddddd;">
 
 			<thead>
 				<tr>
-					<th colspan="10"
-						style="background-color: #eeeeee; text-align: center;">모집정보
-						상세검색</th>
+					<th colspan="10" style="background-color: #eeeeee; text-align: center;">모집정보
+						상세검색
+					</th>
 				</tr>
 			</thead>
 

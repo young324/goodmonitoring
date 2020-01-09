@@ -14,7 +14,16 @@
 <script src="/resources/js/swiper.min.js"></script>
 
 <style>
-
+ @media all and (min-width: 320px) and (max-width: 480px) {
+	/* 기본 CSS */
+	.swiper-container > .swiper-wrapper > .swiper-slide > .thumbnail >img {  
+      top: 0; 
+      left: 0;  
+/*       min-width: 40%;
+      min-height: auto; */
+    
+    }    
+}      
 /* PC용 CSS */
 @media all and (min-width:960px) {
 	/* 기본 CSS */
@@ -82,18 +91,19 @@ html, body {
       -webkit-align-items: center;
       align-items: center;
     }
-      
-    .swiper-container > .swiper-wrapper > .swiper-slide > img {  
-      top: 0; 
-      left: 0;  
-      min-width: 20%;
+       
+    .swiper-container > .swiper-wrapper > .swiper-slide > .thumbnail >img {  
+      top: 0;  
+      left: 0;    
+      min-width: 40%;
       min-height: auto;
-      height : 500px;
-    }   
-      
+      width: 300px;
+      height: 400px;
+    }
+ 
 </style>
-
-
+  
+  
  
 <!-- 네비게이션  -->
 
@@ -136,75 +146,30 @@ html, body {
 </c:otherwise>
 </c:choose>	
  </ul>
- 
    <ul class="nav navbar-nav navbar-right">
-
     <li class="dropdown">
-
-     <a href="#" class="dropdown-toggle"
-
-      data-toggle="dropdown" role="button" aria-haspopup="true"
-
-      aria-expanded="false">메뉴<span class="caret"></span></a>
-
-     <ul class="dropdown-menu">
-     <c:choose>
-     
-		<c:when test="${!empty sessionScope}">       		
-        		<li><a href="/user/logout">로그아웃</a></li>
-        		<li><a href="/user/mypage">마이페이지</a></li>     	
-        		     	
-  	  	</c:when>
-  	  <c:otherwise>
-  	  </c:otherwise>
-	
-</c:choose>	
-     </ul>
     </li>
    </ul>
   </div> 
  </nav>
-<!-- 상세검색 보이는 칸 -->
-
+ 
 <!-- /.row -->
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-body">
-			 <div class="swiper-container">
-    <div class="swiper-wrapper">  
-      <div class="swiper-slide"><img id="slide0" onclick="" src="" alt="First slide"></div>
-      <div class="swiper-slide"><img id="slide1" onclick="" src="" alt="Second slide"></div>
-      <div class="swiper-slide"><img id="slide2" onclick="" src="" alt="Third slide"></div>
-      <div class="swiper-slide"><img id="slide3" onclick="" src="" alt="fourth slide"></div>
-      <div class="swiper-slide"><img id="slide4" onclick="" src="" alt="fifth slide"></div> 
-    </div> 
+			 <div class="swiper-container">  
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><a href="#" class="thumbnail"><img id="slide0" onclick="" src="" alt="First slide"></a></div>
+      <div class="swiper-slide"><a href="#" class="thumbnail"><img id="slide1" onclick="" src="" alt="Second slide"></a></div>
+      <div class="swiper-slide"><a href="#" class="thumbnail"><img id="slide2" onclick="" src="" alt="Third slide"></a></div>
+      <div class="swiper-slide"><a href="#" class="thumbnail"><img id="slide3" onclick="" src="" alt="fourth slide"></a></div>
+      <div class="swiper-slide"><a href="#" class="thumbnail"><img id="slide4" onclick="" src="" alt="fifth slide"></a></div> 
+    </div>  
  <!--    Add Pagination -->
     <div class="swiper-pagination"></div>
-  </div>    
-				<table
-					class="table table-striped table-bordered table-hover">
-					<thead>
-						<tr>
-							<th colspan="4">인기 모집정보</th>
-						</tr> 
-					</thead>
-					<c:forEach items="${RecommendList}" var="board"> 
-						<tr>
-							<td class="txt_line"><c:out value="${board.TARGET}" /></td> 
-							<td> 
-								<!-- script로 기동 <a  href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'>-->
-								<a class='move' href='<c:out value="${board.BOARD_NO}"/>'> 
-								<c:out value="${board.AD_TITLE}" /></a>
-							</td>
-  							<td><c:out value="${board.REPORTING_DATE}" /></td>
-							<td><c:out value="${board.VIEW_COUNT}" /></td> 
-						</tr>
-					</c:forEach>
-				</table>
-				
-				<table  
-					class="table table-striped table-bordered table-hover">
+ 	</div>    
+ 			<table class="table table-striped table-bordered table-hover">
 					<thead> 
 						<tr> 
 							<th colspan="5">마감임박 모집정보</th>
@@ -226,13 +191,34 @@ html, body {
 							<td><c:out value="${board.VIEW_COUNT}" /></td>  
 						</tr>
 					</c:forEach>
+				</table>	
+				<table
+					class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+							<th colspan="4">인기 모집정보</th>
+						</tr> 
+					</thead>
+					<c:forEach items="${RecommendList}" var="board"> 
+						<tr>
+							<td class="txt_line"><c:out value="${board.TARGET}" /></td> 
+							<td> 
+								<!-- script로 기동 <a  href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'>-->
+								<a class='move' href='<c:out value="${board.BOARD_NO}"/>'> 
+								<c:out value="${board.AD_TITLE}" /></a>
+							</td>
+  							<td><c:out value="${board.REPORTING_DATE}" /></td>
+							<td><c:out value="${board.VIEW_COUNT}" /></td> 
+						</tr>
+					</c:forEach>
 				</table>
+				<!-- 마감자리 -->
 				<div>
 				<table  
 					class="table table-striped table-bordered table-hover">
 					<thead> 
-						<tr> 
-							<th colspan="3">최신 모집정보</th>
+						<tr>  
+							<th colspan="4">최신 모집정보</th>
 						</tr>
 					</thead>   
 					<c:forEach items="${list}" var="board" begin="0" end="4">
@@ -245,7 +231,8 @@ html, body {
 								<c:out value="${board.AD_TITLE}" /></a>
 							</td>
 								<td><c:out value="${board.REPORTING_DATE}" /></td>
-						</tr>
+								<td><c:out value="${board.VIEW_COUNT}" /></td>
+						</tr> 
 					</c:forEach>
 				</table> 
 				</div> 

@@ -93,7 +93,7 @@
 
   <div class="collapse navbar-collapse" id="#bs-example-navbar-collapse-1">
   
-  
+   
   
   
 
@@ -103,7 +103,7 @@
 	<c:when test="${!empty sessionScope.user}">       		
         		<li class="nav-item dropdown" >
         			<a class="nav-link">${sessionScope.user.USR_ID } 님에게 맞는 모집정보를 추천 드립니다.</a>
-        			<a class="nav-link">모집정보에 지원하시면 더 다양한 정보를 제공받으실 수 있습니다.</a>
+        		<!-- 	<a class="nav-link">모집정보에 지원하시면 더 다양한 정보를 제공받으실 수 있습니다.</a> -->
         		</li>         	
     </c:when>
     <c:when test="${!empty sessionScope.company}">       		
@@ -129,34 +129,6 @@
 
     
 
-   <ul class="nav navbar-nav navbar-right">
-
-    <li class="dropdown">
-
-     <a href="#" class="dropdown-toggle"
-
-      data-toggle="dropdown" role="button" aria-haspopup="true"
-
-      aria-expanded="false">메뉴<span class="caret"></span></a>
-
-     <ul class="dropdown-menu">
-     <c:choose>
-     
-		<c:when test="${!empty sessionScope}">       		
-        		<li ><a href="/user/logout">로그아웃</a></li>
-        		<li ><a href="/user/mypage">마이페이지</a></li>     	
-        		     	
-  	  	</c:when>
-  	  <c:otherwise>
-  	  </c:otherwise>
-	
-</c:choose>	
- 	
-     </ul>
-
-    </li>
-
-   </ul>
 
   </div> 
 

@@ -3,8 +3,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<%@include file="../includes/header.jsp"%>
 
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- 뷰포트 -->
+
+<meta name="viewport" content="width=device-width" initial-scale="1">
 
 <link rel="stylesheet" href="/resources/css/bootstrap-checkbox.css">
 
@@ -37,6 +45,8 @@
 	white-space: nowrap;
 }
 </style>
+</head>
+<body>
 
 <!-- 네비게이션  -->
 <!-- <div class="row">
@@ -47,8 +57,8 @@
 		<h1 class="page-header">모니터링 모집정보</h1>
 	</div> 
 	/.col-lg-12 --> 
-
- <nav class="navbar navbar-default">
+ 
+<%--  <nav class="navbar navbar-default">
 
 
 
@@ -142,8 +152,9 @@
 
   </div> 
 
- </nav>
+ </nav> --%>
 <!-- 상세검색 -->
+ <%@include file="../includes/header.jsp"%>  
 <%@include file="../includes/CheckboxSearch.jsp"%>
  
 
@@ -303,7 +314,9 @@
 	<!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
-   
+   </body>
+
+ 
 
 <script type="text/javascript">
 	$(document)
@@ -421,4 +434,4 @@
 </script>
 <%@include file="../includes/footer.jsp"%>
 
-
+</html>  

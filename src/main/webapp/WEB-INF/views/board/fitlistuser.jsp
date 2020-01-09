@@ -126,8 +126,8 @@
    </ul>
 
     
-
-   <ul class="nav navbar-nav navbar-right">
+ 
+<%--    <ul class="nav navbar-nav navbar-right">
 
     <li class="dropdown">
 
@@ -154,7 +154,7 @@
 
     </li>
 
-   </ul>
+   </ul> --%>
 
   </div> 
 
