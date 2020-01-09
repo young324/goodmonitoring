@@ -177,8 +177,7 @@ html, body {
       <div class="swiper-slide"><img id="slide1" onclick="" src="" alt="Second slide"></div>
       <div class="swiper-slide"><img id="slide2" onclick="" src="" alt="Third slide"></div>
       <div class="swiper-slide"><img id="slide3" onclick="" src="" alt="fourth slide"></div>
-      <div class="swiper-slide"><img id="slide4" onclick="" src="" alt="fifth slide"></div>
-    
+      <div class="swiper-slide"><img id="slide4" onclick="" src="" alt="fifth slide"></div> 
     </div> 
  <!--    Add Pagination -->
     <div class="swiper-pagination"></div>
