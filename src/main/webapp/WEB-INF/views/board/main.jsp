@@ -168,7 +168,7 @@ html, body {
     </div>  
  <!--    Add Pagination -->
     <div class="swiper-pagination"></div>
- 	</div>    
+ 	</div>
  			<table class="table table-striped table-bordered table-hover">
 					<thead> 
 						<tr> 
@@ -184,7 +184,7 @@ html, body {
 							<td class="txt_line"><c:out value="${board.TARGET}" /></td> 
 							<td >  
 								<!-- script로 기동 <a href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'>-->
-								<a class='move' href='<c:out value="${board.BOARD_NO}"/>'> 
+								<a href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'> 
 								<c:out value="${board.AD_TITLE}" /></a>
 							</td>
 							<td><c:out value="${board.REPORTING_DATE}" /></td>
@@ -204,7 +204,7 @@ html, body {
 							<td class="txt_line"><c:out value="${board.TARGET}" /></td> 
 							<td> 
 								<!-- script로 기동 <a  href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'>-->
-								<a class='move' href='<c:out value="${board.BOARD_NO}"/>'> 
+								<a href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'> 
 								<c:out value="${board.AD_TITLE}" /></a>
 							</td>
   							<td><c:out value="${board.REPORTING_DATE}" /></td>
@@ -223,15 +223,15 @@ html, body {
 					</thead>   
 					<c:forEach items="${list}" var="board" begin="0" end="4">
 					 
-						<tr>	
+						<tr>   
 						<td class="txt_line"><c:out value="${board.TARGET}" /></td> 			 
-							<td>  
+							<td> <%--  <a class='move' href='<c:out value="${board.BOARD_NO}"/>'>  --%>
 								<!-- script로 기동 <a href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'>-->
-								<a class='move' href='<c:out value="${board.BOARD_NO}"/>'> 
+								<a href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'> 
 								<c:out value="${board.AD_TITLE}" /></a>
-							</td>
+							</td>  
 								<td><c:out value="${board.REPORTING_DATE}" /></td>
-								<td><c:out value="${board.VIEW_COUNT}" /></td>
+								<td><c:out value="${board.VIEW_COUNT}" /></td> 
 						</tr> 
 					</c:forEach>
 				</table> 
@@ -253,7 +253,7 @@ html, body {
 					</td> 
 				</tr>
 				<tr>
-				<div style="float:right;">  
+			  
        <!--  <div id="carousel-example-generic" class="carousel slide">
         
             id="carousel-example-generic" 없으면 다음 페이지로 안넘어간다.
@@ -496,21 +496,15 @@ html, body {
 									actionForm.submit();
 								});
 						/**상세조회로 가기 */
-						$(".move")
-								.on(
-										"click",
-										function(e) {
-											e.preventDefault();
-											actionForm
-													.append("<input type='hidden' name='BOARD_NO' value='"
-															+ $(this).attr(
-																	"href")
-															+ "'>");
-											actionForm.attr("action",
-													"/board/read");
+						$(".move").on(
+								"click",
+								function(e) {
+									e.preventDefault();
+									actionForm.append("<input type='hidden' name='BOARD_NO' value='" + $(this).attr("href")	+ "'>");
+											actionForm.attr("action","/board/read");
 											actionForm.submit();
  										console.log($(this).val()); 
-										});
+										});   
 						/**Search 처리 Script */
 						var searchForm = $("#searchForm");
 						$("#searchForm button").on(

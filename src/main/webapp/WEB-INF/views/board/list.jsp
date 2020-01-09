@@ -369,6 +369,7 @@
 											actionForm.attr("action",
 													"/board/read");
 											actionForm.submit();
+											console.log($(this).val());  
 										});
 						/**Search 처리 Script */
 						var searchForm = $("#searchForm");
