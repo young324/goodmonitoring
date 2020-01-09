@@ -426,6 +426,8 @@ html, body {
 			.ready(
 					function() { 
 						
+					 
+						
 						//이미지
 						var imgPath = new Array();
 						var imgURL = new Array();
@@ -507,6 +509,7 @@ html, body {
 											actionForm.attr("action",
 													"/board/read");
 											actionForm.submit();
+ 										console.log($(this).val()); 
 										});
 						/**Search 처리 Script */
 						var searchForm = $("#searchForm");

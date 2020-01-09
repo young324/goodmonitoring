@@ -360,11 +360,7 @@
 									actionForm.submit();
 								});
 						/**상세조회로 가기 */
-						$(".move")
-								.on(
-										"click",
-										function(e) {
-											e.preventDefault();
+						$(".move").on("click", function(e) {e.preventDefault();
 											actionForm
 													.append("<input type='hidden' name='BOARD_NO' value='"
 															+ $(this).attr(

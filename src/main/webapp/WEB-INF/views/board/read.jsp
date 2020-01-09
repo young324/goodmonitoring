@@ -4,12 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ include file="../includes/header.jsp"%>
-<div class="row">
-	<div class="col-lg-12">
-		<h1 class="page-header">모니터링 모집정보</h1>
-	</div>
-	<!-- /.col-lg-12 -->
-</div>
+ 
 
 <!-- style="margin-right:100px"
  --><!-- /.row -->
