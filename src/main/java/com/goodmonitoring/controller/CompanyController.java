@@ -1,6 +1,7 @@
 package com.goodmonitoring.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 //import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.goodmonitoring.service.CompanyService;
@@ -86,5 +88,18 @@ public class CompanyController {
 				    }
 				          
 				}
+				
+				@ResponseBody
+				@RequestMapping(value = "/id_check", method = RequestMethod.POST, produces = "application/json")
+				public int id_check(HttpServletRequest httpRequest) throws Exception {
+
+					
+					String C_ID = httpRequest.getParameter("C_ID");
+					
+					
+					
+					return companyService.id_check(C_ID);
+				}
+				
 
 } 

@@ -48,6 +48,7 @@
 	</insert>
 	
 	<!-- 로그인 -->
+
 	<select id="loginUser"  parameterType="java.util.HashMap" resultType="com.goodmonitoring.vo.UserVO">
 		select * from user
 		where USR_ID = #{USR_ID} and USR_PASS = #{USR_PASS} and GRADE = 1
@@ -64,8 +65,8 @@
 
 	
 	<!-- 아이디 중복 확인(selet 뒷부분) -->
-	<select id="idCheck" resultType="int" parameterType="String">
-		select count(USR_Id) from user
-		where USR_Id = #{USR_Id}
+	<select id="id_check" resultType="int" parameterType="String">
+		select count(*) from user
+		where USR_ID = #{USR_ID}
 	</select>
 </mapper>

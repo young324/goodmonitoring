@@ -36,7 +36,12 @@ public class CompanyDAOImple implements CompanyDAO {
 		
 	}
 
-	
+	@Override
+	public int id_check(String C_ID) {
+		System.out.println("idCheck");
+		
+		return session.selectOne("id_check",C_ID);
+	}
 
 
 	

@@ -2,11 +2,15 @@ package com.goodmonitoring.vo;
 
 import java.sql.Date;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import lombok.Data;
 
 @Data
 public class UserVO {
 
+	
+	
 	private int USR_NO;
 	private String 	USR_ID;
 	private String USR_PASS;
@@ -25,6 +29,9 @@ public class UserVO {
 	private String ONLINE_URL;
 	
 	private int GRADE;
+
+	
+	
 
 }
 

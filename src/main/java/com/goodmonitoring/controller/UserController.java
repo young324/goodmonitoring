@@ -1,15 +1,19 @@
 package com.goodmonitoring.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 //import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -41,6 +45,14 @@ public class UserController {
 	@Resource(name="applydataService")
 	private ApplydataService applydataService;
 	
+	//@Resource(name="userVO")
+	//private UserVO userVO;
+	
+	@Autowired
+    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
+
+
+	
 	//분야, 대상의 전체 목록을 가져온다
 		@GetMapping("/write")
 		public void tilist(Model model) {
@@ -60,6 +72,15 @@ public class UserController {
 	public String postUserJoin(UserVO userVO) throws Exception {
 
 	
+		//PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); 
+		//passwordEncoding = new PasswordEncoding(passwordEncoder);
+
+		//userVO.setPassword(this.passwordEncoder.encode(userVO.getPassword())); 
+		System.out.println("암호화 되기 전 : " + userVO.getUSR_PASS()); 
+		userVO.setUSR_PASS(passwordEncoder.encode(userVO.getUSR_PASS())); // bcrypt 암호화
+		System.out.println("암호화 된 후 : " + userVO.getUSR_PASS());
+
+		
 		userService.insert(userVO);
 		
 		ApplydataVO applyvo = new ApplydataVO();
@@ -79,13 +100,15 @@ public class UserController {
 	
 	// 로그인 처리
 		@RequestMapping(value="/LoginForm", method=RequestMethod.POST)
-		public String uloginPOST(@RequestParam("USR_ID") String USR_ID, 
-				@RequestParam("USR_PASS") String USR_PASS, 
+		public String uloginPOST(/**@RequestParam("USR_ID") String USR_ID, 
+				@RequestParam("USR_PASS") String USR_PASS, **/
 				
-				HttpSession session, RedirectAttributes reAttr) throws Exception {
+				HttpSession session, RedirectAttributes reAttr,UserVO VO) throws Exception {
+			
+			
 			
 			log.info("login start...");
-			log.info("id : " + USR_ID);
+			log.info("id : " + VO.getUSR_ID());
 			
 			 if (session.getAttribute("user") != null ){
 		        // 기존에 login이란 세션 값이 존재한다면
@@ -96,16 +119,27 @@ public class UserController {
 			int GRADE = 1;
 			// 비밀번호 암호화
 				// String encryPw = PwSha256.encrypt(u_pw);
+			
+		
+					
+			VO.setUSR_PASS(passwordEncoder.encode(VO.getUSR_PASS()));
+			
+			
 			         	         
 		    // 로그인이 성공하면 OwnerVO(ovo) 객체를 반환함.
-			UserVO userVO = userService.loginuser(USR_ID, USR_ID, GRADE);
+			UserVO userVO = userService.loginuser(VO);
+			
+			
 		         
+			
+			
 		    if ( userVO != null ){ // 로그인 성공
 		    	System.out.println(userVO.getUSR_EMAIL());
 		        session.setAttribute("user", userVO); // 세션에 login인이란 이름으로 OwnerVO 객체를 저장.
 		    	reAttr.addFlashAttribute("result","LoginSeccess");
 		        return "redirect:/board/list"; // 로그인 성공시 게시글 목록페이지로 바로 이동
 	//맞춤모집정보 리스트로 이동하도록 수정필요@@@
+		        
 		    }else { // 로그인에 실패한 경우
 		    	reAttr.addFlashAttribute("result","LoginFail");
 		        return "redirect:/user/LoginForm"; // 로그인 폼으로 다시 가도록 함
@@ -121,6 +155,17 @@ public class UserController {
 			  ModelAndView mav = new ModelAndView("redirect:/board/list");
 		        return mav;
 		}
+		
+		@ResponseBody
+		@RequestMapping(value = "/id_check", method = RequestMethod.POST, produces = "application/json")
+		public int id_check(HttpServletRequest httpRequest) throws Exception {
+
+			
+			String USR_ID = httpRequest.getParameter("USR_ID");
+			return userService.id_check(USR_ID);
+		}
+		
+		
 	/**@RequestMapping(value="/signup",method=RequestMethod.GET)
 	public void signup() {	
 		logger.debug("join~~");

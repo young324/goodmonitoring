@@ -33,6 +33,10 @@ public class CompanyServiceImple implements CompanyService {
 	}
 
 
+	public int id_check(@Param("C_ID") String C_ID) {
+		
+		return companyDAO.id_check(C_ID);
+	}
 	
 	//
 		/**	

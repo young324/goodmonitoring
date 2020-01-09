@@ -1,11 +1,17 @@
 package com.goodmonitoring.service;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 //import javax.annotation.Resource;
 import javax.inject.Inject;
 
 import org.apache.ibatis.annotations.Param;
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.goodmonitoring.dao.UserDAO;
@@ -22,7 +28,12 @@ public class UserServiceImple implements UserService {
 
 	@Inject
 	private UserDAO userDAO;
+	//private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	 
+	@Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+	
 	@Override
 	public void insert(UserVO userVO) throws Exception{
 		// TODO Auto-generated method stub
@@ -42,11 +53,32 @@ public class UserServiceImple implements UserService {
 	}
 	
 	@Override
-	public UserVO loginuser(@Param("USR_ID") String USR_ID, @Param("USR_PASS") String USR_PASS, int GRADE) {
+	public UserVO loginuser(/**@Param("USR_ID") String USR_ID, @Param("USR_PASS") String USR_PASS, int GRADE**/ UserVO VO) {
 		// TODO Auto-generated method stub
-		return userDAO.loginUser(USR_ID, USR_PASS, GRADE);
+		//BCryptPasswordEncoder scpwd = new BCryptPasswordEncoder();
+		return userDAO.loginUser(VO);
 	}
 	
+	public int id_check(@Param("USR_ID") String USR_ID) {
+		
+		//int result = userDAO.id_check(USR_ID);
+		return userDAO.id_check(USR_ID);
+	}
+	
+	/**public Collection<GrantedAuthority> getAuthorities(String USR_ID) {
+        List<String> string_authorities = userDAO.readAuthority(USR_ID);
+        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+        for (String authority : string_authorities) {
+             authorities.add(new SimpleGrantedAuthority(authority));
+        }
+        return authorities;
+   }**/
+
+	/**
+	@Override
+    public PasswordEncoder passwordEncoder() {
+         return this.passwordEncoder;
+    }**/
 	//
 		/**	@Autowired
 	private UserDAO userDAO;

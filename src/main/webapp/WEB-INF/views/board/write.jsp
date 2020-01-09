@@ -343,7 +343,7 @@
 
 
 						<tr>
-							<td>지역</td>
+							<!--  <td>지역</td>
 							<td colspan="1" width="15%">
 								<div class="control-group">
 									<div class="controls">
@@ -364,7 +364,13 @@
 										</select>
 									</div>
 								</div>
-							</td>
+							</td>-->
+							
+							
+							<th>지역</th>
+							<td><input type="text" name="AD_AREA_NAME" id="AD_AREA_NAME"> <input
+								type="button" name="addsearch" value="지역 검색"  onclick="execPostCode();"></td>
+			
 
 							<td colspan="8">
 								<div class="checkbox checkbox-inline checkbox-primary"
@@ -653,6 +659,7 @@
 	</div>
 
 
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>  
 
 	<script type="text/javascript">
 	
@@ -719,8 +726,33 @@ $(document).ready(function(){
         	$("#District").attr("disabled",false);
         }
     });
-
     
+    function execPostCode() {
+	    new daum.Postcode({
+	        oncomplete: function(data) {
+	           // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	
+	           var addr = data.sigungu;
+	           var extraAddr = '';
+	
+	
+	           // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	          // console.log(data.sigungu);
+	           console.log(addr);
+	             
+	           
+	          // $("[name=USR_ZIPCODE]").val(data.zonecode);
+	           $("[name=AD_AREA_NAME]").val(addr);
+	           
+	           //document.getElementById('USR_ZIPCODE').value = data.zonecode; //5자리 새우편번호 사용
+	           document.getElementById('AD_AREA_NAME').value = addr;
+	           //document.getElementById('signUpUserCompanyAddressDetail').value = data.jibunAddress; 
+	       }
+	    }).open({autoClose: true});
+	}  
+
+
+  
     
     //bootstrap-datepicker
     $(".dtPicker").datepicker({

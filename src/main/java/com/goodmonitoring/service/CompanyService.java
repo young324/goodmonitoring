@@ -10,4 +10,6 @@ public interface CompanyService {
 	
 	// 로그인
 	public CompanyVO loginCompany(@Param("C_ID") String C_ID, @Param("C_PASS") String C_PASS, int GRADE);
+
+	public int id_check(@Param("C_ID") String C_ID);
 }

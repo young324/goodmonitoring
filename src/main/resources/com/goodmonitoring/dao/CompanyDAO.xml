@@ -52,5 +52,11 @@
 		where C_ID = #{C_ID} and C_PASS = #{C_PASS} and GRADE = 2
 	</select>
 
-
+	<!-- 아이디 중복 확인(selet 뒷부분) -->
+	<select id="id_check" resultType="int" parameterType="String">
+		select count(*) from company
+		where C_ID = #{C_ID}
+	</select>
+	
+	
 </mapper>

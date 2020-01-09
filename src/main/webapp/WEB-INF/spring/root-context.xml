@@ -71,4 +71,20 @@
 	 <constructor-arg  value="D:\uploads"  />
 	</bean>		
 			
+	<!-- 비번 암호화 로그인-->
+	<!--<bean id ="bcryptPasswordEncoder" class = "org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>-->
+	<!--<sec:authentication-manager>
+		<sec:authentication-provider>
+			<sec:jdbc-user-service data-source-ref="dataSource"/>
+			
+			<sec:password-encoder ref="bcryptPasswordEncoder"/> 
+		</sec:authentication-provider>
+	</sec:authentication-manager>-->
+	
+	
+	
+	
+	
+	
+	
 </beans>

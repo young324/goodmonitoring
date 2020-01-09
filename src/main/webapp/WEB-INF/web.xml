@@ -52,4 +52,13 @@
 	</filter-mapping>
 	<!-- 한글 처리 -->
 	
+	<!-- 비밀번호암호히ㅘ-->
+	<context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+        /WEB-INF/spring/root-context.xml
+        /WEB-INF/spring/spring-security.xml
+    </param-value>
+  </context-param>
+	
 </web-app>
