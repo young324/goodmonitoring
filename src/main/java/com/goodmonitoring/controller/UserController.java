@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -44,6 +43,14 @@ public class UserController {
 	
 	@Resource(name="applydataService")
 	private ApplydataService applydataService;
+	
+	
+	
+//	public boolean matches(CharSequence rawPassword, String encodedPassword)
+//	{ return passwordEncoder.matches(encodedPassword, rawPassword.toString()); }
+
+	
+	
 	
 	//@Resource(name="userVO")
 	//private UserVO userVO;
@@ -92,6 +99,10 @@ public class UserController {
 		return "redirect:/user/LoginForm";
 	}
 
+	//public void vp(@RequestParam("USR_PASS") String USR_PASS) {
+		//return getUSR_PASS();
+	//}
+	
 	//로그인 페이지 띄우기
 	@RequestMapping(value="/LoginForm", method=RequestMethod.GET)
 	public void signupGET(UserVO userVO, Model model) throws Exception {
@@ -100,7 +111,7 @@ public class UserController {
 	
 	// 로그인 처리
 		@RequestMapping(value="/LoginForm", method=RequestMethod.POST)
-		public String uloginPOST(/**@RequestParam("USR_ID") String USR_ID, 
+		public String uloginPOST(/**@RequestParam("USR_ID") String USR_ID,
 				@RequestParam("USR_PASS") String USR_PASS, **/
 				
 				HttpSession session, RedirectAttributes reAttr,UserVO VO) throws Exception {
@@ -117,23 +128,42 @@ public class UserController {
 			 
 			 //개인회원 등급은 1
 			int GRADE = 1;
-			// 비밀번호 암호화
-				// String encryPw = PwSha256.encrypt(u_pw);
-			
+				
 		
-					
-			VO.setUSR_PASS(passwordEncoder.encode(VO.getUSR_PASS()));
+			//String ep = passwordEncoder.encode(VO.getUSR_PASS());		
+			// = VO.getUSR_PASS();
+			
+			//VO.setUSR_PASS(passwordEncoder.encode(VO.getUSR_PASS()));
+			//VO.setUSR_PASS(passwordEncoder.matches(VO.getUSR_PASS(), VO.setUSR_PASS(passwordEncoder.encode(VO.getUSR_PASS()))));
+			//assert equals(passwordEncoder.matches(VO.getUSR_PASS(), VO.setUSR_PASS(passwordEncoder.encode(VO.getUSR_PASS()))));
+			//passwordEncoder.matches(VO.setUSR_PASS(ep));
 			
 			
-			         	         
+			
+			  String pw = passwordEncoder.encode(VO.getUSR_PASS());
+			  log.info("암호화 비밀번호"+ pw);
+			  String rawPw = VO.getUSR_PASS();
+			  log.info("비밀번호"+rawPw);
+			  if(passwordEncoder.matches(rawPw, pw)) {
+			    log.info("비밀번호 일치");
+			    VO.setUSR_PASS(pw);
+			    //System.out.println(VO.getUSR_EMAIL());
+		        session.setAttribute("user", VO); // 세션에 login인이란 이름으로 OwnerVO 객체를 저장.
+		    	reAttr.addFlashAttribute("result","LoginSeccess");
+		        return "redirect:/board/list";
+			  }else {
+				  reAttr.addFlashAttribute("result","LoginFail");
+			        return "redirect:/user/LoginForm";    
+			  }  
+			 
 		    // 로그인이 성공하면 OwnerVO(ovo) 객체를 반환함.
-			UserVO userVO = userService.loginuser(VO);
+			//UserVO userVO = userService.loginuser(VO);
 			
 			
 		         
 			
 			
-		    if ( userVO != null ){ // 로그인 성공
+		   /** if ( userVO != null ){ // 로그인 성공
 		    	System.out.println(userVO.getUSR_EMAIL());
 		        session.setAttribute("user", userVO); // 세션에 login인이란 이름으로 OwnerVO 객체를 저장.
 		    	reAttr.addFlashAttribute("result","LoginSeccess");
@@ -143,7 +173,7 @@ public class UserController {
 		    }else { // 로그인에 실패한 경우
 		    	reAttr.addFlashAttribute("result","LoginFail");
 		        return "redirect:/user/LoginForm"; // 로그인 폼으로 다시 가도록 함
-		    }
+		    }**/
 		          
 		}
 		
