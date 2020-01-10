@@ -1,7 +1,6 @@
 package com.goodmonitoring.controller;
  
 import java.io.File;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,6 +24,7 @@ import com.goodmonitoring.service.FileUploadService;
 import com.goodmonitoring.service.IndustryCategoryService;
 import com.goodmonitoring.service.LikeService;
 import com.goodmonitoring.service.TargetService;
+import com.goodmonitoring.service.area_cityService;
 import com.goodmonitoring.vo.ApplydataVO;
 import com.goodmonitoring.vo.BoardFileVO;
 import com.goodmonitoring.vo.BoardVO;
@@ -58,6 +57,9 @@ public class BoardController {
 	@Resource(name="applydataService")
 	private ApplydataService applydataService;
 	
+	@Resource(name="cityService")
+	private area_cityService cityService;
+	
 	@Autowired
 	private FileUploadService fileUploadService;
 
@@ -78,6 +80,7 @@ public class BoardController {
 	public void tilist(Model model) {
 		model.addAttribute("listTarget", targetservice.getList());
 		model.addAttribute("listIndustryCategory", industrycategoryservice.getList());
+		model.addAttribute("listCity", cityService.getCity());
 	}
 
 	

@@ -343,16 +343,18 @@
 
 
 						<tr>
-							<!--  <td>지역</td>
+							<td>지역</td>
 							<td colspan="1" width="15%">
 								<div class="control-group">
 									<div class="controls">
 										<select name="AD_AREA_NAME" id="Citys" class="form-control">
-											<option>시</option>
-											<option>서울시</option>
-											<option>부산시</option>
+											<option values="">시</option>
+											<c:forEach var="area_cityVO" items="${CITY_CODE}">
+												<option value = "${area_cityVO.CITY_CODE}">${area_cityVO.CITY_NAME}</option>
+											</c:forEach>
+											   
 										</select>
-									</div>
+									</div>  
 								</div>
 							</td>
 							<td colspan="1" width="15%">
@@ -364,13 +366,10 @@
 										</select>
 									</div>
 								</div>
-							</td>-->
+							</td>
 							
 							
-							<th>지역</th>
-							<td><input type="text" name="AD_AREA_NAME" id="AD_AREA_NAME"> <input
-								type="button" name="addsearch" value="지역 검색"  onclick="execPostCode();"></td>
-			
+						
 
 							<td colspan="8">
 								<div class="checkbox checkbox-inline checkbox-primary"
@@ -663,6 +662,8 @@
 
 	<script type="text/javascript">
 	
+	
+	
 	//직접입력 라디오버튼 클릭시 텍스트박스 활성화
 $(document).ready(function(){
 	$("input:radio[name=AD_AGE2]").prop("checked", false);
@@ -727,33 +728,11 @@ $(document).ready(function(){
         }
     });
     
-    function execPostCode() {
-	    new daum.Postcode({
-	        oncomplete: function(data) {
-	           // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-	
-	           var addr = data.sigungu;
-	           var extraAddr = '';
-	
-	
-	           // 우편번호와 주소 정보를 해당 필드에 넣는다.
-	          // console.log(data.sigungu);
-	           console.log(addr);
-	             
-	           
-	          // $("[name=USR_ZIPCODE]").val(data.zonecode);
-	           $("[name=AD_AREA_NAME]").val(addr);
-	           
-	           //document.getElementById('USR_ZIPCODE').value = data.zonecode; //5자리 새우편번호 사용
-	           document.getElementById('AD_AREA_NAME').value = addr;
-	           //document.getElementById('signUpUserCompanyAddressDetail').value = data.jibunAddress; 
-	       }
-	    }).open({autoClose: true});
-	}  
+    
 
 
   
-    
+      
     //bootstrap-datepicker
     $(".dtPicker").datepicker({
     	 format: "yyyy-mm-dd",	//데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
