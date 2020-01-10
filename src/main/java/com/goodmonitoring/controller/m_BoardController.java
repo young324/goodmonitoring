@@ -42,9 +42,9 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping("/board/*")
+@RequestMapping("/m/board/*")
 @AllArgsConstructor
-public class BoardController {
+public class m_BoardController {
 
 	@Resource(name="boardService")
 	private BoardService service;
@@ -108,9 +108,7 @@ public class BoardController {
 	}
 
 	@GetMapping("/monthlylist")
-	public void monthlylist() {
-		
-	}
+	public void monthlylist() {}
 	
 	//이달의 모집정보 페이지 폼
 	@GetMapping("/graphmoniter")
@@ -199,7 +197,7 @@ public class BoardController {
 				if(0 == applydataService.applyisext(USR_NO)) {//한번이라도 지원한적 없으면 가입할때 선택한 업종에 대해서만
 					model.addAttribute("list", service.getjoinfitlist(USR_NO));
 				}else {//지원한적 있으면 업종과 회사명에 대해서
-					return "redirect:/board/fitlistuser";//내게 알맞은 모집정보 페이지로 보냄
+					return "redirect:/m/board/fitlistuser";//내게 알맞은 모집정보 페이지로 보냄
 				}
 			}
 			return null;
@@ -302,7 +300,7 @@ public class BoardController {
 			fileUploadService.fileUploadAction(boardFileVO, uploadPath, fileUrlPath);		
 			
 			rttr.addFlashAttribute("result", boardvo.getBOARD_NO());
-			return "redirect:/board/list";
+			return "redirect:/m/board/list";
 		}
 
 
@@ -414,7 +412,7 @@ public class BoardController {
 			rttr.addFlashAttribute("result", "success");
 		}
 
-		return "redirect:/board/list";
+		return "redirect:/m/board/list";
 	}
 
 
@@ -428,7 +426,7 @@ public class BoardController {
 			rttr.addFlashAttribute("result", "success");
 		}
 
-		return "redirect:/board/list";
+		return "redirect:/m/board/list";
 	}
 
 	

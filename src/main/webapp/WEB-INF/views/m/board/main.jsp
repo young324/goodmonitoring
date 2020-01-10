@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
  
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@include file="../includes/header.jsp"%>
+<%@include file="../../m/includes/header.jsp"%>
 
 
 <link rel="stylesheet" href="/resources/css/bootstrap-checkbox.css">
@@ -97,8 +97,7 @@ html, body {
       left: 0;    
       min-width: 40%;
       min-height: auto;
-      width: 300px;
-      height: 400px;
+     
     }
  
 </style>
@@ -107,51 +106,7 @@ html, body {
  
 <!-- 네비게이션  -->
 
- <nav class="navbar navbar-default">
-
-  <div class="navbar-header">
-
-   <button type="button" class="navbar-toggle collapsed" 
-
-    data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-
-    aria-expaned="false">
-
-     <span class="icon-bar"></span>
-     <span class="icon-bar"></span>
-     <span class="icon-bar"></span>
-
-    </button>
-
-    
-
-  </div>
-
-  <div class="collapse navbar-collapse" id="#bs-example-navbar-collapse-1">
-   <ul class="nav navbar-nav">
-
-<c:choose>
-	<c:when test="${!empty sessionScope.user}">       		
-        		<li class="nav-item dropdown" >
-        			<a href="/board/fitlistJoin">${sessionScope.user.USR_ID } 님의 이용내역을 분석하여 적합한 모집정보를 추천 드립니다.</a>
-        		</li>        		        	
-    </c:when>
-    <c:when test="${!empty sessionScope.company}">       		
-        		<li class="nav-item dropdown" >
-        			<a class="nav-link">${sessionScope.C_ID} 님 환영합니다.</a>
-        		</li>         	
-    </c:when>  	
-<c:otherwise>
-    <li><a href="/board/Loginselect">로그인하면 맞춤 모집정보를 제공받을 수 있습니다.</a></li>	
-</c:otherwise>
-</c:choose>	
- </ul>
-   <ul class="nav navbar-nav navbar-right">
-    <li class="dropdown">
-    </li>
-   </ul>
-  </div> 
- </nav>
+  
  
 <!-- /.row -->
 <div class="row">
@@ -172,7 +127,7 @@ html, body {
  			<table class="table table-striped table-bordered table-hover">
 					<thead> 
 						<tr> 
-							<th colspan="5">마감임박 모집정보</th>
+							<th colspan="3">마감임박 모집정보</th>
 						</tr>  
 					</thead>   
 					<c:forEach items="${DeadlineList}" var="board">
@@ -181,13 +136,12 @@ html, body {
 								<span style="color:red">D-${board.DATE}</span> 
 							</td> 
 							
-							<td class="txt_line"><c:out value="${board.TARGET}" /></td> 
+							
 							<td >  
 								<!-- script로 기동 <a href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'>-->
 								<a href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'> 
 								<c:out value="${board.AD_TITLE}" /></a>
 							</td>
-							<td><c:out value="${board.REPORTING_DATE}" /></td>
 							<td><c:out value="${board.VIEW_COUNT}" /></td>  
 						</tr>
 					</c:forEach>
@@ -196,18 +150,18 @@ html, body {
 					class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
-							<th colspan="4">인기 모집정보</th>
+							<th colspan="2">인기 모집정보</th>
 						</tr> 
 					</thead>
 					<c:forEach items="${RecommendList}" var="board"> 
-						<tr>
-							<td class="txt_line"><c:out value="${board.TARGET}" /></td> 
+						<tr> 
+						 
 							<td> 
 								<!-- script로 기동 <a  href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'>-->
 								<a href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'> 
 								<c:out value="${board.AD_TITLE}" /></a>
 							</td>
-  							<td><c:out value="${board.REPORTING_DATE}" /></td>
+  						
 							<td><c:out value="${board.VIEW_COUNT}" /></td> 
 						</tr>
 					</c:forEach>
@@ -218,19 +172,19 @@ html, body {
 					class="table table-striped table-bordered table-hover">
 					<thead> 
 						<tr>  
-							<th colspan="4">최신 모집정보</th>
+							<th colspan="2">최신 모집정보</th>
 						</tr>
 					</thead>   
 					<c:forEach items="${list}" var="board" begin="0" end="4">
 					 
 						<tr>   
-						<td class="txt_line"><c:out value="${board.TARGET}" /></td> 			 
+						  
 							<td> <%--  <a class='move' href='<c:out value="${board.BOARD_NO}"/>'>  --%>
 								<!-- script로 기동 <a href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'>-->
 								<a href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'> 
 								<c:out value="${board.AD_TITLE}" /></a>
 							</td>  
-								<td><c:out value="${board.REPORTING_DATE}" /></td>
+							
 								<td><c:out value="${board.VIEW_COUNT}" /></td> 
 						</tr> 
 					</c:forEach>
@@ -240,10 +194,9 @@ html, body {
 				<tr>
 					<td>
 						<div>
-			<!-- 인기모집정보 자리 -->
-			<!-- Swiper --> 
-			<a href='/m/board/main'>모바일 버전<a> 
- 
+			<!-- 인기모집정보 자리 --> 
+			<!-- Swiper -->     
+ 	<a href='/board/main'>PC 버전<a> 
 						</div> 
 					</td>
 				  
@@ -409,10 +362,10 @@ html, body {
 </div>
 </div> 
 
-<!-- Swiper -->  
-<script>
+<!-- Swiper -->   
+<script>  
     var swiper = new Swiper('.swiper-container', {
-      slidesPerView: 3,
+      slidesPerView:2,
       spaceBetween: 30,
       freeMode: true,
       pagination: {
@@ -565,6 +518,6 @@ html, body {
 	}
 
 </script>
-<%@include file="../includes/footer.jsp"%>
+<%@include file="../../m/includes/footer.jsp"%>
 
 
