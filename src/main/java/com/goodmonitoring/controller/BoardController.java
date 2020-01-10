@@ -120,7 +120,10 @@ public class BoardController {
 		model.addAttribute("MostTarget", service.getmosttarget());
 		
 		model.addAttribute("list", service.getmonthlyList());
-
+		if( httpRequest.getSession().getAttribute("user") !=null) {
+			int USR_NO = ((UserVO) httpRequest.getSession().getAttribute("user")).getUSR_NO();
+			model.addAttribute("C_NAME", applydataService.getlatelycname(USR_NO));
+		}
 		 ArrayList<TargetVO> targetList =  (ArrayList<TargetVO>) targetservice.getList();
 		//대상별 모집정보 개수
 		model.addAttribute("ilban", service.countTarget(targetList.get(0)));

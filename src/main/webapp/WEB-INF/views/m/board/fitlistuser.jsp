@@ -51,17 +51,17 @@
 %>
 <c:choose>
 	<c:when test="${!empty sessionScope.user}">  
-		<li>  
+		<li style="font-size:x-small;">  
 			최근 지원하셨던 <a class="nav-link">${C_NAME}</a>의 모집정보를 확인해보세요 <a href="/m/board/fitlistC_NAME">    >바로가기</a>
-		</li>	
-		<li>   
+		</li>	 
+		<li style="font-size:x-small;">    
 			<%=cal.get(Calendar.MONTH)+1%>월에는 <a>${MostTarget}</a>대상의 <a>${MostCategory}</a>모집이 활발합니다.<a href="/m/board/graphmoniter">    >바로가기</a>
 		</li> 
 	</c:when>
 	</c:choose>
 </div> 
 <!-- 네비게이션  -->
-
+<hr class="one">  
     <!-- /.col-lg-12 -->
 
   
@@ -91,21 +91,26 @@
             
             <div class="panel-body">
             	<table width="100%" class="table table-striped table-bordered table-hover">
-                	<thead>
-                    	<tr>
-                        	<th>#번호</th>                          
-                            <th>제목</th>                         
-                            <th>조회수</th>
+                	<thead> 
+                    	<tr style="font-size:x-small;"> 
+                        	<th>번호</th>                          
+                            <th>제목</th>
                         </tr> 
 	                </thead>
 	              <c:forEach items="${list}" var="board">
-                    <tr>
-                      <td><c:out value="${board.BOARD_NO}" /></td>
+                    <tr> 
+                      <td style="font-size:x-small;"><c:out value="${board.BOARD_NO}" /></td>
                    
-                      <td><!-- script로 기동 <a  href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'>-->
+                      <td  style="font-size:small;"><!-- script로 기동 <a  href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'>-->
 	                	<a  class='move' href='<c:out value="${board.BOARD_NO}"/>'>
-	                	<c:out value="${board.AD_TITLE}"/></a></td>	     
-                      <td><c:out value="${board.VIEW_COUNT}" /></td>
+	                	<c:out value="${board.AD_TITLE}"/></a>
+	                	<div style="font-size:x-small;">
+								<c:out value="${board.REPORTING_DATE}" />
+								조회 :<c:out value="${board.VIEW_COUNT}" />			 
+								추천 :<c:out value="${board.RECOMMEND_COUNT}" />
+							</div>
+	                	</td>	     
+            
                       
                     </tr>
                  </c:forEach>

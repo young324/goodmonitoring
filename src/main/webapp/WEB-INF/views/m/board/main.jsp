@@ -91,13 +91,14 @@ html, body {
       -webkit-align-items: center;
       align-items: center;
     }
-       
+
     .swiper-container > .swiper-wrapper > .swiper-slide > .thumbnail >img {  
       top: 0;  
       left: 0;    
       min-width: 40%;
       min-height: auto;
-     
+      width: auto;
+      height:200px;
     }
  
 </style>
@@ -127,22 +128,27 @@ html, body {
  			<table class="table table-striped table-bordered table-hover">
 					<thead> 
 						<tr> 
-							<th colspan="3">마감임박 모집정보</th>
-						</tr>  
+							<th colspan="2">마감임박 모집정보</th>
+						</tr>   
 					</thead>   
 					<c:forEach items="${DeadlineList}" var="board">
 						<tr>
-							<td>
+							<td style="font-size: small;">
 								<span style="color:red">D-${board.DATE}</span> 
 							</td> 
+							 
 							
-							
-							<td >  
+							<td>  
 								<!-- script로 기동 <a href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'>-->
-								<a href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'> 
+								<a style="font-size: small;" href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'> 
 								<c:out value="${board.AD_TITLE}" /></a>
-							</td>
-							<td><c:out value="${board.VIEW_COUNT}" /></td>  
+							<div style="font-size:x-small;">
+								<c:out value="${board.REPORTING_DATE}" />
+								조회 :<c:out value="${board.VIEW_COUNT}" />			 
+								추천 :<c:out value="${board.RECOMMEND_COUNT}" />
+							</div>
+							</td> 
+							
 						</tr>
 					</c:forEach>
 				</table>	
@@ -150,19 +156,21 @@ html, body {
 					class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
-							<th colspan="2">인기 모집정보</th>
+							<th>인기 모집정보</th>
 						</tr> 
 					</thead>
 					<c:forEach items="${RecommendList}" var="board"> 
-						<tr> 
-						 
+						<tr>  
 							<td> 
 								<!-- script로 기동 <a  href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'>-->
-								<a href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'> 
+								<a style="font-size: small;" href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'> 
 								<c:out value="${board.AD_TITLE}" /></a>
+							<div style="font-size:x-small;">
+								<c:out value="${board.REPORTING_DATE}" />
+								조회 :<c:out value="${board.VIEW_COUNT}" />			 
+								추천 :<c:out value="${board.RECOMMEND_COUNT}" />
+							</div>
 							</td>
-  						
-							<td><c:out value="${board.VIEW_COUNT}" /></td> 
 						</tr>
 					</c:forEach>
 				</table>
@@ -172,7 +180,7 @@ html, body {
 					class="table table-striped table-bordered table-hover">
 					<thead> 
 						<tr>  
-							<th colspan="2">최신 모집정보</th>
+							<th>최신 모집정보</th>
 						</tr>
 					</thead>   
 					<c:forEach items="${list}" var="board" begin="0" end="4">
@@ -181,11 +189,14 @@ html, body {
 						  
 							<td> <%--  <a class='move' href='<c:out value="${board.BOARD_NO}"/>'>  --%>
 								<!-- script로 기동 <a href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'>-->
-								<a href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'> 
+								<a style="font-size: small;" href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'> 
 								<c:out value="${board.AD_TITLE}" /></a>
-							</td>  
-							
-								<td><c:out value="${board.VIEW_COUNT}" /></td> 
+							<div style="font-size:x-small;">
+								<c:out value="${board.REPORTING_DATE}" />
+								조회 :<c:out value="${board.VIEW_COUNT}" />			 
+								추천 :<c:out value="${board.RECOMMEND_COUNT}" />
+							</div>	
+							</td> 
 						</tr> 
 					</c:forEach>
 				</table> 

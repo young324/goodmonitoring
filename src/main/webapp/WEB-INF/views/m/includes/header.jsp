@@ -141,25 +141,17 @@
 					<li><a href="/m/board/Loginselect">로그인</a></li>
 					<ul class="nav navbar-nav navbar-right">
 
-			<li class="dropdown"><a href="#" class="dropdown-toggle"
-				data-toggle="dropdown" role="button" aria-haspopup="true"
-				aria-expanded="false">모집정보 찾기<span class="caret"></span></a>
-
+			<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"
+			 role="button" aria-haspopup="true" aria-expanded="false">모집정보 찾기
+			 <span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<c:choose>
-
-						<c:when test="${!empty sessionScope}">
-							<li><a href="/m/board/list?pageNum=1&amount=10">전체 모집정보</a></li>
-							<li><a href="/m/board/fitlistJoin">맞춤 모집정보</a></li>
-							<li><a href="/m/board/graphmoniter">이달의 모집정보</a></li>
-						</c:when>
-						<c:otherwise>
-						</c:otherwise>
-
-					</c:choose>
-				</ul></li>
+						<li><a href="/m/board/list?pageNum=1&amount=10">전체 모집정보</a></li>
+						<li><a href="/m/board/fitlistJoin">맞춤 모집정보</a></li>
+						<li><a href="/m/board/graphmoniter">이달의 모집정보</a></li>					  
+				</ul>
+			</li>
 		</ul>
-
 				</c:otherwise>
 			</c:choose>
 		</ul>

@@ -84,7 +84,7 @@
 	<!-- /.col-lg- 12 -->
 
 <!-- 맞춤모집정보 -->
-<div>
+<div style="font-size:x-small;">
 	<%
 		Date date = new Date();
 		Calendar cal = Calendar.getInstance();
@@ -106,10 +106,15 @@
 	<div class="item">
 		<div class="item-content">
 		<hr class="one"> 
+		<div style="font-size:x-small;">
 			<strong><%=cal.get(Calendar.MONTH) + 1%></strong>월의 전체 모니터링 모집정보는 <strong>
-				${countboard} </strong> 건으로, <strong> ${MostTarget} </strong> 를 대상으로 한 <strong>
+				${countboard} </strong> 건으로, 
+				</div> 
+				<div style="font-size:x-small;">
+				<strong> ${MostTarget} </strong> 를 대상으로 한 <strong>
 				${MostCategory} </strong> 모집이 활발합니다.
-			</h3>
+				
+		</div> 
 
 			<table>
 				<th>
@@ -174,22 +179,26 @@
 				<table width="100%"
 					class="table table-striped table-bordered table-hover">
 					<thead>
-						<tr>
-							<th>#번호</th>
-							<th>제목</th>
-							<th>조회수</th>
+						<tr style="font-size:x-small;">
+							<th>번호</th>
+							<th>제목</th> 
 						</tr>
 					</thead>
 					<c:forEach items="${list}" var="board">
 						<tr>
-							<td><c:out value="${board.BOARD_NO}" /></td>
-							<td>
+							<td style="font-size:x-small;"><c:out value="${board.BOARD_NO}" /></td>
+							<td style="font-size:small;">
 								<!-- script로 기동 <a  href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'>-->
 								<a class='move' href='<c:out value="${board.BOARD_NO}"/>'> <c:out
 										value="${board.AD_TITLE}" /></a>
+							<div style="font-size:x-small;">
+ 								<c:out value="${board.REPORTING_DATE}" />
+								조회 :<c:out value="${board.VIEW_COUNT}" />			 
+								추천 :<c:out value="${board.RECOMMEND_COUNT}" />
+							</div>
 							</td>
  
-							<td><c:out value="${board.VIEW_COUNT}" /></td>
+						
 
 						</tr>
 					</c:forEach>

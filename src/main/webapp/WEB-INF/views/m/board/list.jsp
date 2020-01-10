@@ -190,30 +190,26 @@
 				<table 
 					class="table table-striped table-bordered table-hover">
 					<thead>
-						<tr>
-							<th>#번호</th>
-					
-							<th>제목</th>
-			
-							<th>조회수</th>
-						</tr>
+						<tr style="font-size:x-small;"> 
+							<th>번호</th>
+							<th>제목</th>		
+							
+						</tr> 
 					</thead>
 					<c:forEach items="${list}" var="board">
 						<tr>
-							<td><c:out value="${board.BOARD_NO}" /></td>
-						
-
-
-							<td>
+							<td style="font-size:x-small;"><c:out value="${board.BOARD_NO}" /></td>
+							<td style="font-size:small;">
 								<!-- script로 기동 <a  href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'>-->
 								<a class='move' href='<c:out value="${board.BOARD_NO}"/>'> 
 								<c:out value="${board.AD_TITLE}" /></a>
+							<div style="font-size:x-small;">
+								<c:out value="${board.REPORTING_DATE}" />
+								조회 :<c:out value="${board.VIEW_COUNT}" />			 
+								추천 :<c:out value="${board.RECOMMEND_COUNT}" />
+							</div>
 							</td>
-
-
-
 					 
-							<td><c:out value="${board.VIEW_COUNT}" /></td>
 
 						</tr>
 					</c:forEach>
@@ -221,7 +217,7 @@
 				<!--  검색처리 추가 -->
 				<div class="row">
 					<div class="col-lg-12">
-						<form id="searchForm" action="/board/list" method="get">
+						<form id="searchForm" action="/m/board/list" method="get">
 							<select name="type">
 								<option value=""
 									<c:out value="${pageMaker.cri.type == null ? 'selected':'' }'"/>="">--</option>
@@ -268,10 +264,10 @@
 							<a href="${pageMaker.endPage+1}">Next</a>
 							</li>
 						</c:if>
-					</ul>
+					</ul> 
 				</div>
 				<!-- form 추가 -->
-				<form id="actionForm" action="/board/list" method="get">
+				<form id="actionForm" action="/m/board/list" method="get">
 					<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}"> 
 					<input type="hidden" name="amount" value="${pageMaker.cri.amount}"> 
 					<input type="hidden" name="type" value='<c:out value="${pageMaker.cri.type}"/>'> 
@@ -302,16 +298,9 @@
 					</div>
 					<!-- /.modal-dialog -->
 				</div>
-				<!-- /.modal -->
-				<!-- Madal창 추가 End-->
-
 			</div>
-			<!-- /.panel-body -->
-	
 		</div>
-		<!-- /.panel -->
 	</div>
-	<!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
    </body>
