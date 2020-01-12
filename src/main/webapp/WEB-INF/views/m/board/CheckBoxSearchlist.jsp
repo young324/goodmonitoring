@@ -84,30 +84,25 @@
 				<table 
 					class="table table-striped table-bordered table-hover">
 					<thead>
-						<tr>
-							<th>#번호</th>
-							<th>분류</th>
-							<th>제목</th>
-							<th>작성일</th>
-							<th>조회수</th>
-						</tr>
+						<tr style="font-size:x-small;"> 
+							<th>번호</th>
+							<th>제목</th>		
+							
+						</tr> 
 					</thead>
 					<c:forEach items="${list}" var="board">
 						<tr>
-							<td><c:out value="${board.BOARD_NO}" /></td>
-							<td class="txt_line"><c:out value="${board.TARGET}" /></td>
-
-
-							<td>
+							<td style="font-size:x-small;"><c:out value="${board.BOARD_NO}" /></td>
+							<td style="font-size:small;">
 								<!-- script로 기동 <a  href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'>-->
 								<a class='move' href='<c:out value="${board.BOARD_NO}"/>'> 
 								<c:out value="${board.AD_TITLE}" /></a>
-							</td>
-
-
-
-							<td><c:out value="${board.REPORTING_DATE}" /></td>
-							<td><c:out value="${board.VIEW_COUNT}" /></td>
+							<div style="font-size:x-small;">
+								<c:out value="${board.REPORTING_DATE}" />
+								조회 :<c:out value="${board.VIEW_COUNT}" />			 
+								추천 :<c:out value="${board.RECOMMEND_COUNT}" />
+							</div>
+							</td> 
 
 						</tr>
 					</c:forEach>

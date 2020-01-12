@@ -13,55 +13,95 @@
 		<div class="panel panel-default">
 	 
 			<div class="panel-heading">
-				<label id='BOARD_NO'> <c:out
-						value="${board.BOARD_NO}" /> : </label> <label> <c:out
-						value="${board.AD_TITLE}" /></label>
-
-				<div class="pull-right">
-					<label>추천 수 :</label> <label> <c:out
-							value="${board.RECOMMEND_COUNT}" /></label> <label>조회 수 :</label> <label>
-						<c:out value="${board.VIEW_COUNT}" />
-					</label>
-				</div>
+				<c:out value="${board.AD_TITLE}" />
+					<div style="font-size:x-small;">
+								<c:out value="${board.REPORTING_DATE}" />
+								조회 :<c:out value="${board.VIEW_COUNT}" />			 
+								추천 :<c:out value="${board.RECOMMEND_COUNT}" />
+					</div>
 			</div> 
 			<!-- /.panel-heading -->
-	<div style="white-space: pre-line; float: left">   			
-						<label><h2> <c:out value="${board.AD_TITLE}" /></h1> 
-						</label>
-  
-						<label>모집인원 : </label> <label> <c:out
-							value="${board.AD_PERSONNEL}" /></label> <label>명</label>			 
-				
-						<label>모집기간 :</label> <label> <c:out
-								value="${board.AD_START_DATE}" /></label> <label> ~ </label> <label>
-							<c:out value="${board.AD_END_DATE}" />
-						</label>
-				
-						<label>발표일 : </label> <label> <c:out
-								value="${board.AD_ANNOUNCEMENT_DATE}" /></label>
-					
-						<label>자격요건 : </label> 
-						<label> <c:out
-								value="${board.AD_TEXT}" /></label>
-					
-				
-						<label>지원방법 : </label> 
-						<label> <c:out
-								value="${board.AD_APPLY_TEXT}" /></label>
-					
-						<label>활동혜택 : </label> 
-						<label><c:out
-								value="${board.WORK_BENEFIT_TEXT}" /></label>
-						
-						<label>활동기간 : </label> <label><c:out
-								value="${board.WORK_START_DATE}" /></label> <label> ~ </label> <label>
-							<c:out value="${board.WORK_END_DATE}" />
-						</label>
-					
-					
-						<label>활동내용 : </label> 
-						<label><c:out
-								value="${board.WORK_TEXT}" /></label>			  
+	<div style="white-space: pre-line; float: left">
+	<table class="table table-bordered"> 
+		<tr>
+			<td>업종</td>  
+			<td><c:out value="${board.INTEREST_CATEGORY}" /></td>  
+		</tr>
+		<tr>
+			<td>대상</td>  
+			<td><c:out value="${board.TARGET}" /></td>  
+		</tr>
+		<tr>  
+			<td>모집인원</td>
+			<td><c:out value="${board.AD_PERSONNEL}" />명</td>  
+		</tr>
+		<tr>  
+			<td>모집기간</td>
+			<td><c:out value="${board.AD_START_DATE}" /> ~ <c:out value="${board.AD_END_DATE}" /></td>  
+		</tr> 
+		<tr>  
+			<td>발표일</td>
+			<td><c:out value="${board.AD_ANNOUNCEMENT_DATE}" /></td>  
+		</tr>
+		<tr>  
+			<td>활동기간</td>
+			<td><c:out value="${board.WORK_START_DATE}" /> ~ <c:out value="${board.WORK_END_DATE}" /></td>  
+		</tr> 
+		</tbody>  
+	</table>
+	<table class="table"> 
+	 <thead class="thead-dark">
+	  	<tr>
+	  		<th scope="col">자격요건</th>
+	  	</tr>
+	  </thead> 
+	  <tbody>
+	  	<tr> 
+	  		<td  scope="row">
+	  			<c:out value="${board.AD_TEXT}" />
+	  		</td>
+	  	</tr>
+	  </tbody>
+	  
+	  <thead class="thead-dark">
+	  	<tr>
+	  		<th scope="col">활동내용</th>
+	  	</tr>
+	  </thead> 
+	  <tbody>
+	  	<tr> 
+	  		<td  scope="row">
+	  			<c:out value="${board.WORK_TEXT}" />
+	  		</td>
+	  	</tr>
+	  </tbody>
+	  
+	  <thead class="thead-dark">
+	  	<tr>
+	  		<th scope="col">활동혜택</th>
+	  	</tr>
+	  </thead> 
+	  <tbody>
+	  	<tr> 
+	  		<td  scope="row">
+	  			<c:out value="${board.WORK_BENEFIT_TEXT}" />
+	  		</td>
+	  	</tr>
+	  </tbody>
+	  
+	    <thead class="thead-dark">
+	  	<tr>
+	  		<th scope="col">지원방법</th>
+	  	</tr>
+	  </thead> 
+	  <tbody>
+	  	<tr> 
+	  		<td  scope="row">
+	  			<c:out value="${board.AD_APPLY_TEXT}" />
+	  		</td>
+	  	</tr>
+	  </tbody>
+	</table> 		  
  						</div>
 						<!-- 이미지 -->
 						<div class="thumbnail-wrapper">
@@ -77,7 +117,7 @@
 						</div>  
 						</div>
 						
- 
+  
 
 						<!-- 기업회원만 접근가능 -->
 						<c:choose>

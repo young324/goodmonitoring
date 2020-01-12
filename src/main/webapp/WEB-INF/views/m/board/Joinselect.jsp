@@ -64,7 +64,7 @@
     			<a href="/user/userJoin">
     			<img src="/resources/img/user_img.png">
     			</a> 
-    			<a class="btn btn-primary" href="/user/userJoin">개인 회원가입</a>
+    			<a class="btn btn-primary" href="/m/user/userJoin">개인 회원가입</a>
 				</div>
     		</td>
     	 	  
@@ -73,7 +73,7 @@
     			<a href="/company/companyJoin">
     			<img src="/resources/img/company_img.png">
     			</a>
-    			<a class="btn btn-primary" href="/company/companyJoin">기업 회원가입</a> 
+    			<a class="btn btn-primary" href="/m/company/companyJoin">기업 회원가입</a> 
 				</div>
     		</td>
     	</tr>

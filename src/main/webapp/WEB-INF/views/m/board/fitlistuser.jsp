@@ -221,14 +221,14 @@ $(document).ready(
 		}
 
 		$("#regBtn").on("click", function() {
-			self.location = "/board/write";
+			self.location = "/m/board/write";
 		});
-		
+		 
 		$("#FitBtn").on("click", function() {
-			self.location = "/board/fitlistJoin";
+			self.location = "/m/board/fitlistJoin";
 		});
 		$("#listBtn").on("click", function() {
-			self.location = "/board/list";
+			self.location = "/m/board/list";
 		});
 		
 		/**page 처리 Script */
@@ -243,7 +243,7 @@ $(document).ready(
 		$(".move").on("click", function(e) {
 			e.preventDefault();
 			actionForm.append("<input type='hidden' name='BOARD_NO' value='"+$(this).attr("href")+"'>");
-			actionForm.attr("action", "/board/read");
+			actionForm.attr("action", "/m/board/read");
 			actionForm.submit();
 		});
 		/**Search 처리 Script */

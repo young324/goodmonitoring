@@ -50,8 +50,9 @@ public class m_UserController {
 	
 	
 	@RequestMapping(value="/userJoin",method=RequestMethod.GET)
-	public void getUserJoin() throws Exception {	
-		
+	public void getUserJoin(Model model) throws Exception {	
+		model.addAttribute("listTarget", targetservice.getList());
+		model.addAttribute("listIndustryCategory", industrycategoryservice.getList());
 	}
 
 	//sign post ���

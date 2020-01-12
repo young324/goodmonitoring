@@ -63,7 +63,7 @@
     	<tr>
     		<td>    
     			<div class="thumbnail">
-    			<a href="/user/LoginForm">
+    			<a href="/m/user/LoginForm">
     			<img src="/resources/img/user_img.png">
     			</a> 
     			<a class="btn btn-primary" href="/m/user/LoginForm">개인 회원 로그인</a>
@@ -72,7 +72,7 @@
     	 	  
     		<td>
     			<div class="thumbnail">
-    			<a href="/company/companyLoginForm">
+    			<a href="/m/company/companyLoginForm">
     			<img src="/resources/img/company_img.png">
     			</a>
     			<a class="btn btn-primary" href="/m/company/companyLoginForm">기업 회원 로그인</a> 

@@ -155,9 +155,6 @@
 				</c:otherwise>
 			</c:choose>
 		</ul>
-
-
-
 	</div>
 	 </div> 
 	</nav>  
@@ -169,9 +166,6 @@
 		<img src="/resources/img/Goodmonitoring.png"> 
 	</div>
   -->
-
-  
-
 		<!-- 추가 -->
 		<script
 			src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>

@@ -127,18 +127,17 @@ html, body {
  	</div>
  			<table class="table table-striped table-bordered table-hover">
 					<thead> 
-						<tr> 
-							<th colspan="2">마감임박 모집정보</th>
+						<tr>  
+							<th colspan="3">마감임박 모집정보</th>
 						</tr>   
-					</thead>   
+					</thead>     
 					<c:forEach items="${DeadlineList}" var="board">
-						<tr>
-							<td style="font-size: small;">
-								<span style="color:red">D-${board.DATE}</span> 
+						<tr>  
+							<td style="font-size: small;" colspan="2">    
+								<span style="color:red;">D-${board.DATE}</span> 
 							</td> 
-							 
-							
-							<td>  
+				         
+							<td style="width:88%;">  
 								<!-- script로 기동 <a href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'>-->
 								<a style="font-size: small;" href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'> 
 								<c:out value="${board.AD_TITLE}" /></a>

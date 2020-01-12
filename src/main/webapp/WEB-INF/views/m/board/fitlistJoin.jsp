@@ -53,86 +53,18 @@
 %>
 <c:choose>
 	<c:when test="${!empty sessionScope.user}">  
-			
-		<ul>
-			<label><%=cal.get(Calendar.MONTH)+1%>월에는 <a>${MostTarget}</a>대상의 <a>${MostCategory}</a>모집이 활발합니다.</label><a href="/board/graphmoniter">    >바로가기</a>
-		</ul>
+		<li style="font-size:x-small;">    
+			<%=cal.get(Calendar.MONTH)+1%>월에는 <a>${MostTarget}</a>대상의 <a>${MostCategory}</a>모집이 활발합니다.<a href="/m/board/graphmoniter">    >바로가기</a>
+		</li> 
 	</c:when>
 	</c:choose>
 </div>
 <!-- 네비게이션  -->
-
+<hr class="one">   
     <!-- /.col-lg-12 -->
   
 
- <nav class="navbar navbar-default">
-
-
-
-
-
-  <div class="navbar-header">
-
-   <button type="button" class="navbar-toggle collapsed" 
-
-    data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-
-    aria-expaned="false">
-
-     <span class="icon-bar"></span>
-
-     <span class="icon-bar"></span>
-
-     <span class="icon-bar"></span>
-
-    </button>
-
-    
-
-  </div>
-
-  <div class="collapse navbar-collapse" id="#bs-example-navbar-collapse-1">
-  
-   
-  
-  
-
-   <ul class="nav navbar-nav">
-
-<c:choose>
-	<c:when test="${!empty sessionScope.user}">       		
-        		<li class="nav-item dropdown" >
-        			<a class="nav-link">${sessionScope.user.USR_ID } 님에게 맞는 모집정보를 추천 드립니다.</a>
-        		<!-- 	<a class="nav-link">모집정보에 지원하시면 더 다양한 정보를 제공받으실 수 있습니다.</a> -->
-        		</li>         	
-    </c:when>
-    <c:when test="${!empty sessionScope.company}">       		
-        		<li class="nav-item dropdown" >
-        			<a class="nav-link">${sessionScope.C_ID} 님 환영합니다.</a>
-        		</li>         	
-    </c:when>
-  	
-<c:otherwise>
-    <li><a href="/board/list">메인</a></li>
-
-    <li><a href="/board/list">게시판</a></li>
-
-	<li><a href="/board/Joinselect">회원가입</a></li>
-		<li><a href="/board/Loginselect">로그인</a></li>
-	
-</c:otherwise>
-	
-</c:choose>	
-
-
-   </ul>
-
-    
-
-
-  </div> 
-
- </nav>
+ 
 <!-- /.row -->
 <div class="row">
 	<div class="col-lg-12">
@@ -159,28 +91,25 @@
             <div class="panel-body">
             	<table class="table table-striped table-bordered table-hover">
                 	<thead> 
-                    	<tr>
+                    	<tr style="font-size:x-small;">
                         	<th>번호</th>
-                            <th>분류</th>
                             <th>제목</th>                         
-                            <th>작성일</th>
-                            <th>조회수</th>
+                        
                         </tr>
 	                </thead>
 	              <c:forEach items="${list}" var="board">
                     <tr>
-                      <td><c:out value="${board.BOARD_NO}" /></td>
-                      <td class="txt_line"><c:out value="${board.TARGET}" /></td>
-                      
-                      
-                      <td><!-- script로 기동 <a  href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'>-->
+                      <td style="font-size:x-small;"><c:out value="${board.BOARD_NO}" /></td>
+                    <td style="font-size:small;"><!-- script로 기동 <a  href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'>-->
 	                	<a  class='move' href='<c:out value="${board.BOARD_NO}"/>'>
-	                	<c:out value="${board.AD_TITLE}"/></a></td>	     
+	                	<c:out value="${board.AD_TITLE}"/></a>
+	                	<div style="font-size:x-small;">
+								<c:out value="${board.REPORTING_DATE}" />
+								조회 :<c:out value="${board.VIEW_COUNT}" />			 
+								추천 :<c:out value="${board.RECOMMEND_COUNT}" />
+							</div>
+	                	</td>	     
                       
-                      
-                      
-                      <td><c:out value="${board.REPORTING_DATE}" /></td>
-                      <td><c:out value="${board.VIEW_COUNT}" /></td>
                       
                     </tr>
                  </c:forEach>
@@ -290,13 +219,13 @@ $(document).ready(
 		}
 
 		$("#regBtn").on("click", function() {
-			self.location = "/board/write";
+			self.location = "/m/board/write";
 		});
 		$("#listBtn").on("click", function() {
-			self.location = "/board/list";
+			self.location = "/m/board/list";
 		});
 		$("#FitBtn").on("click", function() {
-			self.location = "/board/fitlistJoin";
+			self.location = "/m/board/fitlistJoin";
 		});
 		
 		/**page 처리 Script */
@@ -311,7 +240,7 @@ $(document).ready(
 		$(".move").on("click", function(e) {
 			e.preventDefault();
 			actionForm.append("<input type='hidden' name='BOARD_NO' value='"+$(this).attr("href")+"'>");
-			actionForm.attr("action", "/board/read");
+			actionForm.attr("action", "/m/board/read");
 			actionForm.submit();
 		});
 		/**Search 처리 Script */
