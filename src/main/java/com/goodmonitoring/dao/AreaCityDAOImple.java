@@ -6,16 +6,17 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.goodmonitoring.vo.area_cityVO;
+import com.goodmonitoring.vo.AreaCityVO;
 
-public class area_cityDAOImple implements area_cityDAO {
+//@Repository("area_cityDAO")
+public class AreaCityDAOImple implements AreaCityDAO {
 	
 	@Inject
 	private SqlSession ss;
 	
 	@Override
-	public List<area_cityVO> getCity(){
-		return ss.selectList("getList");
+	public List<AreaCityVO> getCity(){
+		return ss.selectList("getCity");
 		
 	}
 

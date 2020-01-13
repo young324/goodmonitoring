@@ -1,6 +1,9 @@
 package com.goodmonitoring.vo;
 
-public class area_guVO {
+import lombok.Data;
+
+@Data
+public class AreaGuVO {
 
 	private int GU_CODE;
 	

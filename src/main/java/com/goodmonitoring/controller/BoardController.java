@@ -19,12 +19,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.goodmonitoring.service.ApplydataService;
+import com.goodmonitoring.service.AreaCityService;
+import com.goodmonitoring.service.AreaGuService;
 import com.goodmonitoring.service.BoardService;
 import com.goodmonitoring.service.FileUploadService;
 import com.goodmonitoring.service.IndustryCategoryService;
 import com.goodmonitoring.service.LikeService;
 import com.goodmonitoring.service.TargetService;
-import com.goodmonitoring.service.area_cityService;
 import com.goodmonitoring.vo.ApplydataVO;
 import com.goodmonitoring.vo.BoardFileVO;
 import com.goodmonitoring.vo.BoardVO;
@@ -57,8 +58,11 @@ public class BoardController {
 	@Resource(name="applydataService")
 	private ApplydataService applydataService;
 	
-	@Resource(name="cityService")
-	private area_cityService cityService;
+	@Resource(name="AreaCityService")
+	private AreaCityService cityservice;
+	
+	@Resource(name="AreaGuService")
+	private AreaGuService guservice;
 	
 	@Autowired
 	private FileUploadService fileUploadService;
@@ -80,7 +84,8 @@ public class BoardController {
 	public void tilist(Model model) {
 		model.addAttribute("listTarget", targetservice.getList());
 		model.addAttribute("listIndustryCategory", industrycategoryservice.getList());
-		model.addAttribute("listCity", cityService.getCity());
+		model.addAttribute("listCity", cityservice.getCity());
+		model.addAttribute("listGu", guservice.getGu());
 	}
 
 	
@@ -342,6 +347,8 @@ public class BoardController {
 			}
 			return "error";
 		}
+		
+		
 
 	
 

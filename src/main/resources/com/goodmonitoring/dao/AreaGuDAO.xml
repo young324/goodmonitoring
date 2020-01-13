@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.goodmonitoring.dao.AreaGuDAO">
+
+<select id="getGu" resultType="com.goodmonitoring.vo.AreaGuVO">
+		<![CDATA[
+		SELECT * from area_gu where GU_CODE > 0
+					
+		]]>
+		
+		
+		<!--
+		<![CDATA[
+		SELECT unique g.GU_NAME
+		FROM area_gu g 
+			JOIN area_city c
+				CASE WHEN 
+					c.CITY_CODE = 11 THEN WHERE g.GU_CODE = '11%'
+					c.CITY_CODE = 26 THEN WHERE g.GU_CODE = '26%'
+					c.CITY_CODE = 27 THEN WHERE g.GU_CODE = '27%'
+					c.CITY_CODE = 28 THEN WHERE g.GU_CODE = '28%'
+					c.CITY_CODE = 29 THEN WHERE g.GU_CODE = '29%'
+				END
+					
+		]]>
+		-->
+</select> 
+
+
+</mapper>

@@ -2,11 +2,13 @@ package com.goodmonitoring.dao;
 
 import java.util.List;
 
-import com.goodmonitoring.vo.area_cityVO;
 
-public interface area_cityDAO {
+import com.goodmonitoring.vo.AreaCityVO;
+
+
+public interface AreaCityDAO {
 	
-	public List<area_cityVO> getCity();
+	public List<AreaCityVO> getCity();
 	
 	public int getCitycode(String CITY_NAME);
 	

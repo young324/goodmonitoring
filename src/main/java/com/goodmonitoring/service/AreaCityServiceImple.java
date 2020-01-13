@@ -4,15 +4,22 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import com.goodmonitoring.dao.area_cityDAO;
-import com.goodmonitoring.vo.area_cityVO;
+import org.springframework.stereotype.Service;
 
-public class area_cityServiceImple implements area_cityService {
+import com.goodmonitoring.dao.AreaCityDAO;
+import com.goodmonitoring.vo.AreaCityVO;
+
+import lombok.extern.log4j.Log4j;
+
+@Log4j //기존에 선언되있는 log4j 1.2.15버전을 주석처리해줌
+@Service("AreaCityService")
+public class AreaCityServiceImple implements AreaCityService {
+	
 	@Inject
-	private area_cityDAO city;
+	private AreaCityDAO city;
 	
 	@Override
-	public List<area_cityVO> getCity() {
+	public List<AreaCityVO> getCity() {
 		// TODO Auto-generated method stub
 		return city.getCity();
 	}

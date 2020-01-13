@@ -347,13 +347,14 @@
 							<td colspan="1" width="15%">
 								<div class="control-group">
 									<div class="controls">
-										<select name="AD_AREA_NAME" id="Citys" class="form-control">
-											<option values="">시</option>
-											<c:forEach var="area_cityVO" items="${CITY_CODE}">
-												<option value = "${area_cityVO.CITY_CODE}">${area_cityVO.CITY_NAME}</option>
+									<form id = "sigungu">
+										<select name="AD_AREA_NAME" id="Citys" class="form-control" onchange='chagne(this)'>
+										   
+											<c:forEach var="listCity" items="${listCity}">
+												<option value = "${listCity.CITY_CODE}">${listCity.CITY_NAME}</option>
 											</c:forEach>
 											   
-										</select>
+										</select> 
 									</div>  
 								</div>
 							</td>
@@ -361,9 +362,11 @@
 								<div class="control-group">
 									<div class="controls">
 										<select name="AD_AREA_NAME" id="District" class="form-control">
-											<option>구</option>
-											<option>동대문구</option>
+											<c:forEach var="listGu" items="${listGu}">
+												<option value = "${listGu.GU_NAME}">${listGu.GU_NAME}</option>
+											</c:forEach>
 										</select>
+									</form>
 									</div>
 								</div>
 							</td>
@@ -430,7 +433,7 @@
 
 				</table>
 
-				<!-- 활동 내용  -->
+				<!-- 활동 내용  -->  
 
 
 				<table class="table table-borderless"
@@ -727,6 +730,48 @@ $(document).ready(function(){
         	$("#District").attr("disabled",false);
         }
     });
+
+    function change(){
+    	 
+    	var s = [$("#area_gu.GU_CODE Like '11%''")];
+    	var mouse = ["광마우스","유선마우스","비싼마우스","미키마우스"];
+    	var monitor = ["17인치","22인치","24인치","26인치"];
+    	 
+    	var selectItem = $("#Citys").val();
+    	 
+    	var changeItem;
+    	  
+    	if(selectItem == "서울시"){
+    	  changeItem = s;
+    	}
+    	else if(selectItem == "마우스"){
+    	  changeItem = mouse;
+    	}
+    	else if(selectItem == "모니터"){
+    	  changeItem =  monitor;
+    	}
+    	 
+    	$('#select2').empty();
+    	 
+    	for(var count = 0; count < changeItem.size(); count++){                
+    	                var option = $("<option>"+changeItem[count]+"</option>");
+    	                $('#select2').append(option);
+    	            }
+    	 
+    	}
+
+
+    	
+    
+
+
+
+
+
+    
+<!--$(function(){
+	$
+}); -->
     
     
 

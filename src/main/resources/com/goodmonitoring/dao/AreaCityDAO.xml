@@ -3,9 +3,9 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.goodmonitoring.dao.area_cityDAO">
+<mapper namespace="com.goodmonitoring.dao.AreaCityDAO">
 
-<select id="getCity" resultType="com.goodmonitoring.vo.area_cityVO">
+<select id="getCity" resultType="com.goodmonitoring.vo.AreaCityVO">
 		<![CDATA[
 		SELECT * FROM area_city WHERE CITY_CODE > 0
 		]]>
