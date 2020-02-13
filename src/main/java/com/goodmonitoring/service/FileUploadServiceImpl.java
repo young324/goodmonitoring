@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.goodmonitoring.dao.FileUploadDao;
+import com.goodmonitoring.util.AWSService;
 import com.goodmonitoring.util.FileUploader;
 import com.goodmonitoring.util.Util;
 import com.goodmonitoring.vo.BoardFileVO;
@@ -44,8 +46,14 @@ public class FileUploadServiceImpl implements FileUploadService {
 					Util.deleteFolder(new File(uploadPath));
 					throw new Exception();
 				}
-							
-				boardFileVO.setFILE_NAME(attachFile.getOriginalFilename());
+				
+				ObjectMetadata metadata = new ObjectMetadata();
+				AWSService AWSService = new AWSService();
+//				AWSService.upload(attachFile.getOriginalFilename(), attachFile.getInputStream(),metadata);
+				AWSService.upload(realName, attachFile.getInputStream(),metadata);
+
+				/* boardFileVO.setFILE_NAME(attachFile.getOriginalFilename()); */
+				boardFileVO.setFILE_NAME(realName); 
 				boardFileVO.setFILE_PATH(fileUrlPath + "/" + realName);
 				
 				fileUploadDao.fileUploadAction(boardFileVO);					
@@ -75,7 +83,7 @@ public class FileUploadServiceImpl implements FileUploadService {
 
 
 	@Override
-	public String img_path(int BOARD_NO) throws Exception {
+	public BoardFileVO img_path(int BOARD_NO) throws Exception {
 		return fileUploadDao.img_path(BOARD_NO);
 	}
 

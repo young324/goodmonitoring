@@ -42,6 +42,13 @@
 		<version>2.9.10.1</version>
 	</dependency>
 	
+	<!-- AWS-SDK for Java -->
+	<dependency>
+		<groupId>com.amazonaws</groupId>
+		<artifactId>aws-java-sdk</artifactId>
+		<version>1.11.386</version>
+	</dependency>
+	
 	<!-- commons-fileupload 파일업로드 -->
 	<dependency>
 		<groupId>commons-fileupload</groupId>

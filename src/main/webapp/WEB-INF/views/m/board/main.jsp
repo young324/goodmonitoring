@@ -139,7 +139,7 @@ html, body {
 				         
 							<td style="width:88%;">  
 								<!-- script로 기동 <a href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'>-->
-								<a style="font-size: small;" href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'> 
+								<a style="font-size: small;" href='/m/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'> 
 								<c:out value="${board.AD_TITLE}" /></a>
 							<div style="font-size:x-small;">
 								<c:out value="${board.REPORTING_DATE}" />
@@ -162,7 +162,7 @@ html, body {
 						<tr>  
 							<td> 
 								<!-- script로 기동 <a  href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'>-->
-								<a style="font-size: small;" href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'> 
+								<a style="font-size: small;" href='/m/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'> 
 								<c:out value="${board.AD_TITLE}" /></a>
 							<div style="font-size:x-small;">
 								<c:out value="${board.REPORTING_DATE}" />
@@ -183,12 +183,10 @@ html, body {
 						</tr>
 					</thead>   
 					<c:forEach items="${list}" var="board" begin="0" end="4">
-					 
-						<tr>   
-						  
+						<tr>
 							<td> <%--  <a class='move' href='<c:out value="${board.BOARD_NO}"/>'>  --%>
 								<!-- script로 기동 <a href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'>-->
-								<a style="font-size: small;" href='/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'> 
+								<a style="font-size: small;" href='/m/board/read?BOARD_NO=<c:out value="${board.BOARD_NO}"/>'> 
 								<c:out value="${board.AD_TITLE}" /></a>
 							<div style="font-size:x-small;">
 								<c:out value="${board.REPORTING_DATE}" />
@@ -390,8 +388,7 @@ html, body {
 			.ready(
 					function() { 
 						
-					 
-						
+			
 						//이미지
 						var imgPath = new Array();
 						var imgURL = new Array();
@@ -399,16 +396,14 @@ html, body {
 						<c:forEach var="lately5" items="${Lately5}" varStatus="Lately5">
 							imgPath.push("${lately5.FILE_PATH}");
 							console.log('${lately5.FILE_PATH}');
-							$("#slide${Lately5.index}").attr('src',"<spring:url value="/img/${lately5.FILE_PATH}"/>");
+							$("#slide${Lately5.index}").attr('src',"https://${aws_url}/${aws_bucketname }/${lately5.FILE_NAME}");
 							$("#slide${Lately5.index}").attr('onclick',"javascript:location.href='${lately5.URL}';");
 						 	
-							$(".swiper-slide").children('#slide${Lately5.index}').attr('src',"<spring:url value="/img/${lately5.FILE_PATH}"/>");
-							$(".swiper-slide").children('#slide${Lately5.index}').attr('onclick',"javascript:location.href='${lately5.URL}';");
+							$(".swiper-slide").children('#slide${Lately5.index}').attr('src',"https://${aws_url}/${aws_bucketname }/${lately5.FILE_NAME}");
+/* 							$(".swiper-slide").children('#slide${Lately5.index}').attr('src',"<spring:url value="/img/${lately5.FILE_PATH}"/>");
+ */							$(".swiper-slide").children('#slide${Lately5.index}').attr('onclick',"javascript:location.href='${lately5.URL}';");
 
-						</c:forEach> 
-			      
-						
-						
+						</c:forEach>			
 			 			
 		/* 				for (var i=0; i<imglist.length; i++){
 							console.log(imglist[i]);

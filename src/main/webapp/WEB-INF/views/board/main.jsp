@@ -242,7 +242,7 @@ html, body {
 						<div>
 			<!-- 인기모집정보 자리 -->
 			<!-- Swiper --> 
-			<a href='/m/board/main'>모바일 버전<a> 
+			<a href='/m/board/main'>모바일 버전</a> 
  
 						</div> 
 					</td>
@@ -428,7 +428,7 @@ html, body {
 					function() { 
 						
 					 
-						
+				
 						//이미지
 						var imgPath = new Array();
 						var imgURL = new Array();
@@ -436,15 +436,12 @@ html, body {
 						<c:forEach var="lately5" items="${Lately5}" varStatus="Lately5">
 							imgPath.push("${lately5.FILE_PATH}");
 							console.log('${lately5.FILE_PATH}');
-							$("#slide${Lately5.index}").attr('src',"<spring:url value="/img/${lately5.FILE_PATH}"/>");
+							$("#slide${Lately5.index}").attr('src',"https://${aws_url}/${aws_bucketname }/${lately5.FILE_NAME}");
 							$("#slide${Lately5.index}").attr('onclick',"javascript:location.href='${lately5.URL}';");
-						 	
-							$(".swiper-slide").children('#slide${Lately5.index}').attr('src',"<spring:url value="/img/${lately5.FILE_PATH}"/>");
+						 	 
+							$(".swiper-slide").children('#slide${Lately5.index}').attr('src',"https://${aws_url}/${aws_bucketname }/${lately5.FILE_NAME}");
 							$(".swiper-slide").children('#slide${Lately5.index}').attr('onclick',"javascript:location.href='${lately5.URL}';");
-
 						</c:forEach> 
-			      
-						
 						
 			 			
 		/* 				for (var i=0; i<imglist.length; i++){

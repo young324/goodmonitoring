@@ -39,7 +39,7 @@ public class FileUploadDaoImpl implements FileUploadDao{
 	}
 
 	@Override
-	public String img_path(int BOARD_NO) throws Exception {
+	public BoardFileVO img_path(int BOARD_NO) throws Exception {
 		return sqlSession.selectOne("img_path", BOARD_NO);
 	}
 

@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -63,6 +64,9 @@ public class BoardController {
 	
 	@Autowired
 	private FileUploadService fileUploadService;
+	
+	@Value("${aws.url}") private String aws_url; 
+	@Value("${aws.bucketname}") private String aws_bucketname;
 
 	//회원가입 선택폼
 	@GetMapping("/Joinselect")
@@ -100,6 +104,9 @@ public class BoardController {
 	@GetMapping("/main")
 	public void mainlist(Criteria cri,Model model) throws Exception {
 		//log.info("DeadlineList");
+		model.addAttribute("aws_url", aws_url);
+		model.addAttribute("aws_bucketname", aws_bucketname);
+
 		model.addAttribute("RecommendList", service.RecommendList());
 		model.addAttribute("DeadlineList", service.DeadlineList());
 		model.addAttribute("pageMaker", new PageDTO(cri, 123));
@@ -315,6 +322,9 @@ public class BoardController {
 	@GetMapping("/read")
 	public void readShow(@RequestParam("BOARD_NO") int BOARD_NO, Model model, HttpServletRequest httpRequest) throws Exception {
 		log.info("/read");
+		
+		model.addAttribute("aws_url", aws_url);
+		model.addAttribute("aws_bucketname", aws_bucketname);
 
 		model.addAttribute("board", service.readShow(BOARD_NO));
 		
@@ -349,7 +359,7 @@ public class BoardController {
 		
 		//이미지 불러오기 FILE_PATH
 
-		model.addAttribute("FILE_PATH",fileUploadService.img_path(BOARD_NO));
+		model.addAttribute("file",fileUploadService.img_path(BOARD_NO));
 	}
 
 	//게시물 추천

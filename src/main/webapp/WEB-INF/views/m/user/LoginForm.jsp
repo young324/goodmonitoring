@@ -45,8 +45,8 @@
 
  <!-- 로긴폼 -->
 
- <div class="container" id ="wrap">
-<div class="login_form">
+<div class="container" id ="wrap">
+ <div class="login_form">
   <div class="col-lg-4"></div>
 
   <div class="col-lg-4">
@@ -88,17 +88,11 @@
     	</tr>
     	</thead>
     </div>
-
-    
-
    </form>
-
   </div>
-
  </div>
 </div>
 </div>
-
 
 
  <!-- 애니매이션 담당 JQUERY -->
@@ -109,7 +103,6 @@
 
  <script src="js/bootstrap.js"></script>
 
- 
 
 </body>
 

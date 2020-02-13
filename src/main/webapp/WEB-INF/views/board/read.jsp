@@ -4,11 +4,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ include file="../includes/header.jsp"%>
- 
-
+  
 <!-- style="margin-right:100px"
  --><!-- /.row -->
 <div class="row">
+
+
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 	 
@@ -65,10 +66,10 @@
  						</div>
 						<!-- 이미지 -->
 						<div class="thumbnail-wrapper">
-							<div class="thumbnail">
-
-								<img src="<spring:url value="/img/${FILE_PATH}"/>" />
-							</div>
+							<div class="thumbnail"> 
+                   				<%-- <img src="<spring:url value="/img/${FILE_PATH}"/>" /> --%>
+								<img src="https://${aws_url}/${aws_bucketname }/${file.FILE_NAME}" />
+							</div> 
 								<!-- 추천버튼 -->
 						<div style="text-align: right;">
 							<a class="btn btn-outline-dark heart" onclick="likebtn();"> <img

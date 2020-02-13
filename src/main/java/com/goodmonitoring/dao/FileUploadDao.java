@@ -17,7 +17,7 @@ public interface FileUploadDao {
 
 	public int fileDelete(Map<String, Object> map) throws Exception;
 	
-	public String img_path(int BOARD_NO) throws Exception;
+	public BoardFileVO img_path(int BOARD_NO) throws Exception;
 
 	public List<BoardFileVO> Lately5() throws Exception;
 }
